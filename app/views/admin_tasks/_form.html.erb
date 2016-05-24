@@ -1,0 +1,95 @@
+<%= form_for(@admin_task) do |f| %>
+  <% if @admin_task.errors.any? %>
+    <div id="error_explanation">
+      <h6>Please fill out the following feilds:</h6>
+
+      <ul>
+      <% @admin_task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+
+            
+            <!-- BASIC FORM ELELEMNTS -->
+         
+          
+                <div class="form-panel">
+                     <div class="input-field">
+                      <%= f.label :category  %><br><br>
+
+
+                                <%= f.radio_button :category, "Learning" %> <%= f.label :category, "Learning",value: "Learning" %>
+                                <%= f.radio_button :category, "Setting Up" %> <%= f.label :category, "Setting Up" ,value: "Setting Up"%>
+                                 <%= f.radio_button :category, "Milestones" %> <%= f.label :category, "Milestones",value: "Milestones" %>
+                                 <%= f.radio_button :category, "Personal Survey" %> <%= f.label :category, "Personal Survey", value: "Personal Survey" %>
+
+                                
+                              </div><br>
+
+                          
+                        <div class="input-field">
+                              <%= f.label :title  %><br>
+                              <%= f.text_field :title %>
+                        </div>
+
+                        <div class="input-field">
+                              <%= f.label :description %><br>
+                              <%= f.text_area :description, class: "materialize-textarea" %>
+                        </div>
+                        
+
+                       
+                            
+                        <div class="input-field">
+                              <%= f.label :media %>
+
+                              <%= f.text_area :media, class: "materialize-textarea" %>
+                        </div>
+
+                         
+
+                         <div class="row">
+        <div class="input-field col s6">
+          
+          <label for="Days">Days</label>
+          <%= f.number_field :due_date, :placeholder => "How Many Days"  %></p>
+        </div>
+        <div class="input-field col s6">
+          <label for="when">When</label><br>
+
+          <p> <%= f.radio_button :when, "Before" %> <%= f.label :when, "Before Start Date",value: "Before" %>
+                                <%= f.radio_button :when, "After" %> <%= f.label :when, " After Start Date" ,value: "After"%> </p>
+        </div>
+      </div>
+
+
+                          
+
+  <div class="actions ">
+                             
+                                <input type="submit" value="Update" class="btn btn-success btn-lg" >
+                                <%= link_to 'Cancel', admin_tasks_path, class: "btn btn-primary btn-lg" %>
+                              
+                              </div>
+                             
+
+                            
+
+
+                           
+
+
+                            
+             
+            
+
+
+
+        
+
+        <% end %>

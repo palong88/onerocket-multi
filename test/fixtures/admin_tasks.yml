@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  media: MyString
+  due_date: 1
+  category: MyString
+  when: MyString
+
+two:
+  title: MyString
+  description: MyString
+  media: MyString
+  due_date: 1
+  category: MyString
+  when: MyString
