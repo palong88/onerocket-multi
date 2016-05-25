@@ -1,4 +1,5 @@
 class AdminTasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_admin_task, only: [:show, :edit, :update, :destroy]
 
   # GET /admin_tasks
