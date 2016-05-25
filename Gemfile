@@ -28,7 +28,8 @@ gem 'rails_12factor', group: :production
 gem 'materialize-sass'
 #User Auth
 gem 'devise'
-
+#Print ruby object with color and indention in console
+gem "awesome_print"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
