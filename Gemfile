@@ -28,6 +28,10 @@ gem 'rails_12factor', group: :production
 gem 'materialize-sass'
 #User Auth
 gem 'devise'
+#For sending Emails Asynchronously
+gem "devise-async"
+#Sidekiq for background process
+gem "sidekiq"
 #Print ruby object with color and indention in console
 gem "awesome_print"
 # Use ActiveModel has_secure_password

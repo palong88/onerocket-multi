@@ -12,7 +12,7 @@ config.secret_key = 'caf0161fdb2d50ef835a0ae747692292f76fc63b6f91fa5fc92b230c417
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'noreply@onerocket.io'
 
 
   # Configure the class responsible to send e-mails.
