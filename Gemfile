@@ -34,6 +34,8 @@ gem "devise-async"
 gem "sidekiq"
 #Print ruby object with color and indention in console
 gem "awesome_print"
+#web Server
+gem "puma"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
