@@ -36,6 +36,8 @@ gem "sidekiq"
 gem "awesome_print"
 #web Server
 gem "puma"
+#Gem for stripe
+gem "stripe"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
