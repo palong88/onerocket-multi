@@ -82,6 +82,6 @@ Rails.application.configure do
 
   
   # Config for devise 
-  config.action_mailer.default_url_options = { host: 'ancient-bastion-57550.herokuapp.com', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'ancient-bastion-57550.herokuapp.com' }
 
 end
