@@ -1,4 +1,4 @@
-$(function() {
+        $(function() {
   var $form = $('#payment-form');
   $form.submit(function(event) {
     // Disable the submit button to prevent repeated clicks:
@@ -34,5 +34,4 @@ $(function() {
   }
 };
 });
-
-
+      

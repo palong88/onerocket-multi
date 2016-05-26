@@ -46,6 +46,9 @@ class SubscriptionsController < ApplicationController
     end
 
     def create
+
+        ap customer_id
+        ap token
         # Get the credit card details submitted by the form
         token           = params[:stripeToken]
 
