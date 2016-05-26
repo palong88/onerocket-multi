@@ -2,10 +2,15 @@
    <%= javascript_include_tag "https://js.stripe.com/v2/" %>
    <%= form_tag "/subscriptions/update_card_details", id: "payment-form" do %>
   
+	   
 	    <span class="payment-errors"></span>
 
-	  
-			<div class = "col s6 ">
+	   
+
+
+	
+  
+				<div class = "col s6 ">
 
 					<div class="form-row">
 
@@ -52,12 +57,14 @@
 						  
             <div class="form-row" >
 
-						  <input type="submit" class="submit" value="Update Details"></input>
+						  <input type="submit" class="submit" value="Sign Up"></input>
 						 </div>
 				<% end %>
 
 
-<script type="text/javascript">
+
+
+			<script type="text/javascript">
 			  Stripe.setPublishableKey('pk_test_vDSiuOkeTaV8mLnuOgqAQyWd');
 
 
@@ -106,7 +113,5 @@
 			  
            
 			</script>
-		
-
 
 		
