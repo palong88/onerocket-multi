@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_12factor', group: :production
 #Material Design CSS
 gem 'materialize-sass'
+
+
 #User Auth
 gem 'devise'
 #For sending Emails Asynchronously
