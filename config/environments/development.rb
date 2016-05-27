@@ -83,6 +83,6 @@ Rails.application.configure do
 
 
   # Config for devise 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'lvh.me:5000' }
 
 end

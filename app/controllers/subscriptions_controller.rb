@@ -1,7 +1,7 @@
 class SubscriptionsController < ApplicationController
     
     before_action :authenticate_user!
-    
+  
 
     def new
         @plans = Plan.all
@@ -46,9 +46,6 @@ class SubscriptionsController < ApplicationController
     end
 
     def create
-
-        ap customer_id
-        ap token
         # Get the credit card details submitted by the form
         token           = params[:stripeToken]
 
@@ -165,8 +162,5 @@ class SubscriptionsController < ApplicationController
 
 
     #Authorize user or raise exception
-    def authorize_user
-        authorize! :manage, :subscriptions
-
-    end
+  
 end

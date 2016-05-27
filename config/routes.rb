@@ -2,7 +2,9 @@ Rails.application.routes.draw do
  
 
 devise_for :views
-devise_for :users
+#Devise routes with custom registrations controller
+devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
+
 resources :admin_tasks
 
 

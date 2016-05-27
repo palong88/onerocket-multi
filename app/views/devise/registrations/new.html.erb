@@ -21,9 +21,16 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+    <div class="field">
+    <%= f.label :subdomain %><br />
+    <%= f.text_field :subdomain, required: true %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<% unless request.subdomain.blank? || request.subdomain == "www" %>
+  <%= render "devise/shared/links" %>
+<% end  %>

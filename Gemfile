@@ -26,7 +26,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_12factor', group: :production
 #Material Design CSS
 gem 'materialize-sass'
-
+#Multi Tenecny Sure
+gem 'apartment'
+#Sidekiq support for apartment gem
+gem 'apartment-sidekiq'
 
 #User Auth
 gem 'devise'
