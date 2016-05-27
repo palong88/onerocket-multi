@@ -1,6 +1,6 @@
 <% if current_user.nil? %>
     
-    <% if request.subdomain.blank? || request.subdomain == "www" %>
+    <% if request.subdomain.blank? || request.subdomain == "app" %>
         <%= link_to('Sign up', new_user_registration_path) %>    
         <br>
     <% else %>
