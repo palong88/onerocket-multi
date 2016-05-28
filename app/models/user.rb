@@ -27,9 +27,6 @@ class User < ActiveRecord::Base
 
 
  private
-  def set_role
-      add_role(:registered)
-    end
 
         def self.with_role(role)
          my_role = Role.find_by_name(role)
@@ -77,6 +74,15 @@ class User < ActiveRecord::Base
       #Change schema to the tenant
       Apartment::Tenant.switch!(subdomain)
     end
+
+      #Add default role to the user who signs up
+  def add_role_to_user
+    if created_by_invite?
+      add_role :registered
+    else
+      add_role :admin
+    end
+  end
 
    
 
