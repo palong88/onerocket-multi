@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :eadmin_tasks
   belongs_to :role
   #after_create :set_buildings
-  after_create :set_role
+  after_create :add_role_to_user
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
