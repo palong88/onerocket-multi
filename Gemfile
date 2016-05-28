@@ -30,11 +30,18 @@ gem 'materialize-sass'
 gem 'apartment'
 #Sidekiq support for apartment gem
 gem 'apartment-sidekiq'
+#Rolify for addinf roles to users
+gem "rolify"
+#for authorisation of roles
+gem 'cancancan', '~> 1.10'
 
 #User Auth
 gem 'devise'
 #For sending Emails Asynchronously
 gem "devise-async"
+#invite users
+gem  'devise_invitable'
+
 #Sidekiq for background process
 gem "sidekiq"
 #Print ruby object with color and indention in console
@@ -55,6 +62,9 @@ gem "stripe"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  #preview email in the browser
+  gem 'letter_opener'
+
 end
 
 group :development do

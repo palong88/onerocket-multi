@@ -8,8 +8,16 @@ Plan.create(:stripe_id => p1.id, :name => p1.name, :price => p1.amount, :interva
 #Requiring sidekiq in console
 require 'Sidekiq/api'
 
+#Rolify methods
+----
+user = User.find(1)
+user.add_role :admin
+user.has_role? :admin
 
 
+
+#Start localredisserver
+----
 foreman start --procfile=Procfile.dev
 
 #Sidekiq Stats
@@ -20,12 +28,8 @@ Sidekiq::RetrySet.new.clear
 
 #Aprtment stuff
 -------
+Apartment::Tenant.current
+Apartment::Tenant.switch!("happy")
 Apartment::Tenant.drop("happy")
 
 
-
-Edit the hosts file (instructions for OSX Snow Leopard)
-
-sudo nano /etc/hosts
-Add a line 127.0.0.1 www.example.com
-Refresh DNS settings with sudo dscacheutil -flushcache

@@ -1,7 +1,14 @@
 class User < ActiveRecord::Base
+  rolify
+  has_many :admin_tasks
+  has_many :eadmin_tasks
+  belongs_to :role
+  #after_create :set_buildings
+  after_create :set_role
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :async
          
 
@@ -11,13 +18,23 @@ class User < ActiveRecord::Base
    after_create :create_account
 
 
-   def confirmation_required?
-      false
-   end
+   # def confirmation_required?
+   #    false
+   # end
+
+
 
 
 
  private
+  def set_role
+      add_role(:registered)
+    end
+
+        def self.with_role(role)
+         my_role = Role.find_by_name(role)
+         where(:role => my_role)
+      end
 
  #Email should be unique in the account model
  def email_is_unique

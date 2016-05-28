@@ -82,6 +82,6 @@ Rails.application.configure do
 
   
   # Config for devise 
-  config.action_mailer.default_url_options = { host: 'ancient-bastion-57550.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'app.onerocket.io' }
 
 end

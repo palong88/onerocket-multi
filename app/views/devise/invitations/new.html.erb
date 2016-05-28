@@ -1,0 +1,31 @@
+<h2><%= t "devise.invitations.new.header" %></h2>
+
+<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
+  <%= devise_error_messages! %>
+
+<% resource.class.invite_key_fields.each do |field| -%>
+  <p><%= f.label field %><br />
+  <%= f.text_field field %></p>
+<% end -%>
+
+ <div class="input-field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+ <div class="input-field">
+    <%= f.label :start_date %><br>
+    <%= f.text_field :start_date, class: "datepicker"%>
+  </div>
+
+ <%= f.hidden_field :subdomain, value: current_user.subdomain %>
+
+  <p><%= f.submit t("devise.invitations.new.submit_button") %></p>
+<% end %>
+
+<script>
+ $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+        
+</script>
