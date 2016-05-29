@@ -8,6 +8,7 @@ class EadminTasksController < ApplicationController
   # GET /eadmin_tasks.json
   def index
     @users = User.all
+    @user = User.find(params[:user_id])
    
     
  
@@ -30,6 +31,7 @@ class EadminTasksController < ApplicationController
 
   # GET /admin_tasks/new
   def new
+    @user = User.find(params[:user_id])
     @eadmin_task = EadminTask.new
   end
 

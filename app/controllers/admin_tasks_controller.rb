@@ -29,7 +29,7 @@ class AdminTasksController < ApplicationController
 
     respond_to do |format|
       if @admin_task.save
-        format.html { redirect_to @admin_task, notice: 'Admin task was successfully created.' }
+        format.html { redirect_to admin_tasks_url, notice: 'Admin task was successfully created.' }
         format.json { render :show, status: :created, location: @admin_task }
       else
         format.html { render :new }
