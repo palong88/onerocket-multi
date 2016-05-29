@@ -29,7 +29,7 @@ Sidekiq::RetrySet.new.clear
 #Aprtment stuff
 -------
 Apartment::Tenant.current
-Apartment::Tenant.switch!("happy")
+Apartment::Tenant.switch!("public")
 Apartment::Tenant.drop("happy")
 
 

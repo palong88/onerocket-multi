@@ -3,8 +3,9 @@ class User < ActiveRecord::Base
   has_many :admin_tasks
   has_many :eadmin_tasks
   belongs_to :role
-  #after_create :set_buildings
+  after_create :set_buildings
   after_create :add_role_to_user
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -32,6 +33,18 @@ class User < ActiveRecord::Base
          my_role = Role.find_by_name(role)
          where(:role => my_role)
       end
+
+
+          def set_buildings
+      id = self.id
+      
+
+      AdminTask.all.each do |default_b|
+       
+        eadmin_tasks.create(title: default_b.title, description: default_b.description, media: default_b.media, due_date: default_b.due_date, when_due: default_b.when, category: default_b.category,  user_id: id )
+      end
+    end
+
 
  #Email should be unique in the account model
  def email_is_unique

@@ -6,11 +6,23 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_mailer_host
 
+    rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
 
 
- protect_from_forgery with: :exception
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+
+    protect_from_forgery with: :exception
+    before_filter :configure_permitted_parameters, if: :devise_controller?
     protected
+
+      def authenticate_inviter!
+        unless current_user.has_role? :admin
+            redirect_to root_url, :alert => "You are not authorized to access this page."
+            return
+        end
+        super
+      end
 
 
         def set_mailer_host

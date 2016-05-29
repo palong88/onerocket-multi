@@ -8,6 +8,9 @@ class Ability
 		    else
 		      can :read, @eadmin_task
 		    end
+
+		   can :manage, :subscriptions if user.has_role? :admin
+		   can :manage, :users if user.has_role? :admin
   	end
 
 

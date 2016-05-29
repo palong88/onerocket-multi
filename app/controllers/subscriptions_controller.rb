@@ -1,6 +1,7 @@
 class SubscriptionsController < ApplicationController
     
     before_action :authenticate_user!
+    before_action :authorize_user
   
 
     def new
@@ -161,6 +162,10 @@ class SubscriptionsController < ApplicationController
     end
 
 
-    #Authorize user or raise exception
+       #Authorize user or raise exception
+    def authorize_user
+        authorize! :manage, :subscriptions
+
+    end
   
 end
