@@ -2,7 +2,7 @@
     
     <% if request.subdomain.blank? || request.subdomain == "app" %>
      
-        <%= link_to 'Change Subscription', new_user_registration_path, {class: "btn btn-primary"} %>
+        <%= link_to 'sign up', new_user_registration_path, {class: "btn btn-primary"} %>
         <br>
     <% else %>
   
