@@ -19,9 +19,9 @@ class User < ActiveRecord::Base
    after_create :create_account
 
 
-   # def confirmation_required?
-   #    false
-   # end
+   def confirmation_required?
+    false
+   end
 
 
 
