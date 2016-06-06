@@ -13,13 +13,16 @@
  *
 
  *= require_self
+ *= require font-awesome
  
  *= require_tree .
 
 
 */
+
 @import "materialize";
 @import "materialize/extras/nouislider";
+
 
 
  body {

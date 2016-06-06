@@ -29,19 +29,27 @@ class User < ActiveRecord::Base
 
  private
 
-        def self.with_role(role)
+    def self.with_role(role)
          my_role = Role.find_by_name(role)
          where(:role => my_role)
-      end
+    end
 
 
-          def set_buildings
+    def set_buildings
       id = self.id
       
-
       AdminTask.all.each do |default_b|
-       
-        eadmin_tasks.create(title: default_b.title, description: default_b.description, media: default_b.media, due_date: default_b.due_date, when_due: default_b.when, category: default_b.category,  user_id: id )
+
+
+        
+        eadmin_tasks.create(
+          title: default_b.title, 
+          description: default_b.description, 
+          media: default_b.media, 
+          due_date: default_b.due_date, 
+          when_due: default_b.when, 
+          category: default_b.category,  
+          user_id: id)
       end
     end
 
