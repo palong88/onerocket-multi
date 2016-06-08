@@ -8,10 +8,9 @@ class EadminTasksController < ApplicationController
   # GET /eadmin_tasks.json
   def index
     @users = User.all
-    @user = User.find(params[:user_id])
    
     
- 
+    @employees = Employee.all
     @eadmin_tasks = EadminTask.all
     @eadmin_tasks = current_user.eadmin_tasks
 
@@ -31,8 +30,8 @@ class EadminTasksController < ApplicationController
 
   # GET /admin_tasks/new
   def new
-
     @eadmin_task = EadminTask.new
+
   end
 
   # GET /eadmin_tasks/1/edit
@@ -58,15 +57,16 @@ class EadminTasksController < ApplicationController
 
  
     @eadmin_task = User.find(params[:eadmin_task][:user_id]).eadmin_tasks.build(eadmin_task_params)
-
+   
 
     respond_to do |format|
       if @eadmin_task.save
         format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id]), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @eadmin_task }
       else
-        format.html { render :new }
         format.json { render json: @eadmin_task.errors, status: :unprocessable_entity }
+        format.html { redirect_to new_eadmin_task_path(:user_id => params[:eadmin_task][:user_id]), notice: 'Task not Created. Please fill out all boxes'}
+        
       end
     end
   end
@@ -74,8 +74,6 @@ class EadminTasksController < ApplicationController
   # PATCH/PUT /admin_tasks/1
   # PATCH/PUT /admin_tasks/1.json
   def update
-
-   
     respond_to do |format|
       if @eadmin_task.update(eadmin_task_params)
         format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id]), notice: 'Task was successfully updated.' }
