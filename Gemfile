@@ -19,6 +19,8 @@ gem 'coffee-rails', '~> 4.1.0'
 
 #Jquery turbolin fix
 gem 'jquery-turbolinks'
+#Cookie for Jquey UI
+gem 'js_cookie_rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

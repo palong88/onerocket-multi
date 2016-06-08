@@ -8,5 +8,9 @@ class EadminTask < ActiveRecord::Base
 		completed == 1
 	end
 
+	validates :category, :presence => true
+	validates :when, :presence => true
+	validates :due_date, :presence => true
+
 
 end

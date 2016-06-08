@@ -30,6 +30,6 @@ Sidekiq::RetrySet.new.clear
 -------
 Apartment::Tenant.current
 Apartment::Tenant.switch!("public")
-Apartment::Tenant.drop("happy")
+Apartment::Tenant.drop("demo")
 
 

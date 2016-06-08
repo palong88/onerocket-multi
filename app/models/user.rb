@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :async
          
-
+   validates :email, :presence => true
    validate :email_is_unique, on: :create
    validate :subdomain_is_unique, on: :create
    after_validation :create_tenant

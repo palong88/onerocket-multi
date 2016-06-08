@@ -11,7 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
+//= require js.cookie
 //= require jquery.turbolinks
 //= require materialize-sprockets
 //= require materialize/extras/nouislider
