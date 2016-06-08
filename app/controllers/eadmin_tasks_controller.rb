@@ -31,7 +31,7 @@ class EadminTasksController < ApplicationController
 
   # GET /admin_tasks/new
   def new
-    @user = User.find(params[:user_id])
+
     @eadmin_task = EadminTask.new
   end
 
@@ -55,6 +55,7 @@ class EadminTasksController < ApplicationController
   # POST /eadmin_tasks
   # POST /eadmin_tasks.json
   def create
+
  
     @eadmin_task = User.find(params[:eadmin_task][:user_id]).eadmin_tasks.build(eadmin_task_params)
 
@@ -73,6 +74,8 @@ class EadminTasksController < ApplicationController
   # PATCH/PUT /admin_tasks/1
   # PATCH/PUT /admin_tasks/1.json
   def update
+
+   
     respond_to do |format|
       if @eadmin_task.update(eadmin_task_params)
         format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id]), notice: 'Task was successfully updated.' }
