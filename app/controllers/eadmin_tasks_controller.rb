@@ -9,8 +9,7 @@ class EadminTasksController < ApplicationController
   def index
     @users = User.all
    
-    
-    @employees = Employee.all
+
     @eadmin_tasks = EadminTask.all
     @eadmin_tasks = current_user.eadmin_tasks
 

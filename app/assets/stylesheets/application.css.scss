@@ -92,9 +92,21 @@ footer.page-footer {
     transition: .2s;
 }
 
-.field_with_errors {
-  @extend .has-error;
-  display: inline;
-}
 
+
+[type="radio"]:not(:checked)+label, [type="radio"]:checked+label {
+    position: relative;
+    padding-left: 25px;
+    padding-right: 30px;
+    cursor: pointer;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    font-size: 1rem;
+    transition: .28s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
