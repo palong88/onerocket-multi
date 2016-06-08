@@ -9,7 +9,7 @@ class EadminTask < ActiveRecord::Base
 	end
 
 	validates :category, :presence => true
-	validates :when, :presence => true
+	validates :when_due, :presence => true
 	validates :due_date, :presence => true
 
 
