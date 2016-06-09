@@ -15,6 +15,7 @@ user.add_role :admin
 user.has_role? :admin
 
 
+ActiveRecord::Base.connection.tables
 
 #Start localredisserver
 ----
@@ -30,6 +31,6 @@ Sidekiq::RetrySet.new.clear
 -------
 Apartment::Tenant.current
 Apartment::Tenant.switch!("public")
-Apartment::Tenant.drop("demo")
+Apartment::Tenant.drop("lattice")
 
 

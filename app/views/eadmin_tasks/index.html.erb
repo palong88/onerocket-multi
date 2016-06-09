@@ -515,29 +515,46 @@
                     <div class="items">
                     <div id="tabs-4" data-tab-index="3" >
 
-                      <div class="col s6 left"> 
-                 
-                          <h5 class="center">Before You Start</h5>
-                         <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
+          <div class="col s6 left">
 
+                  
+                 <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
+                          <h5 class="center">After You Start</h5>
+                         <% @eadmin_tasks.order( 'eadmin_tasks.due_date ASC' ).each do |eadmin_task| %>
 
-                         
+                         <% if eadmin_task.category == "Personal Survey" && eadmin_task.when_due == "Before" %>
 
+                               <li>
 
-                          <li>
+                                <% if eadmin_task.completed? %> 
+                                                  
 
-                               
-                                                
+                                        <div class="collapsible-header">
+                                          <p style="opacity: 0.4;">
+                                                <strike> 
+
+                                                  <%= eadmin_task.title %> 
+
+                                                </strike>
+
+                                          
+
+                                             <%= link_to '  <i style="font-size: 2rem; color: #00e676" class=" large material-icons icon-demo secondary-content right">check_box
+</i>'.html_safe, not_complete_eadmin_task_path(eadmin_task), method: :patch %>
+                                          </p>
+                                        </div>
+
+                                 <% else %>
 
                                     <div class="collapsible-header">
                                       <p>
                                          <strong> 
 
-                                          Please complete this Survey
+                                          <%= eadmin_task.title %> 
 
                                         </strong>
 
-                                          
+                                           <%= link_to '  <i style="font-size: 2rem; color: #757575" class=" large material-icons icon-demo secondary-content right">check_box_outline_blank </i>'.html_safe, complete_eadmin_task_path(eadmin_task), method: :patch %>
                                                     
                                             
 
@@ -545,29 +562,29 @@
                                     </div>
 
 
-                                      
+                                        <% end %>
                                     <div class="collapsible-body">
 
-                                      <p><strong> Descrption: </strong>Please complete this Survey<br><br>
-                                      
-                                      <strong> Media: </strong><a href="https://onerocket.typeform.com/to/lUJyP5" target="_blank" > Click here for Survey </a> <br> <br>
-                                      
+                                      <p><strong> Descrption: </strong><%= eadmin_task.description %><br><br>
+                                      <% if !eadmin_task.media.blank? %>
+                                      <strong> Media: </strong><a href="<%= eadmin_task.media %>" target="_blank" > <%= eadmin_task.media.first(55) %> </a> <br> <br>
+                                      <% end %>
                                       <strong> Due Date:</strong> 
-                                     16, May, 2016
+                                     <% when_due = eadmin_task.due_date.to_i %>
+                                       <% d = current_user.start_date %> 
+                                       <% due_date9 =(d+when_due).to_s %>
+                                      <%= Date.parse(due_date9).strftime("%e, %B, %Y")%>
+
                                      </p>
 
                                       </div>
-
                               </li>
-</ul>
-                         
-<!-- Change the width and height values to suit you best -->
-
-                                                  
-
-         
-
+             <% end %>
+           <% end %>
+           </ul>
           </div>
+
+       
 
 
 
