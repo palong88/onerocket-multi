@@ -66,8 +66,18 @@
 
                           <p>
                             <strong>Description:</strong><%= admin_task.description %><br><br>
+                        <% if !admin_task.media.blank? %>
                            <strong>Media: </strong><a href="http://<%= admin_task.media %> "><%= admin_task.media %> </a><br><br>
-                          <strong>When: </strong><%= admin_task.due_date %> Day <%= admin_task.when %> Start.</p>
+                        <% end %>
+                          <strong>When: </strong><%= admin_task.due_date %> Day <%= admin_task.when %> Start.<br>
+
+                          <%  if !admin_task.document_file_name.blank?  %>
+
+                          <%= link_to admin_task.document_file_name, admin_task.document.url(:original, false) %>
+
+                          <% end %>
+
+                        </p>
 
 
 

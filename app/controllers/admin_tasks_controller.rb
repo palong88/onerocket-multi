@@ -70,6 +70,6 @@ class AdminTasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_task_params
-      params.require(:admin_task).permit(:title, :description, :media, :due_date, :category, :when)
+      params.require(:admin_task).permit(:title, :description, :media, :due_date, :category, :when, :document)
     end
 end
