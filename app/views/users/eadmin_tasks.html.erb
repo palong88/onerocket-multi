@@ -105,6 +105,12 @@
 
                                       <strong> Due Date:</strong> 
                                       <%= when_due = eadmin_task.due_date.to_i %>
+
+                             <%  if !eadmin_task.document_file_name.blank?  %>
+
+                          <%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false) %>
+
+                          <% end %>
                                       
                                   
                                       <%= link_to '<i class="material-icons right" >delete</i>'.html_safe, eadmin_task_path(:id => eadmin_task.id, :user_id => userid), method: :delete, data: { confirm: 'Are you sure?' } %>

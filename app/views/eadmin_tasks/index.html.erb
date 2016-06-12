@@ -107,7 +107,11 @@
                                        <% d = current_user.start_date %> 
                                        <% due_date3 = (d - when_due).to_s %>
                                       <%= Date.parse(due_date3).strftime("%e, %B, %Y")%>
-                                     
+                        <%  if !eadmin_task.document_file_name.blank?  %>
+
+                          <%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false) %>
+
+                          <% end %>
                                    
                                      </p>
       

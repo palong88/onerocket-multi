@@ -94,8 +94,10 @@ class User < ActiveRecord::Base
             media: default_b.media, 
             due_date: default_b.due_date, 
             when_due: default_b.when, 
-            category: default_b.category,  
+            category: default_b.category,
+            document: default_b.document,  
             user_id: id)
+
         end
     else
       add_role :admin

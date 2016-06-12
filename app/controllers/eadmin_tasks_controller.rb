@@ -103,7 +103,7 @@ class EadminTasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def eadmin_task_params
-      params.require(:eadmin_task).permit(:user_id, :title, :description, :media, :due_date, :category, :when_due)
+      params.require(:eadmin_task).permit(:user_id, :title, :description, :media, :due_date, :category, :when_due, :document)
     end
 
 
