@@ -62,7 +62,8 @@ gem "stripe"
 #For uploading user documents/Images
 gem 'paperclip', '~> 4.2'
 #Amazon S# services for storing documents/Images online.
-gem 'aws-sdk', '~> 2.3'
+
+gem 'aws-sdk', '< 2.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
