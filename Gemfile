@@ -59,7 +59,10 @@ gem "puma"
 gem "stripe"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+#For uploading user documents/Images
 gem 'paperclip', '~> 4.2'
+#Amazon S# services for storing documents/Images online.
+gem 'aws-sdk', '~> 2.3'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

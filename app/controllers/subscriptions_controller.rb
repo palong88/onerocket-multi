@@ -49,7 +49,6 @@ class SubscriptionsController < ApplicationController
     def create
         # Get the credit card details submitted by the form
         token           = params[:stripeToken]
-
         plan            = params[:plan][:stripe_id]
         email           = current_user.email
         current_account = Account.find_by_email(current_user.email)
