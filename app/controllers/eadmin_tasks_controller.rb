@@ -1,6 +1,7 @@
 
 class EadminTasksController < ApplicationController
   
+  
   before_action :set_eadmin_task, only: [:show, :edit, :update, :destroy]
 
 

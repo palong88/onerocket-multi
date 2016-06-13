@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527221033) do
+ActiveRecord::Schema.define(version: 20160613174118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,8 +33,30 @@ ActiveRecord::Schema.define(version: 20160527221033) do
     t.integer  "due_date"
     t.string   "category"
     t.string   "when"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+  end
+
+  create_table "eadmin_tasks", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "media"
+    t.string   "due_date"
+    t.integer  "user_id"
+    t.string   "category"
+    t.string   "when_due"
+    t.integer  "completed"
+    t.time     "completed_at"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -75,9 +97,6 @@ ActiveRecord::Schema.define(version: 20160527221033) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "subdomain"
-    t.string   "name"
-    t.date     "start_date"
-    
     t.string   "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -86,10 +105,15 @@ ActiveRecord::Schema.define(version: 20160527221033) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
+    t.string   "name"
+    t.date     "start_date"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
+  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "users_roles", id: false, force: :cascade do |t|
@@ -117,21 +141,4 @@ ActiveRecord::Schema.define(version: 20160527221033) do
   add_index "views", ["email"], name: "index_views_on_email", unique: true, using: :btree
   add_index "views", ["reset_password_token"], name: "index_views_on_reset_password_token", unique: true, using: :btree
 
-
-  create_table "eadmin_tasks", force: :cascade do |t|
-    t.string   "title"
-    t.string   "string"
-    t.string   "description"
-    t.string   "media"
-    t.string   "due_date"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "user_id"
-    t.string   "category"
-    t.string   "when_due"
-    t.datetime "completed_at"
-    t.integer  "completed"
-  end
-
-  add_index "eadmin_tasks", ["user_id"], name: "index_eadmin_tasks_on_user_id"
 end

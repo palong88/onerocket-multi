@@ -34,3 +34,15 @@ Apartment::Tenant.switch!("public")
 Apartment::Tenant.drop("lattice")
 
 
+rake db:migrate:up VERSION=20090408054532
+
+
+
+rake db:drop:all
+rake db:create:all
+rake db:migrate
+If you use Rails < 4.1, don't forget to prepare test database:
+
+rake db:test:prepare
+
+

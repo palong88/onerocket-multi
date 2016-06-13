@@ -55,10 +55,7 @@
         <%= f.text_area :description, class: "materialize-textarea" %>
   </div>
 
-  <div class="input-field">
-    <%= f.label :document %>
-    <%= f.file_field :document, class: "form-control" %>
-  </div>
+
  
             
   <div class="input-field">
@@ -95,6 +92,15 @@
       </p>
     </div>
   </div>
+
+    <div class="input-field">
+
+        <%= f.label :document %>
+
+    <br><br>
+
+        <%= f.file_field :document, class: "file-path" %>
+   </div>
       
 
   <div class="actions ">
