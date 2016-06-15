@@ -17,7 +17,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: patrick
+  username: pbmarcano
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
@@ -85,4 +85,3 @@ test:
 production:
   <<: *default
   database: onerocket-multi_production
-  

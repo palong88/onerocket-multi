@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- 
+
 
   resources :eadmin_tasks do
 		  member do
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 		    patch :create
 		  end
 		end
-		
+
 devise_for :views
 #Devise routes with custom registrations controller
 devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }

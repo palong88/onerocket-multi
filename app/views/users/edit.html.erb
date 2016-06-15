@@ -1,11 +1,18 @@
 <div class="row">
-  <div class="col s6 offset-s3">
-
-    <h5 class="valaign center">Update Employee</h5>
-
-<%= render 'form' %>
-
-
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+  <div class="col s12 m12 l8">
+    <div class="top centered"><h3>Edit a New Hire</h3></div>
+    <%= render 'form' %>
   </div>
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
 </div>
- 
+
+<script>
+ $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+
+</script>

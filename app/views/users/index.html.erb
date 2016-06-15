@@ -1,86 +1,32 @@
-
-
-
-
-
 <div class="row">
-      
-      <div class="col s6" style="float: left;"> <h5>People</h5>
-           
-      </div>
-
-      <div class="col s6">
-
-      <div style="float: right; margin-top:10px;"> <%= link_to 'Create New Employee ', new_user_invitation_path, class: "btn btn-success btn-lg "%>
-             </div></h2>
-      </div>
-
-    
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+  <!-- form -->
+  <div class="col s12 m12 l8">
+    <div class="top">
+      <h3 style="display: inline">Manage Users</h3>
+      <%= link_to '<i class="material-icons left">add</i>Invite a New Hire</a>'.html_safe, new_user_invitation_path, class: "waves-effect waves-light btn-large", style: "float: right" %>
     </div>
-  </div>
-
-
-
-
-
-    
-
-         <div class="row">
+    <ul class="collection">
       <% @users.each do |user| %>
+        <% if user.has_role? :registered%>
+          <li class="collection-item avatar">
+            <i class="material-icons circle">perm_identity</i>
+            <span class="title"><%= user.name %></span>
+            <p><a href="mailto:<%= user.email %>"><%= user.email %></a> <br>
+              <%= link_to 'Edit tasks &rarr;'.html_safe, user_eadmin_tasks_path(:id => user.id) %>
 
-      <% if user.has_role? :registered%>
-        <div class="col s12 m3">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text valign center">
-              <p><%= image_tag("profile.png",  size: "110x80", class: "circle responsive-img") %></p><br>
-              <span class="card-title "><%= link_to user.name, user_eadmin_tasks_path(:id => user.id) %> </span>
-              <p><b>Email: </b> <br><%= user.email %><br><b> Start Date: </b><br> <%= user.start_date%>
-                
-              </p>
-
+            </p>
+            <div class="secondary-content">
+              <%= link_to '<i class="material-icons">mode_edit</i>'.html_safe, edit_user_path(user) %>&ensp;&ensp;
+              <%= link_to '<i class="material-icons">delete</i>'.html_safe, user, method: :delete, data: { confirm: 'Are you sure you want to delete this user?' } %>
+              <p class="right-align grey-text"><%= user.start_date%></p>
             </div>
-            <div class="card-action">
-                      <div class=" valign center">
-                        <div class="row">
-                           <div class="col s4">
-                             <%= link_to '<button class="btn btn-success btn-xs"> <i class=" fa fa-tasks"></i></button>'.html_safe, user_eadmin_tasks_path(:id => user.id) %>
-                             </div>
-                            <div class="col s4">
-                             <%= link_to '<button class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i></button>'.html_safe, edit_user_path(user) %>
-                             </div>
-                            <div class="col s4">
-                              <%= link_to '<button class="btn btn-primary btn-xs"><i class=" fa fa-trash-o"></i></button>'.html_safe, user, method: :delete, data: { confirm: 'Are you sure?' } %>
-                              </div>
-
-
-                          </div>
-                       </div>
-            </div>
-          </div>
-        </div>
-     
-
-            
-          <% end %>
-    <% end %>
-
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
   </div>
-
-<!--
-  </tbody>
-</table>
-
-<br>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+</div>

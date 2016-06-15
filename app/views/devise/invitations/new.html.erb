@@ -1,39 +1,40 @@
-
-
- <div class="row">
-    <div class=" col s6 offset-s3">
-      <h3 class"center">Invite New Employees</h3>
-
-
-      <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
-        <%= devise_error_messages! %>
+<div class="row">
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+  <div class="col s12 m12 l8">
+    <div class="top centered"><h3>Invite a New Hire</h3></div>
+    <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
+      <%= devise_error_messages! %>
+      <div class="field">
+         <%= f.label :name, "What name typically follows \"Hey...\" " %><br>
+         <%= f.text_field :name %>
+      </div>
 
       <% resource.class.invite_key_fields.each do |field| -%>
-        <p><%= f.label field %><br />
+        <%= f.label field, "At what email address will they say \"Yay!\" " %><br />
         <%= f.text_field field %></p>
       <% end -%>
 
-       <div class="input-field">
-          <%= f.label :name %><br>
-          <%= f.text_field :name %>
-        </div>
-       <div class="input-field">
-          <%= f.label :start_date %><br>
-          <%= f.text_field :start_date, class: "datepicker"%>
-        </div>
+      <div class="field">
+        <%= f.label :start_date, "When is their first day?" %><br>
+        <%= f.text_field :start_date, class: "datepicker"%>
+      </div>
 
-       <%= f.hidden_field :subdomain, value: current_user.subdomain %>
+      <%= f.hidden_field :subdomain, value: current_user.subdomain %>
+      <div class="centered">
+        <%= f.submit t("devise.invitations.new.submit_button"), class: "btn btn-large", value: "Invite!" %>
+      </div>
+    <% end %>
 
-        <p class="center"><%= f.submit t("devise.invitations.new.submit_button"), class: " btn btn-success btn-lg" %></p>
-      <% end %>
-  
-    </div>
   </div>
+    <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+</div>
 
 <script>
  $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15 // Creates a dropdown of 15 years to control year
   });
-        
+
 </script>
