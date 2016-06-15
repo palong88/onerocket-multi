@@ -14,6 +14,8 @@ devise_for :views
 devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
 
 resources :admin_tasks
+# get 'admin_tasks/:category' => 'admin_tasks#index'
+
 resources :users
 
 get 'users/:id/eadmin_tasks' => 'users#eadmin_tasks', :as => :user_eadmin_tasks

@@ -1,461 +1,93 @@
+<!-- Admin Tools -->
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_admin_task_path, class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
+  <!-- <a href="add.html" class="btn-floating btn-large red tooltipped" data-position="left" data-tooltip="Add Task">
+    <i class="large material-icons">add</i>
+  </a> -->
+  <ul>
+    <li><a class="btn-floating yellow darken-1 tooltipped" data-position="left" data-tooltip="Manage Users"><i class="material-icons">perm_identity</i></a></li>
+    <li><a class="btn-floating green tooltipped" data-position="left" data-tooltip="Edit Template"><i class="material-icons">recent_actors</i></a></li>
+    <li><a class="btn-floating blue tooltipped" data-position="left" data-tooltip="Manage Account Settings"><i class="material-icons">settings</i></a></li>
+  </ul>
+</div>
+<!-- End admin tools -->
 
+<!-- Wrapper for sidebar and layout -->
 
- <div class="row">
-      
-      <div class="col s6" style="float: left;"> <h5> Your Onboarding Process</h5>
-           
+<div class="row">
+  <!-- Sidebar -->
+  <div class="col s12 m4 l3">
+    <!-- Profile card -->
+    <div class="card top">
+      <div class="card-content">
+        <span class="card-title">Template</span>
+        <p>Any task you add here will be copied to each new hire you onboard.</p>
       </div>
-
-      <div class="col s6">
-
-      <div style="float: right; margin-top:10px;"> <%= link_to 'Create a New Task', new_admin_task_path, class: "btn btn-success btn-lg" %> 
-      </div>
-
-    
     </div>
+
+    <div class="collection">
+      <%= link_to 'Paperwork', admin_task_path(:category => "Learning"), class: "collection-item"%>
+      <a href="paperwork.html" class="collection-item">Paperwork<span class="badge">1</span></a>
+      <a href="equiptment.html" class="collection-item">Equiptment &amp; apps<span class="badge">4</span></a>
+      <a href="meetthecompany.html" class="collection-item">Meet the company<span class="badge">3</span></a>
+      <a href="bitsbobs.html" class="collection-item">Bits &amp; Bobs<span class="badge">1</span></a>
+      <a href="#" class="collection-item">Temp All<span class="badge">700</span></a>
+    </div>
+
   </div>
+  <!-- End Sidebar -->
+
+  <!-- Content -->
+  <div class="col s12 m7 l8">
+
+    <h5>Before they start...</h5>
+    <% @admin_tasks.order( 'admin_tasks.due_date DESC' ).each do |admin_task| %>
+      <% if admin_task.when == "Before" %>
+        <!-- Card -->
+        <div class="card hoverable">
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4"><%= admin_task.title %><i class="material-icons right">more_vert</i></span>
+            <p><%= truncate(admin_task.description, length: 140, separator: ' ') %></p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4"><%= admin_task.title %><i class="material-icons right">close</i></span>
+            <p><%= admin_task.description %></p>
+            <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false) %></p>
+          </div>
+          <div class="card-action">
+            <%= link_to 'edit', edit_admin_task_path(admin_task), class: "blue-text" %>
+            <%= link_to 'delete', admin_task, method: :delete, class: "blue-text", data: { confirm: 'Are you sure you want to delete this task?' } %>
+            <span class="right"><%= admin_task.due_date %> <%= admin_task.due_date == 1 ? "day" : "days" %> <%= admin_task.when.downcase %> they start</span>
+          </div>
+        </div>
+        <!-- End card -->
+      <%end%>
+    <%end%>
+
+    <h5>After they start...</h5>
+    <% @admin_tasks.order( 'admin_tasks.due_date DESC' ).each do |admin_task| %>
+      <% if admin_task.when == "After" %>
+        <!-- Card -->
+        <div class="card hoverable grey lighten-2">
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4"><%= admin_task.title %><i class="material-icons right">more_vert</i></span>
+            <p><%= truncate(admin_task.description, length: 140, separator: ' ') %></p>
+          </div>
+          <div class="card-reveal grey lighten-2">
+            <span class="card-title grey-text text-darken-4"><%= admin_task.title %><i class="material-icons right">close</i></span>
+            <p><%= admin_task.description %></p>
+            <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false) %></p>
+          </div>
+          <div class="card-action">
+            <%= link_to 'edit', edit_admin_task_path(admin_task), class: "blue-text" %>
+            <%= link_to 'delete', admin_task, method: :delete, class: "blue-text", data: { confirm: 'Are you sure you want to delete this task?' } %>
+            <span class="right"><%= admin_task.due_date %> <%= admin_task.due_date == 1 ? "day" : "days" %> <%= admin_task.when.downcase %> they start</span>
+          </div>
+        </div>
+        <!-- End card -->
+      <%end%>
+    <%end%>
 
-
-  
- 
-      <ul class="tabs" id="tabs">
-        <li class="tab col s3"><a href="#tabs-1">Learning</a></li>
-        <li class="tab col s3"><a href="#tabs-2">Setting Up</a></li>
-        <li class="tab col s3"><a href="#tabs-3">Milestones</a></li>
-        <li class="tab col s3"><a href="#tabs-4">Personal Survey</a></li>
-      </ul>
-
-
-
-    
-<div class="items">
-    <div id="tabs-1" class="col s6 ">
-      <h5>Before Start Date</h5>
-      <!-- First one Ruby Code-->
-      <ul class="collapsible" data-collapsible="accordion">
-
-         <% @admin_tasks.order( 'admin_tasks.due_date DESC' ).each do |admin_task| %>
-
-            <% if admin_task.category == "Learning" && admin_task.when == "Before" %>
-
-
-                   
-                      <li>
-                        <div class="collapsible-header ">
-                        
-                           <p>
-                           
-                             
-                           <strong><%= admin_task.title %>  </strong>
-
-                          
-
-                        
-                            
-                             <%= link_to '<i class="material-icons right" >delete</i>'.html_safe, admin_task, method: :delete, data: { confirm: 'Are you sure?' } %>
-                                                                            
-                               <%= link_to ' <i class="material-icons right">mode_edit</i>'.html_safe, edit_admin_task_path(admin_task) %>
-
-                                 </p>
-                                                      
-
-
-                        </div>
-
-                        <div class="collapsible-body">
-
-                          <p>
-                            <strong>Description:</strong><%= admin_task.description %><br><br>
-                        <% if !admin_task.media.blank? %>
-                           <strong>Media: </strong><a href="http://<%= admin_task.media %> "><%= admin_task.media %> </a><br><br>
-                        <% end %>
-                          <strong>When: </strong><%= admin_task.due_date %> Day <%= admin_task.when %> Start.<br>
-
-                       
-
-                          <%= link_to admin_task.document_file_name, admin_task.document.url(:original, false) %>
-
-                      
-
-                        </p>
-
-
-
-
-
-
-                        </div>
-                      </li>
-                      
-                    
-              <%end%>
-
-
-
-
-
-          <%end%>
-           </ul>
-           <h5>After Start Date</h5>
-
-
-            <ul class="collapsible" data-collapsible="accordion">
-
-         <% @admin_tasks.order( 'admin_tasks.due_date ASC' ).each do |admin_task| %>
-
-            <% if admin_task.category == "Learning" && admin_task.when == "After" %>
-
-
-                   
-                      <li>
-                        <div class="collapsible-header">
-                          <p>
-                              <strong><%= admin_task.title %>  </strong>
-
-                         
-                            
-                             <%= link_to '<i class="material-icons right" >delete</i>'.html_safe, admin_task, method: :delete, data: { confirm: 'Are you sure?' } %>
-                                                                            
-                               <%= link_to ' <i class="material-icons right">mode_edit</i>'.html_safe, edit_admin_task_path(admin_task) %>
-                                                      
-
-                               </p>
-                        </div>
-
-                        <div class="collapsible-body"><p><strong>Description:</strong><%= admin_task.description %><br><br>
-                          <strong>Media: </strong><a href="http://<%= admin_task.media %> "><%= admin_task.media %> </a><br><br>
-                          <strong>When: </strong><%= admin_task.due_date %> Day <%= admin_task.when %> Start.</p>
-                        </div>
-                      </li>
-                      
-                    
-              <%end%>
-
-
-
-
-
-          <%end%>
-           </ul>
-
-
-
-
-
-    </div><!-- END -->
-
-
-
-
-    <div id="tabs-2" class="col s12">
-          <h5>Before Start Date</h5>
-      <!-- First one Ruby Code-->
-      <ul class="collapsible" data-collapsible="accordion">
-
-         <% @admin_tasks.order( 'admin_tasks.due_date DESC' ).each do |admin_task| %>
-
-            <% if admin_task.category == "Setting Up" && admin_task.when == "Before" %>
-
-
-                   
-                      <li>
-                        <div class="collapsible-header ">
-                             <p>
-                     
-                              <strong><%= admin_task.title %>  </strong>
-
-                          
-                            
-                             <%= link_to '<i class="material-icons right" >delete</i>'.html_safe, admin_task, method: :delete, data: { confirm: 'Are you sure?' } %>
-                                                                            
-                               <%= link_to ' <i class="material-icons right">mode_edit</i>'.html_safe, edit_admin_task_path(admin_task) %>
-                                  </p>
-                                                      
-
-                        </div>
-
-                        <div class="collapsible-body"><p><strong>Description:</strong><%= admin_task.description %><br><br>
-                          <strong>Media: </strong><a href="http://<%= admin_task.media %> "><%= admin_task.media %> </a><br><br>
-                          <strong>When: </strong><%= admin_task.due_date %> Day <%= admin_task.when %> Start.</p>
-                        </div>
-                      </li>
-                      
-                    
-              <%end%>
-
-
-
-
-
-          <%end%>
-           </ul>
-           <h5>After Start Date</h5>
-
-
-            <ul class="collapsible" data-collapsible="accordion">
-
-         <% @admin_tasks.order( 'admin_tasks.due_date ASC' ).each do |admin_task| %>
-
-            <% if admin_task.category == "Setting Up" && admin_task.when == "After" %>
-
-
-                   
-                      <li>
-                        <div class="collapsible-header">
-                             <p>
-                     
-                              <strong><%= admin_task.title %>  </strong>
-
-                          
-                            
-                             <%= link_to '<i class="material-icons right" >delete</i>'.html_safe, admin_task, method: :delete, data: { confirm: 'Are you sure?' } %>
-                                                                            
-                               <%= link_to ' <i class="material-icons right">mode_edit</i>'.html_safe, edit_admin_task_path(admin_task) %>
-
-                                  </p>
-                                                      
-
-
-                        </div>
-
-                        <div class="collapsible-body"><p><strong>Description:</strong><%= admin_task.description %><br><br>
-                          <strong>Media: </strong><a href="http://<%= admin_task.media %> "><%= admin_task.media %> </a><br><br>
-                          <strong>When: </strong><%= admin_task.due_date %> Day <%= admin_task.when %> Start.</p>
-                        </div>
-                      </li>
-                      
-                    
-              <%end%>
-
-
-
-
-
-          <%end%>
-           </ul>
-
-
-
-
-
-    </div>
-      <div id="tabs-3" class="col s12">
-
-             <h5>Before Start Date</h5>
-      <!-- First one Ruby Code-->
-      <ul class="collapsible" data-collapsible="accordion">
-
-         <% @admin_tasks.order( 'admin_tasks.due_date DESC' ).each do |admin_task| %>
-
-            <% if admin_task.category == "Milestones" && admin_task.when == "Before" %>
-
-
-                   
-                      <li>
-                        <div class="collapsible-header ">
-                             <p>
-               
-                              <strong><%= admin_task.title %>  </strong>
- 
-                       
-                            
-                             <%= link_to '<i class="material-icons right" >delete</i>'.html_safe, admin_task, method: :delete, data: { confirm: 'Are you sure?' } %>
-                                                                            
-                               <%= link_to ' <i class="material-icons right">mode_edit</i>'.html_safe, edit_admin_task_path(admin_task) %>
-                                                      
-                                                         </p>
-
-
-                        
-                        </div>
-
-                       <div class="collapsible-body"><p><strong>Description:</strong><%= admin_task.description %><br><br>
-                          <strong>Media: </strong><a href="http://<%= admin_task.media %> "><%= admin_task.media %> </a><br><br>
-                          <strong>When: </strong><%= admin_task.due_date %> Day <%= admin_task.when %> Start.</p>
-                        </div>
-                      </li>
-                      
-                    
-              <%end%>
-
-
-
-
-
-          <%end%>
-           </ul>
-           <h5>After Start Date</h5>
-
-
-            <ul class="collapsible" data-collapsible="accordion">
-
-         <% @admin_tasks.order( 'admin_tasks.due_date ASC' ).each do |admin_task| %>
-
-            <% if admin_task.category == "Milestones" && admin_task.when == "After" %>
-
-
-                   
-                      <li>
-                        <div class="collapsible-header">
-                             <p>
-                         
-                              <strong><%= admin_task.title %>  </strong>
-
-                     
-                          
-
-                       
-                            
-                             <%= link_to '<i class="material-icons right" >delete</i>'.html_safe, admin_task, method: :delete, data: { confirm: 'Are you sure?' } %>
-                                                                            
-                               <%= link_to ' <i class="material-icons right">mode_edit</i>'.html_safe, edit_admin_task_path(admin_task) %>
-
-                                  </p>
-                                                      
-
-
-                         
-                        </div>
-
-                       <div class="collapsible-body"><p><strong>Description:</strong><%= admin_task.description %><br><br>
-                          <strong>Media: </strong><a href="http://<%= admin_task.media %> "><%= admin_task.media %> </a><br><br>
-                          <strong>When: </strong><%= admin_task.due_date %> Day <%= admin_task.when %> Start.</p>
-                        </div>
-                      </li>
-                      
-                    
-              <%end%>
-
-
-
-
-
-          <%end%>
-           </ul>
-
-
-
-
-
-    </div>
-
-
-    <div id="tabs-4" class="col s12">
-
-             <h5>Before Start Date</h5>
-      <!-- First one Ruby Code-->
-      <ul class="collapsible" data-collapsible="accordion">
-
-         <% @admin_tasks.order( 'admin_tasks.due_date DESC' ).each do |admin_task| %>
-
-            <% if admin_task.category == "Personal Survey" && admin_task.when == "Before" %>
-
-
-                   
-                      <li>
-                        <div class="collapsible-header ">
-                             <p>
-                        
-                              <strong><%= admin_task.title %>  </strong>
-
-                          
-                            
-                             <%= link_to '<i class="material-icons right" >delete</i>'.html_safe, admin_task, method: :delete, data: { confirm: 'Are you sure?' } %>
-                                                                            
-                               <%= link_to ' <i class="material-icons right">mode_edit</i>'.html_safe, edit_admin_task_path(admin_task) %>
-
-                                  </p>
-                                                      
-
-
-                        
-                        </div>
-
-                        <div class="collapsible-body"><p><strong>Description:</strong><%= admin_task.description %><br><br>
-                          <strong>Media: </strong><a href="http://<%= admin_task.media %> "><%= admin_task.media %> </a><br><br>
-                          <strong>When: </strong><%= admin_task.due_date %> Day <%= admin_task.when %> Start.</p>
-                        </div>
-                      </li>
-                      
-                    
-              <%end%>
-
-
-
-
-
-          <%end%>
-           </ul>
-           <h5>After Start Date</h5>
-
-
-            <ul class="collapsible" data-collapsible="accordion">
-
-         <% @admin_tasks.order( 'admin_tasks.due_date ASC' ).each do |admin_task| %>
-
-            <% if admin_task.category == "Personal Survey" && admin_task.when == "After" %>
-
-
-                   
-                      <li>
-                        <div class="collapsible-header">
-                             <p>
-                       
-                              <strong><%= admin_task.title %>  </strong>
-
-                         
-                          
-
-                       
-                            
-                             <%= link_to '<i class="material-icons right" >delete</i>'.html_safe, admin_task, method: :delete, data: { confirm: 'Are you sure?' } %>
-                                                                            
-                               <%= link_to ' <i class="material-icons right">mode_edit</i>'.html_safe, edit_admin_task_path(admin_task) %>
-
-                                  </p>
-                                                      
-
-
-                      
-                        </div>
-
-                       <div class="collapsible-body"><p><strong>Description:</strong><%= admin_task.description %><br><br>
-                          <strong>Media: </strong><a href="http://<%= admin_task.media %> "><%= admin_task.media %> </a><br><br>
-                          <strong>When: </strong><%= admin_task.due_date %> Day <%= admin_task.when %> Start.</p>
-                        </div>
-                      </li>
-                      
-                    
-              <%end%>
-
-
-
-
-
-          <%end%>
-           </ul>
-
-
-
-
-
-    </div>
   </div>
-  
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
+  <!-- End content -->
+</div>

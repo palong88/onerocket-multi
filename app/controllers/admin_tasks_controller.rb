@@ -5,7 +5,9 @@ class AdminTasksController < ApplicationController
   # GET /admin_tasks
   # GET /admin_tasks.json
   def index
-    @admin_tasks = AdminTask.all
+    # category = "Learning"
+    # @admin_tasks = AdminTask.all
+    @admin_tasks = AdminTask.where(:category => "Learning")
   end
 
   # GET /admin_tasks/1
