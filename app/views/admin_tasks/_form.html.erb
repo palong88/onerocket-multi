@@ -21,50 +21,50 @@
 <div class="form-panel">
 
 
- 
 
+<%= category = params[:category] %>
 
 <div class="input-field">
   <%= f.label :category, required: true  %><br><br>
 
 
-  <%= f.radio_button :category, "Learning" %> 
+  <%= f.radio_button :category, "Learning" %>
   <%= f.label :category, "Learning",value: "Learning" %>
 
-  <%= f.radio_button :category, "Setting Up" %> 
+  <%= f.radio_button :category, "Setting Up" %>
   <%= f.label :category, "Setting Up" ,value: "Setting Up"%>
 
-  <%= f.radio_button :category, "Milestones" %> 
+  <%= f.radio_button :category, "Milestones" %>
   <%= f.label :category, "Milestones",value: "Milestones" %>
 
-  <%= f.radio_button :category, "Personal Survey" %> 
+  <%= f.radio_button :category, "Personal Survey" %>
   <%= f.label :category, "Personal Survey", value: "Personal Survey" %>
 
-                                
+
 </div><br>
 
-          
+
   <div class="input-field">
         <%= f.label :title  %><br>
         <%= f.text_field :title, required: true %>
   </div>
 
   <div class="input-field">
-    
+
         <%= f.label :description %><br>
         <%= f.text_area :description, class: "materialize-textarea" %>
   </div>
 
 
- 
-            
+
+
   <div class="input-field">
-    
+
         <%= f.label :media %>
         <%= f.text_area :media, class: "materialize-textarea" %>
   </div>
 
-         
+
 
   <div class="row">
     <div class="input-field col s6">
@@ -81,13 +81,13 @@
 
       <label for="when">When</label><br>
 
-      <p> 
+      <p>
 
         <%= f.radio_button :when, "Before", required: true %>
         <%= f.label :when, "Before Start Date",value: "Before" %>
 
-        <%= f.radio_button :when, "After", required: true %> 
-        <%= f.label :when, " After Start Date" ,value: "After" %> 
+        <%= f.radio_button :when, "After", required: true %>
+        <%= f.label :when, " After Start Date" ,value: "After" %>
 
       </p>
     </div>
@@ -101,11 +101,11 @@
 
         <%= f.file_field :document, class: "file-path" %>
    </div>
-      
+
 
   <div class="actions ">
     <input type="submit" value="Update" class="btn btn-success btn-lg" >
     <%= link_to 'Cancel', admin_tasks_path, class: "btn btn-primary btn-lg" %>
   </div>
-             
+
 <% end %>

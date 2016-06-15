@@ -1,6 +1,7 @@
 <!-- Admin Tools -->
+
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-  <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_admin_task_path, class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
+  <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_admin_task_path(:category => params[:category]), class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
   <!-- <a href="add.html" class="btn-floating btn-large red tooltipped" data-position="left" data-tooltip="Add Task">
     <i class="large material-icons">add</i>
   </a> -->
@@ -26,12 +27,11 @@
     </div>
 
     <div class="collection">
-      <%= link_to 'Paperwork', admin_task_path(:category => "Learning"), class: "collection-item"%>
-      <a href="paperwork.html" class="collection-item">Paperwork<span class="badge">1</span></a>
-      <a href="equiptment.html" class="collection-item">Equiptment &amp; apps<span class="badge">4</span></a>
-      <a href="meetthecompany.html" class="collection-item">Meet the company<span class="badge">3</span></a>
-      <a href="bitsbobs.html" class="collection-item">Bits &amp; Bobs<span class="badge">1</span></a>
-      <a href="#" class="collection-item">Temp All<span class="badge">700</span></a>
+      <%= link_to 'Learning<span class="badge">1</span>'.html_safe, params.merge(:category => "Learning"), class: "collection-item"%>
+      <%= link_to 'Setting Up<span class="badge">1</span>'.html_safe, params.merge(:category => "Setting Up"), class: "collection-item"%>
+      <%= link_to 'Personal Survey<span class="badge">1</span>'.html_safe, params.merge(:category => "Personal Survey"), class: "collection-item"%>
+      <%= link_to 'Milestones<span class="badge">1</span>'.html_safe, params.merge(:category => "Milestones"), class: "collection-item"%>
+      <%= link_to 'All<span class="badge">1</span>'.html_safe, admin_tasks_path, class: "collection-item"%>
     </div>
 
   </div>
