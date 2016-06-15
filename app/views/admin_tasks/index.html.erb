@@ -1,7 +1,11 @@
 <!-- Admin Tools -->
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-  <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_admin_task_path(:category => params[:category]), class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
+  <% if params[:category] %>
+    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_admin_task_path(:category => params[:category]), class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
+  <% else %>
+    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_admin_task_path(:category => "Paperwork"), class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
+  <% end %>
   <!-- <a href="add.html" class="btn-floating btn-large red tooltipped" data-position="left" data-tooltip="Add Task">
     <i class="large material-icons">add</i>
   </a> -->
