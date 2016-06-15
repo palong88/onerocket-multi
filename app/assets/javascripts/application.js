@@ -18,6 +18,3 @@
 //= require materialize/extras/nouislider
 //= require turbolinks
 //= require_tree .
-
-
-

@@ -32,7 +32,7 @@ Sidekiq::RetrySet.new.clear
 Apartment::Tenant.current
 Apartment::Tenant.switch!("public")
 Apartment::Tenant.drop("lattice")
-
+skip_before_filter :verify_authenticity_token, :only => :create
 
 rake db:migrate:up VERSION=20090408054532
 
@@ -44,5 +44,3 @@ rake db:migrate
 If you use Rails < 4.1, don't forget to prepare test database:
 
 rake db:test:prepare
-
-

@@ -4,7 +4,7 @@
     <% else %>
         Your subscription expired on <%= @account.active_until %>
     <% end %>
-    
+
 <% else %>
     You do not have a subscription plan.
 <% end %>
@@ -24,3 +24,17 @@
 <br>
 <br>
 <%= link_to 'New Subscription', new_subscription_path, {class: "btn btn-primary"} %>
+
+
+<form action="" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_vDSiuOkeTaV8mLnuOgqAQyWd"
+    data-amount="999"
+    data-name="Genie"
+    data-description="Widget"
+    data-image="https://s3.amazonaws.com/stripe-uploads/acct_16CXGYJdwoeabeLUmerchant-icon-1447944879536-genie.png"
+    data-locale="auto"
+    data-currency="eur">
+  </script>
+</form>
