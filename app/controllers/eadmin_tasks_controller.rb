@@ -8,7 +8,14 @@ class EadminTasksController < ApplicationController
   # GET /eadmin_tasks
   # GET /eadmin_tasks.json
   def index
-    @users = User.all
+
+
+    @paperwork_link = 'Paperwork<span class="badge">'+current_user.eadmin_tasks.where(:category => "Paperwork").where(:completed => [nil, 0]).count.to_s+'</span>'
+    @eat_link = 'Equipment &amp; Tools<span class="badge">'+current_user.eadmin_tasks.where(:category => "Equipment & Tools").where(:completed => [nil, 0]).count.to_s+'</span>'
+    @mtc_link = 'Meet the Company<span class="badge">'+current_user.eadmin_tasks.where(:category => "Meet the Company").where(:completed => [nil, 0]).count.to_s+'</span>'
+    @getgoing_link = 'Get Going<span class="badge">'+current_user.eadmin_tasks.where(:category => "Get Going").where(:completed => [nil, 0]).count.to_s+'</span>'
+
+    # @users = User.all
     #@eadmin_tasks = current_user.eadmin_tasks
     if params[:category]
       @eadmin_tasks = current_user.eadmin_tasks.where(:category => params[:category])

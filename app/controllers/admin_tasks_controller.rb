@@ -5,6 +5,12 @@ class AdminTasksController < ApplicationController
   # GET /admin_tasks
   # GET /admin_tasks.json
   def index
+
+    @paperwork_link = 'Paperwork<span class="badge">'+AdminTask.where(:category => "Paperwork").count.to_s+'</span>'
+    @eat_link = 'Equipment &amp; Tools<span class="badge">'+AdminTask.where(:category => "Equipment & Tools").count.to_s+'</span>'
+    @mtc_link = 'Meet the Company<span class="badge">'+AdminTask.where(:category => "Meet the Company").count.to_s+'</span>'
+    @getgoing_link = 'Get Going<span class="badge">'+AdminTask.where(:category => "Get Going").count.to_s+'</span>'
+
     if params[:category]
       @admin_tasks = AdminTask.where(:category => params[:category])
     else
