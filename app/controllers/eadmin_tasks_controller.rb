@@ -1,7 +1,7 @@
 
 class EadminTasksController < ApplicationController
-  
-  
+
+
   before_action :set_eadmin_task, only: [:show, :edit, :update, :destroy]
 
 
@@ -9,17 +9,19 @@ class EadminTasksController < ApplicationController
   # GET /eadmin_tasks.json
   def index
     @users = User.all
-   
 
-    @eadmin_tasks = EadminTask.all
-    @eadmin_tasks = current_user.eadmin_tasks
+    # @eadmin_tasks = current_user.eadmin_tasks
+    if params[:category]
+      @eadmin_tasks = EadminTask.where(:category => params[:category])
+    else
+      @eadmin_tasks = EadminTask.where(:category => "Paperwork")
+    end
 
 
-    
   end
 
 
-  def list 
+  def list
       @users = User.all
   end
 
@@ -55,9 +57,9 @@ class EadminTasksController < ApplicationController
   # POST /eadmin_tasks.json
   def create
 
- 
+
     @eadmin_task = User.find(params[:eadmin_task][:user_id]).eadmin_tasks.build(eadmin_task_params)
-   
+
 
     respond_to do |format|
       if @eadmin_task.save
@@ -66,7 +68,7 @@ class EadminTasksController < ApplicationController
       else
         format.json { render json: @eadmin_task.errors, status: :unprocessable_entity }
         format.html { redirect_to new_eadmin_task_path(:user_id => params[:eadmin_task][:user_id]), notice: 'Task not Created. Please fill out all boxes'}
-        
+
       end
     end
   end
@@ -87,7 +89,7 @@ class EadminTasksController < ApplicationController
 
   # DELETE /admin_tasks/1
   # DELETE /admin_tasks/1.json
-  def destroy
+  def destroy   
     @eadmin_task.destroy
     respond_to do |format|
       format.html { redirect_to user_eadmin_tasks_path(:id => params[:user_id]), notice: 'Task was successfully destroyed.' }

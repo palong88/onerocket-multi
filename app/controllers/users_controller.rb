@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+
     before_action :authenticate_user!
     load_and_authorize_resource
 
@@ -21,15 +21,25 @@ class UsersController < ApplicationController
 
    def eadmin_tasks
     @user = User.find(params[:id])
+
     my_id_param = params[:id]
-    @eadmin_tasks = @user.eadmin_tasks
+
+    # @eadmin_tasks = @user.eadmin_tasks.where(:category => params[:category] )
+
+      if params[:category]
+          @eadmin_tasks = @user.eadmin_tasks.where(:category => params[:category] )
+      else
+          @eadmin_tasks = @user.eadmin_tasks.where(:category => "Paperwork" )
+      end
+
   end
 
- 
+
 
   def create
     @user = User.new(user_params)
     @eadmin_tasks = AdminTask.all
+
     if @user.save
       redirect_to @user, :flash => { :success => 'Employee was successfully created.' }
     else
@@ -39,7 +49,7 @@ class UsersController < ApplicationController
 
 
  def new_eadmin
-  
+
     @eadmin_task = current_user.eadmin_tasks.build
   end
 

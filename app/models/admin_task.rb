@@ -1,14 +1,14 @@
 class AdminTask < ActiveRecord::Base
 	#attr_accessor :document_content_type
 	#attr_accessor :document_file_name
-	
+
 	resourcify
 
 	belongs_to :user
 	has_many :eadmin_tasks
-	
 
-	
+
+
 
 	has_attached_file :document
 	validates_attachment :document, content_type: { content_type: "application/pdf" }
@@ -26,5 +26,5 @@ class AdminTask < ActiveRecord::Base
 
 
 
-	
+
 end

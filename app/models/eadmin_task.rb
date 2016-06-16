@@ -12,10 +12,14 @@ class EadminTask < ActiveRecord::Base
 	validates_attachment :document, content_type: { content_type: "application/pdf" }
   #do_not_validate_attachment_file_type :document
   #validates_attachment :document, :presence => false, :content_type => { :content_type => "application/pdf" }
-  #validate :check_document_present                     
-  
+  #validate :check_document_present
+
 	def completed?
 		completed == 1
+	end
+	
+	def not_completed?
+		completed == 0
 	end
 
 	validates :category, :presence => true

@@ -1,673 +1,127 @@
+<!-- Wrapper for sidebar and layout -->
 
-    <div class="row">
-                <div class="col s12">
+<div class="row">
+  <!-- Sidebar -->
+  <div class="col s12 m4 l3">
+    <!-- Profile card -->
+    <div class="card top">
+      <div class="card-content">
+        <span class="card-title">Template</span>
+        <p>Any task you add here will be copied to each new hire you onboard.</p>
+      </div>
+    </div>
 
-                   <% completed = current_user.eadmin_tasks.where("completed = ?", 1).count.to_i%>
-        <% not_completed = current_user.eadmin_tasks.count.to_i%>
+    <div class="collection">
+      <%= link_to 'Learning<span class="badge">1</span>'.html_safe, params.merge(:category => "Learning"), class: "collection-item"%>
+      <%= link_to 'Setting Up<span class="badge">1</span>'.html_safe, params.merge(:category => "Setting Up"), class: "collection-item"%>
+      <%= link_to 'Personal Survey<span class="badge">1</span>'.html_safe, params.merge(:category => "Personal Survey"), class: "collection-item"%>
+      <%= link_to 'Milestones<span class="badge">1</span>'.html_safe, params.merge(:category => "Milestones"), class: "collection-item"%>
+    
+    </div>
 
+  </div>
+  <!-- End Sidebar -->
 
-          <% total =  (completed.to_f / not_completed ) * 100 %>
+  <!-- Content -->
+  <div class="col s12 m7 l8">
 
-        
-
-
-                  <h3 class="center"> My Onboarding  </h3><br>
-                  <h4 class="center">Hi, <%=current_user.name %></h4>
-
-                  <h5 class="center">Progress</h5>
-                  <h5 class="center"><%= total.round(0) %>%</h6>
-                    <div class="progress center">
-                          <div class="determinate" style="width: <%= total.round(0) %>%"></div>
-                      </div>
-       
-                </div>
-               <div class="col s12">
-                    <ul class="tabs" id="tabs">
-                      <li class="tab col s3" ><a class="active" href="#tabs-1">Learning</a></li>
-                      <li class="tab col s3"><a  href="#tabs-2">Setting Up</a></li>
-                      <li class="tab col s3"><a href="#tabs-3">Milestones</a></li>
-                      <li class="tab col s3"><a href="#tabs-4">Personal Details</a></li>
-                    </ul>
-                  </div>
-
-
-
-                   <div class="items">
-                    <div id="tabs-1" data-tab-index="0">
-
-
-
-                      <div class="col s6 left"> 
-                        
-                  <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
-                          <h5 class="center">Before You Start</h5>
-                         <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
-
-                         <% if eadmin_task.category == "Learning" && eadmin_task.when_due == "Before" %>
-
-                              <li>
-
-                                <% if eadmin_task.completed? %> 
-                                                  
-
-                                        <div class="collapsible-header">
-                                          <p >
-                                                <strike style="opacity: 0.4;"> 
-
-                                                  <%= eadmin_task.title %> 
-
-                                                </strike>
-
-                                          
-
-                                              
-                                            <%= link_to '  <i style="font-size: 2rem; color: #00e676" class=" large material-icons icon-demo secondary-content right">check_box
-</i>'.html_safe, not_complete_eadmin_task_path(eadmin_task), method: :patch %>
-
-
-                                          </p>
-                                        </div>
-
-                                 <% else %>
-
-                                    <div class="collapsible-header">
-                                      <p>
-                                         <strong> 
-
-                                          <%= eadmin_task.title %> 
-
-                                        </strong>
-
-                                            <%= link_to '  <i style="font-size: 2rem; color: #757575" class=" large material-icons icon-demo secondary-content right">check_box_outline_blank
-
-</i>'.html_safe, complete_eadmin_task_path(eadmin_task), method: :patch %>
-
-                                                    
-                                            
-
-                                      </p>
-                                    </div>
-
-
-                                        <% end %>
-                                    <div class="collapsible-body">
-
-                                      <p><strong> Descrption: </strong><%= eadmin_task.description %><br><br>
-
-                                        
-                                        
-   
-                                                    
-                                           <% if !eadmin_task.media.blank? %>
-                                      <strong> Media: </strong><a href="<%= eadmin_task.media %>" target="_blank" > <%= eadmin_task.media.first(55) %> </a> <br> <br>
-                                      <% end %>
-
-                                      <strong> Due Date:</strong> 
-                                      <% when_due = eadmin_task.due_date.to_i %>
-                                       <% d = current_user.start_date %> 
-                                       <% due_date3 = (d - when_due).to_s %>
-                                      <%= Date.parse(due_date3).strftime("%e, %B, %Y")%>
-                        <%  if !eadmin_task.document_file_name.blank?  %>
-
-                          <%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false) %>
-
-                          <% end %>
-                                   
-                                     </p>
-      
-
-
-
-
-                                </div>
-                              </li>
-             <% end %>
-           <% end %>
-           </ul>
-
+    <h5>Before you start...</h5>
+    <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
+      <% if eadmin_task.when_due == "Before" && eadmin_task.completed? == false %>
+        <!-- Card -->
+        <div class="card hoverable">
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">more_vert</i></span>
+            <p><%= truncate(eadmin_task.description, length: 140, separator: ' ') %></p>
           </div>
-
-
-
-          <div class="col s6 left">
-
-                  
-                 <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
-                          <h5 class="center">After You Start</h5>
-                         <% @eadmin_tasks.order( 'eadmin_tasks.due_date ASC' ).each do |eadmin_task| %>
-
-                         <% if eadmin_task.category == "Learning" && eadmin_task.when_due == "After" %>
-
-                               <li>
-
-                                <% if eadmin_task.completed? %> 
-                                                  
-
-                                        <div class="collapsible-header">
-                                          <p style="opacity: 0.4;">
-                                                <strike> 
-
-                                                  <%= eadmin_task.title %> 
-
-                                                </strike>
-
-                                          
-
-                                               <%= link_to '  <i style="font-size: 2rem; color: #00e676" class=" large material-icons icon-demo secondary-content right">check_box
-</i>'.html_safe, not_complete_eadmin_task_path(eadmin_task), method: :patch %>
-
-                                          </p>
-                                        </div>
-
-                                 <% else %>
-
-                                    <div class="collapsible-header">
-                                      <p>
-                                         <strong> 
-
-                                          <%= eadmin_task.title %> 
-
-                                        </strong>
-
-                                             <%= link_to '  <i style="font-size: 2rem; color: #757575" class=" large material-icons icon-demo secondary-content right">check_box_outline_blank </i>'.html_safe, complete_eadmin_task_path(eadmin_task), method: :patch %>
-
-                                                    
-                                            
-
-                                      </p>
-                                    </div>
-
-
-                                        <% end %>
-                                    <div class="collapsible-body">
-
-                                      <p><strong> Descrption: </strong><%= eadmin_task.description %><br><br>
-                                      <% if !eadmin_task.media.blank? %>
-                                      <strong> Media: </strong><a href="<%= eadmin_task.media %>" target="_blank" > <%= eadmin_task.media.first(55) %> </a> <br> <br>
-                                      <% end %>
-                                    <strong> Due Date:</strong> 
-                                      <% when_due = eadmin_task.due_date.to_i %>
-                                       <% d = current_user.start_date %> 
-                                       <% due_date4 =( d + when_due).to_s %>
-                                      <%= Date.parse(due_date4).strftime("%e, %B, %Y")%>
-                                     </p>
-
-
-
-
-                                      </div>
-                              </li>
-             <% end %>
-           <% end %>
-           </ul>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">close</i></span>
+            <p><%= eadmin_task.description %></p>
+            <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false) %></p>
           </div>
+          <div class="card-action">
+            <!-- Runs a completed? method in the eadmin_task model to check the tasks complete status against a 1 or 0 -->
+            <% unless eadmin_task.completed? %>
+              <!-- Link to Mark Complete and Done: calls a patch method to the eadmin_tasks controller -->
+              <%= link_to 'mark as complete', complete_eadmin_task_path(eadmin_task), class: "blue-text", method: :patch %>
+            <% else %>
+              <%= link_to 'mark as uncompleted', not_complete_eadmin_task_path(eadmin_task), class: "blue-text", method: :patch %>
+            <% end %>
+            <% when_due = eadmin_task.due_date.to_i %>
+            <% d = current_user.start_date %>
+            <% due_date3 = (d - when_due).to_s %>
+            <span class="right"><%= Date.parse(due_date3).strftime("%e, %B, %Y")%></span>
+          </div>
+        </div>
+        <!-- End card -->
+      <%end%>
+    <%end%>
+
+    <h5>After you start...</h5>
+    <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
+      <% if eadmin_task.when_due == "After" && eadmin_task.completed? == false %>
+        <!-- Card -->
+        <div class="card hoverable grey lighten-2">
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">more_vert</i></span>
+            <p><%= truncate(eadmin_task.description, length: 140, separator: ' ') %></p>
+          </div>
+          <div class="card-reveal grey lighten-2">
+            <span class="card-title grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">close</i></span>
+            <p><%= eadmin_task.description %></p>
+            <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false) %></p>
+          </div>
+          <div class="card-action">
+            <!-- Runs a completed? method in the eadmin_task model to check the tasks complete status against a 1 or 0 -->
+            <% unless eadmin_task.completed? %>
+            <!-- Link to Mark Complete and Done: calls a patch method to the eadmin_tasks controller -->
+              <%= link_to 'mark as complete', complete_eadmin_task_path(eadmin_task), class: "blue-text", method: :patch %>
+            <% else %>
+              <%= link_to 'mark as uncompleted', not_complete_eadmin_task_path(eadmin_task), class: "blue-text", method: :patch %>
+            <% end %>
+            <% when_due = eadmin_task.due_date.to_i %>
+            <% d = current_user.start_date %>
+            <% due_date3 = (d - when_due).to_s %>
+            <span class="right"><%= Date.parse(due_date3).strftime("%e, %B, %Y")%></span>
+          </div>
+        </div>
+        <!-- End card -->
+      <%end%>
+    <%end%>
 
 
+    <h5>Recently Completed</h5>
+    <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
+      <% if eadmin_task.completed? %>
+        <!-- Card -->
+        <div class="card hoverable #b2dfdb teal lighten-4">
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">more_vert</i></span>
+            <p><%= truncate(eadmin_task.description, length: 140, separator: ' ') %></p>
+          </div>
+          <div class="card-reveal #b2dfdb teal lighten-4">
+            <span class="card-title grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">close</i></span>
+            <p><%= eadmin_task.description %></p>
+            <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false) %></p>
+          </div>
+          <div class="card-action">
+            <!-- Runs a completed? method in the eadmin_task model to check the tasks complete status against a 1 or 0 -->
+            <% unless eadmin_task.completed? %>
+            <!-- Link to Mark Complete and Done: calls a patch method to the eadmin_tasks controller -->
+              <%= link_to 'mark as complete', complete_eadmin_task_path(eadmin_task), class: "blue-text", method: :patch %>
+            <% else %>
+              <%= link_to 'mark as uncompleted', not_complete_eadmin_task_path(eadmin_task), class: "blue-text", method: :patch %>
+            <% end %>
+            <% when_due = eadmin_task.due_date.to_i %>
+            <% d = current_user.start_date %>
+            <% due_date3 = (d - when_due).to_s %>
+            <span class="right"><%= Date.parse(due_date3).strftime("%e, %B, %Y")%></span>
+          </div>
+        </div>
+        <!-- End card -->
+      <%end%>
+    <%end%>
 
-
+  </div>
+  <!-- End content -->
 </div>
-
-
-
-
-                      
-                    </div><!-- END -->
-
-                    <div class="items">
-                    <div id="tabs-2" data-tab-index="1">
-
-                      <div class="col s6 left"> 
-                  <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
-                          <h5 class="center">Before You Start</h5>
-                         <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
-
-                         <% if eadmin_task.category == "Setting Up" && eadmin_task.when_due == "Before" %>
-
-                              <li>
-
-                                <% if eadmin_task.completed? %> 
-                                                  
-
-                                        <div class="collapsible-header">
-                                          <p style="opacity: 0.4;">
-                                                <strike> 
-
-                                                  <%= eadmin_task.title %> 
-
-                                                </strike>
-
-                                          
-
-                                               <%= link_to '  <i style="font-size: 2rem; color: #00e676" class=" large material-icons icon-demo secondary-content right">check_box
-</i>'.html_safe, not_complete_eadmin_task_path(eadmin_task), method: :patch %>
-
-                                          </p>
-                                        </div>
-
-                                 <% else %>
-
-                                    <div class="collapsible-header">
-                                      <p>
-                                         <strong> 
-
-                                          <%= eadmin_task.title %> 
-
-                                        </strong>
-
-                                            <%= link_to '  <i style="font-size: 2rem; color: #757575" class=" large material-icons icon-demo secondary-content right">check_box_outline_blank </i>'.html_safe, complete_eadmin_task_path(eadmin_task), method: :patch %>
-
-                                                    
-                                            
-
-                                      </p>
-                                    </div>
-
-
-                                        <% end %>
-                                    <div class="collapsible-body">
-
-                                      <p><strong> Description: </strong><%= eadmin_task.description %><br><br>
-                                     <% if !eadmin_task.media.blank? %>
-                                      <strong> Media: </strong><a href="<%= eadmin_task.media %>" target="_blank" > <%= eadmin_task.media.first(55) %> </a> <br> <br>
-                                      <% end %>
-                                      <strong> Due Date:</strong> 
-                                       <% when_due = eadmin_task.due_date.to_i %>
-                                       <% d = current_user.start_date %> 
-                                       <% due_date5 =(d-when_due).to_s %>
-                                      <%= Date.parse(due_date5).strftime("%e, %B, %Y")%>
-                                     </p>
-                                      </div>
-                              </li>
-             <% end %>
-           <% end %>
-           </ul>
-
-          </div>
-
-
-
-          <div class="col s6 left">
-
-                  
-                 <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
-                          <h5 class="center">After You Start</h5>
-                         <% @eadmin_tasks.order( 'eadmin_tasks.due_date ASC' ).each do |eadmin_task| %>
-
-                         <% if eadmin_task.category == "Setting Up" && eadmin_task.when_due == "After" %>
-
-                               <li>
-
-                                <% if eadmin_task.completed? %> 
-                                                  
-
-                                        <div class="collapsible-header">
-                                          <p style="opacity: 0.4;">
-                                                <strike> 
-
-                                                  <%= eadmin_task.title %> 
-
-                                                </strike>
-
-                                          
-
-                                              <%= link_to '  <i style="font-size: 2rem; color: #00e676" class=" large material-icons icon-demo secondary-content right">check_box
-</i>'.html_safe, not_complete_eadmin_task_path(eadmin_task), method: :patch %>
-
-                                          </p>
-                                        </div>
-
-                                 <% else %>
-
-                                    <div class="collapsible-header">
-                                      <p>
-                                         <strong> 
-
-                                          <%= eadmin_task.title %> 
-
-                                        </strong>
-
-                                          <%= link_to '  <i style="font-size: 2rem; color: #757575" class=" large material-icons icon-demo secondary-content right">check_box_outline_blank </i>'.html_safe, complete_eadmin_task_path(eadmin_task), method: :patch %>
-
-                                                    
-                                            
-
-                                      </p>
-                                    </div>
-
-
-                                        <% end %>
-                                    <div class="collapsible-body">
-
-                                      <p><strong> Descrption: </strong><%= eadmin_task.description %><br><br>
-                                     <% if !eadmin_task.media.blank? %>
-                                      <strong> Media: </strong><a href="<%= eadmin_task.media %>" target="_blank" > <%= eadmin_task.media.first(55) %> </a> <br> <br>
-                                      <% end %>
-                                      <strong> Due Date:</strong> 
-                                     <% when_due = eadmin_task.due_date.to_i %>
-                                       <% d = current_user.start_date %> 
-                                       <% due_date6 =(d+when_due).to_s %>
-                                      <%= Date.parse(due_date6).strftime("%e, %B, %Y")%>
-                                     </p>
-                                      </div>
-                              </li>
-             <% end %>
-           <% end %>
-           </ul>
-          </div>
-
-
-
-
-</div>
-
-
-
-
-
-                      
-                    </div><!-- END -->
-
-                    <div class="items">
-                    <div id="tabs-3" data-tab-index="2" >
-
-                      <div class="col s6 left"> 
-                  <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
-                          <h5 class="center">Before You Start</h5>
-                         <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
-
-                         <% if eadmin_task.category == "Milestones" && eadmin_task.when_due == "Before" %>
-
-                              <li>
-
-                                <% if eadmin_task.completed? %> 
-                                                  
-
-                                        <div class="collapsible-header">
-                                          <p style="opacity: 0.4;">
-                                                <strike> 
-
-                                                  <%= eadmin_task.title %> 
-
-                                                </strike>
-
-                                          
-
-                                               <%= link_to '  <i style="font-size: 2rem; color: #00e676" class=" large material-icons icon-demo secondary-content right">check_box
-</i>'.html_safe, not_complete_eadmin_task_path(eadmin_task), method: :patch %>
-
-                                          </p>
-                                        </div>
-
-                                 <% else %>
-
-                                    <div class="collapsible-header">
-                                      <p>
-                                         <strong> 
-
-                                          <%= eadmin_task.title %> 
-
-                                        </strong>
-
-                                            <%= link_to '  <i style="font-size: 2rem; color: #757575" class=" large material-icons icon-demo secondary-content right">check_box_outline_blank </i>'.html_safe, complete_eadmin_task_path(eadmin_task), method: :patch %>
-
-                                                    
-                                            
-
-                                      </p>
-                                    </div>
-
-
-                                        <% end %>
-                                    <div class="collapsible-body">
-
-                                      <p><strong> Description: </strong><%= eadmin_task.description %><br><br>d
-                                      
-                                        <% if !eadmin_task.media.blank? %>
-                                      <strong> Media: </strong><a href="<%= eadmin_task.media %>" target="_blank" > <%= eadmin_task.media.first(55) %> </a> <br> <br>
-                                      <% end %>
-                                     <strong> Due Date:</strong> 
-                                     <% when_due = eadmin_task.due_date.to_i %>
-                                       <% d = current_user.start_date %> 
-                                       <% due_date7 =(d-when_due).to_s %>
-                                      <%= Date.parse(due_date7).strftime("%e, %B, %Y")%>
-                                     </p>
-                              </li>
-             <% end %>
-           <% end %>
-           </ul>
-
-          </div>
-
-
-
-          <div class="col s6 left">
-
-                  
-                 <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
-                          <h5 class="center">After You Start</h5>
-                         <% @eadmin_tasks.order( 'eadmin_tasks.due_date ASC' ).each do |eadmin_task| %>
-
-                         <% if eadmin_task.category == "Milestones" && eadmin_task.when_due == "After" %>
-
-                               <li>
-
-                                <% if eadmin_task.completed? %> 
-                                                  
-
-                                        <div class="collapsible-header">
-                                          <p style="opacity: 0.4;">
-                                                <strike> 
-
-                                                  <%= eadmin_task.title %> 
-
-                                                </strike>
-
-                                          
-
-                                              <%= link_to '  <i style="font-size: 2rem; color: #00e676" class=" large material-icons icon-demo secondary-content right">check_box
-</i>'.html_safe, not_complete_eadmin_task_path(eadmin_task), method: :patch %>
-                                          </p>
-                                        </div>
-
-                                 <% else %>
-
-                                    <div class="collapsible-header">
-                                      <p>
-                                         <strong> 
-
-                                          <%= eadmin_task.title %> 
-
-                                        </strong>
-
-                                            <%= link_to '  <i style="font-size: 2rem; color: #757575" class=" large material-icons icon-demo secondary-content right">check_box_outline_blank </i>'.html_safe, complete_eadmin_task_path(eadmin_task), method: :patch %>
-
-                                                    
-                                            
-
-                                      </p>
-                                    </div>
-
-
-                                        <% end %>
-                                    <div class="collapsible-body">
-
-                                      <p><strong> Descrption: </strong><%= eadmin_task.description %><br><br>
-                                        <% if !eadmin_task.media.blank? %>
-                                      <strong> Media: </strong><a href="<%= eadmin_task.media %>" target="_blank" > <%= eadmin_task.media.first(55) %> </a> <br> <br>
-                                      <% end %>
-                                      <strong> Due Date:</strong> 
-                                         <% when_due = eadmin_task.due_date.to_i %>
-                                       <% d = current_user.start_date %> 
-                                       <% due_date8 =(d + when_due).to_s %>
-                                      <%= Date.parse(due_date8).strftime("%e, %B, %Y")%>
-                                     </p>
-                              </li>
-             <% end %>
-           <% end %>
-           </ul>
-          </div>
-
-
-
-
-</div>
-
-
-                      
-                    </div><!-- END -->
-
-                    <div class="items">
-                    <div id="tabs-4" data-tab-index="3" >
-
-          <div class="col s6 left">
-
-                  
-                 <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
-                          <h5 class="center">After You Start</h5>
-                         <% @eadmin_tasks.order( 'eadmin_tasks.due_date ASC' ).each do |eadmin_task| %>
-
-                         <% if eadmin_task.category == "Personal Survey" && eadmin_task.when_due == "Before" %>
-
-                               <li>
-
-                                <% if eadmin_task.completed? %> 
-                                                  
-
-                                        <div class="collapsible-header">
-                                          <p style="opacity: 0.4;">
-                                                <strike> 
-
-                                                  <%= eadmin_task.title %> 
-
-                                                </strike>
-
-                                          
-
-                                             <%= link_to '  <i style="font-size: 2rem; color: #00e676" class=" large material-icons icon-demo secondary-content right">check_box
-</i>'.html_safe, not_complete_eadmin_task_path(eadmin_task), method: :patch %>
-                                          </p>
-                                        </div>
-
-                                 <% else %>
-
-                                    <div class="collapsible-header">
-                                      <p>
-                                         <strong> 
-
-                                          <%= eadmin_task.title %> 
-
-                                        </strong>
-
-                                           <%= link_to '  <i style="font-size: 2rem; color: #757575" class=" large material-icons icon-demo secondary-content right">check_box_outline_blank </i>'.html_safe, complete_eadmin_task_path(eadmin_task), method: :patch %>
-                                                    
-                                            
-
-                                      </p>
-                                    </div>
-
-
-                                        <% end %>
-                                    <div class="collapsible-body">
-
-                                      <p><strong> Descrption: </strong><%= eadmin_task.description %><br><br>
-                                      <% if !eadmin_task.media.blank? %>
-                                      <strong> Media: </strong><a href="<%= eadmin_task.media %>" target="_blank" > <%= eadmin_task.media.first(55) %> </a> <br> <br>
-                                      <% end %>
-                                      <strong> Due Date:</strong> 
-                                     <% when_due = eadmin_task.due_date.to_i %>
-                                       <% d = current_user.start_date %> 
-                                       <% due_date9 =(d+when_due).to_s %>
-                                      <%= Date.parse(due_date9).strftime("%e, %B, %Y")%>
-
-                                     </p>
-
-                                      </div>
-                              </li>
-             <% end %>
-           <% end %>
-           </ul>
-          </div>
-
-       
-
-
-
-          <div class="col s6 left">
-
-                  
-                 <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
-                          <h5 class="center">After You Start</h5>
-                         <% @eadmin_tasks.order( 'eadmin_tasks.due_date ASC' ).each do |eadmin_task| %>
-
-                         <% if eadmin_task.category == "Personal Survey" && eadmin_task.when_due == "After" %>
-
-                               <li>
-
-                                <% if eadmin_task.completed? %> 
-                                                  
-
-                                        <div class="collapsible-header">
-                                          <p style="opacity: 0.4;">
-                                                <strike> 
-
-                                                  <%= eadmin_task.title %> 
-
-                                                </strike>
-
-                                          
-
-                                             <%= link_to '  <i style="font-size: 2rem; color: #00e676" class=" large material-icons icon-demo secondary-content right">check_box
-</i>'.html_safe, not_complete_eadmin_task_path(eadmin_task), method: :patch %>
-                                          </p>
-                                        </div>
-
-                                 <% else %>
-
-                                    <div class="collapsible-header">
-                                      <p>
-                                         <strong> 
-
-                                          <%= eadmin_task.title %> 
-
-                                        </strong>
-
-                                           <%= link_to '  <i style="font-size: 2rem; color: #757575" class=" large material-icons icon-demo secondary-content right">check_box_outline_blank </i>'.html_safe, complete_eadmin_task_path(eadmin_task), method: :patch %>
-                                                    
-                                            
-
-                                      </p>
-                                    </div>
-
-
-                                        <% end %>
-                                    <div class="collapsible-body">
-
-                                      <p><strong> Descrption: </strong><%= eadmin_task.description %><br><br>
-                                      <% if !eadmin_task.media.blank? %>
-                                      <strong> Media: </strong><a href="<%= eadmin_task.media %>" target="_blank" > <%= eadmin_task.media.first(55) %> </a> <br> <br>
-                                      <% end %>
-                                      <strong> Due Date:</strong> 
-                                     <% when_due = eadmin_task.due_date.to_i %>
-                                       <% d = current_user.start_date %> 
-                                       <% due_date9 =(d+when_due).to_s %>
-                                      <%= Date.parse(due_date9).strftime("%e, %B, %Y")%>
-
-                                     </p>
-
-                                      </div>
-                              </li>
-             <% end %>
-           <% end %>
-           </ul>
-          </div>
-
-
-
-
-</div>
-
-
-                      
-                  </div><!-- END -->
-
-
