@@ -8,7 +8,7 @@
     <%= form_for @admin_task,  html: { multipart: true } do |f| %>
     <% if @admin_task.errors.any? %>
     <div id="error_explanation">
-      <h6>Please fill out the following feilds:</h6>
+      <h4>Please fill out the following feilds:</h4>
       <ul>
         <% @admin_task.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -77,7 +77,7 @@
           <label>How long from the start date?</label>
         </div>
         <div class="input-field col s12 m6">
-          <select name="admin_task[when]" id="admin_task_when">
+          <select name="admin_task[when_due]" id="admin_task_when">
             <option value="" disabled selected>Choose before or after</option>
             <option value="Before">Before the start date</option>
             <option value="After">After the start date</option>

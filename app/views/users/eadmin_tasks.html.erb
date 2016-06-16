@@ -58,7 +58,7 @@
             <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false) %></p>
           </div>
           <div class="card-action">
-              <%= link_to 'edit', edit_eadmin_task_path(eadmin_task), class: "blue-text" %>
+              <!-- <%= link_to 'edit', edit_eadmin_task_path(eadmin_task, :category => params[:category], :user_id => params[:id]), class: "blue-text" %> -->
               <%= link_to 'delete', eadmin_task, method: :delete, class: "blue-text", data: { confirm: 'Are you sure you want to delete this task?' } %>
               <span class="right"><%= eadmin_task.due_date %> <%= eadmin_task.due_date == 1 ? "day" : "days" %> <%= eadmin_task.when_due.downcase %> they start</span>
           </div>
@@ -81,7 +81,7 @@
             <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false) %></p>
           </div>
           <div class="card-action">
-              <%= link_to 'edit', edit_eadmin_task_path(eadmin_task), class: "blue-text" %>
+              <!-- <%= link_to 'edit', edit_eadmin_task_path(eadmin_task), class: "blue-text" %> -->
               <%= link_to 'delete', eadmin_task, method: :delete, class: "blue-text", data: { confirm: 'Are you sure you want to delete this task?' } %>
               <span class="right"><%= eadmin_task.due_date %> <%= eadmin_task.due_date == 1 ? "day" : "days" %> <%= eadmin_task.when_due.downcase %> they start</span>
           </div>
@@ -106,7 +106,7 @@
             <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false) %></p>
           </div>
           <div class="card-action">
-              <%= link_to 'edit', edit_eadmin_task_path(eadmin_task), class: "blue-text" %>
+              <!-- <%= link_to 'edit', edit_eadmin_task_path(eadmin_task), class: "blue-text" %> -->
               <%= link_to 'delete', eadmin_task, method: :delete, class: "blue-text", data: { confirm: 'Are you sure you want to delete this task?' } %>
               <span class="right"><%= eadmin_task.due_date %> <%= eadmin_task.due_date == 1 ? "day" : "days" %> <%= eadmin_task.when_due.downcase %> they start</span>
           </div>

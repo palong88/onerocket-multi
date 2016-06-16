@@ -8,7 +8,7 @@
     <%= form_for @eadmin_task,  html: { multipart: true } do |f| %>
     <% if @eadmin_task.errors.any? %>
     <div id="error_explanation">
-      <h6>Please fill out the following feilds:</h6>
+      <h4>Please fill out the following feilds:</h4>
       <ul>
         <% @eadmin_task.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -46,10 +46,10 @@
           <!-- <div class="file-field input-field"> -->
           <div class="btn">
             <span>File</span>
-            <input type="file" for="admin_task_document">
+            <input type="file" for="eadmin_task_document">
           </div>
           <div class="file-path-wrapper">
-            <input id="admin_task_document" name="admin_task[document]" class="file-path validate" type="text" placeholder="Is there a file that they will need?">
+            <input id="eadmin_task_document" name="eadmin_task[document]" class="file-path validate" type="text" placeholder="Is there a file that they will need?">
           </div>
           <!-- </div> -->
         </div>
@@ -59,7 +59,7 @@
       <!-- when -->
       <div class="row">
         <div class="input-field col s12 m6 l6">
-          <select name="admin_task[due_date]" id="admin_task_due_date" >
+          <select name="eadmin_task[due_date]" id="eadmin_task_due_date" >
             <option value="" disabled selected>Choose amount of time</option>
             <optgroup label="Days">
               <option value="1">1 day</option>
@@ -83,7 +83,7 @@
           <label>How long from the start date?</label>
         </div>
         <div class="input-field col s12 m6">
-          <select name="admin_task[when]" id="admin_task_when">
+          <select name="eadmin_task[when_due]" id="eadmin_task_when_due">
             <option value="" disabled selected>Choose before or after</option>
             <option value="Before">Before the start date</option>
             <option value="After">After the start date</option>
@@ -97,7 +97,7 @@
       <!-- buttons to save -->
       <div class="row">
         <div class="actions col s12 centered">
-          <%= link_to 'Cancel', admin_tasks_path, class: "btn btn-large" %>
+          <!-- <%= link_to 'Cancel', eadmin_tasks_path, class: "btn btn-large" %> -->
           <input type="submit" value="Submit!" class="btn btn-large" >
         </div>
       </div>

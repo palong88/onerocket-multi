@@ -65,10 +65,9 @@ class EadminTasksController < ApplicationController
         format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id]), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @eadmin_task }
       else
-        # format.json { render json: @eadmin_task.errors, status: :unprocessable_entity }
-        # format.html { redirect_to new_eadmin_task_path(:user_id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category] ), notice: 'Task not Created. Please fill out all boxes'}
-        format.html { render :edit }
         format.json { render json: @eadmin_task.errors, status: :unprocessable_entity }
+        format.html { redirect_to new_eadmin_task_path(:user_id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category] ), notice: 'Task not Created. Please fill out all boxes'}
+
       end
     end
   end
@@ -76,6 +75,7 @@ class EadminTasksController < ApplicationController
   # PATCH/PUT /admin_tasks/1
   # PATCH/PUT /admin_tasks/1.json
   def update
+
     respond_to do |format|
       if @eadmin_task.update(eadmin_task_params)
         format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id]), notice: 'Task was successfully updated.' }
@@ -92,7 +92,8 @@ class EadminTasksController < ApplicationController
   def destroy
     @eadmin_task.destroy
     respond_to do |format|
-      format.html { redirect_to user_eadmin_tasks_path(:id => params[:user_id]), notice: 'Task was successfully destroyed.' }
+      #redirect to  :back is depricated in rails 5 so keep note
+      format.html { redirect_to :back, notice: 'Task was successfully deleted.' }
       format.json { head :no_content }
     end
   end
