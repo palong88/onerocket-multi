@@ -62,7 +62,7 @@ class EadminTasksController < ApplicationController
 
     respond_to do |format|
       if @eadmin_task.save
-        format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id]), notice: 'Task was successfully created.' }
+        format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category]), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @eadmin_task }
       else
         format.json { render json: @eadmin_task.errors, status: :unprocessable_entity }

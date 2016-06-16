@@ -33,11 +33,12 @@ class AdminTasksController < ApplicationController
 
     respond_to do |format|
       if @admin_task.save
-        format.html { redirect_to admin_tasks_url, notice: 'Admin task was successfully created.' }
+        format.html { redirect_to admin_tasks_path(:category =>params[:admin_task][:category]), notice: 'Admin task was successfully created.' }
         format.json { render :show, status: :created, location: @admin_task }
       else
-        format.html { render :new }
         format.json { render json: @admin_task.errors, status: :unprocessable_entity }
+        format.html { redirect_to new_admin_task_path(:category =>params[:admin_task][:category] ), notice: 'Task not Created.'}
+
       end
     end
   end
