@@ -31,10 +31,10 @@
     </div>
 
     <div class="collection">
-      <%= link_to 'Paperwork<span class="badge">1</span>'.html_safe, params.merge(:category => "Paperwork"), class: "collection-item"%>
-      <%= link_to 'Equipment &amp; Tools<span class="badge">1</span>'.html_safe, params.merge(:category => "Equipment & Tools"), class: "collection-item"%>
-      <%= link_to 'Meet the Company<span class="badge">1</span>'.html_safe, params.merge(:category => "Meet the Company"), class: "collection-item"%>
-      <%= link_to 'Get Going<span class="badge">1</span>'.html_safe, params.merge(:category => "Get Going"), class: "collection-item"%>
+      <%= link_to @paperwork_link.html_safe, params.merge(:category => "Paperwork"), class: "collection-item"%>
+      <%= link_to @eat_link.html_safe, params.merge(:category => "Equipment & Tools"), class: "collection-item"%>
+      <%= link_to @mtc_link.html_safe, params.merge(:category => "Meet the Company"), class: "collection-item"%>
+      <%= link_to @getgoing_link.html_safe, params.merge(:category => "Get Going"), class: "collection-item"%>
     </div>
 
   </div>
@@ -119,9 +119,14 @@
           </div>
           <div class="card-reveal grey lighten-2">
             <span class="card-title grey-text text-darken-4"><%= admin_task.title %><i class="material-icons right">close</i></span>
+<<<<<<< HEAD
+            <p><%= admin_task.description %></p>
+            <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false) %></p>
+=======
             <% if admin_task.document_file_name %>
               <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false), :target => "_blank" %></p>
             <% end %>
+>>>>>>> bug-fixes
           </div>
           <div class="card-action">
             <% if params[:category] %>

@@ -24,7 +24,11 @@ class UsersController < ApplicationController
 
     my_id_param = params[:id]
 
-    # @eadmin_tasks = @user.eadmin_tasks.where(:category => params[:category] )
+    @paperwork_link = 'Paperwork<span class="badge">'+@user.eadmin_tasks.where(:category => "Paperwork").where(:completed => [nil, 0]).count.to_s+'</span>'
+    @eat_link = 'Equipment &amp; Tools<span class="badge">'+@user.eadmin_tasks.where(:category => "Equipment & Tools").where(:completed => [nil, 0]).count.to_s+'</span>'
+    @mtc_link = 'Meet the Company<span class="badge">'+@user.eadmin_tasks.where(:category => "Meet the Company").where(:completed => [nil, 0]).count.to_s+'</span>'
+    @getgoing_link = 'Get Going<span class="badge">'+@user.eadmin_tasks.where(:category => "Get Going").where(:completed => [nil, 0]).count.to_s+'</span>'
+
 
     if params[:category]
       @eadmin_tasks = @user.eadmin_tasks.where(:category => params[:category] )
