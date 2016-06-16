@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :async
-         
+
    validates :email, :presence => true
    validate :email_is_unique, on: :create
    validate :subdomain_is_unique, on: :create
@@ -89,54 +89,49 @@ class User < ActiveRecord::Base
        id = self.id
         AdminTask.all.each do |default_b|
           eadmin_tasks.create(
-            title: default_b.title, 
-            description: default_b.description, 
-            media: default_b.media, 
-            due_date: default_b.due_date, 
-            when_due: default_b.when, 
+            title: default_b.title,
+            description: default_b.description,
+            media: default_b.media,
+            due_date: default_b.due_date,
+            when_due: default_b.when,
             category: default_b.category,
-            document: default_b.document,  
+            document: default_b.document,
             user_id: id)
 
         end
     else
       add_role :admin
       id = self.id
-     
 
-        #Learning Before
-        AdminTask.create( :title => "About our Company", :description => "Read about our company", :media =>  "Google Doc link or link to webpage", :when => "Before", :due_date => "3", :category  => "Learning" )
-        AdminTask.create( :title => "Our Visions and Values", :description => "Read about our visions and values", :media =>  "Google Doc link or link to webpage", :when => "Before", :due_date => "3", :category  => "Learning" )
-        AdminTask.create( :title => "Employee Testimonials", :description => "Check out some of our employee testimonials", :media =>  "www.test.com", :when => "Before", :due_date => "3", :category  => "Learning")
-        
+        #Meet the Company Before
+        AdminTask.create( :title => "About our Company", :description => "Read about our company", :when => "Before", :due_date => "3", :category  => "Meet the Company" )
+        AdminTask.create( :title => "Our Visions and Values", :description => "Read about our visions and values", :when => "Before", :due_date => "3", :category  => "Meet the Company" )
+        AdminTask.create( :title => "Employee Testimonials", :description => "Check out some of our employee testimonials", :when => "Before", :due_date => "3", :category  => "Meet the Company")
+
         #Setup Before
-        AdminTask.create( :title => "Google Apps", :description => "Make sure you've been setup on Google Apps at least a week before your start date. If this has not been organised for you by this time, please contact X at X@ourcompany.com", :media =>  "Link", :when => "Before", :due_date => "5", :category  => "Setting Up" )
-        AdminTask.create( :title => "Personal Preferences Survey", :description => "This survey could include questions about laptop/hardware preferences, desk preferences, dietary requirements etc. ", :media =>  "Survey Link ", :when => "Before", :due_date => "3", :category  => "Setting Up" )
-        
+        AdminTask.create( :title => "Google Apps", :description => "Make sure you've been setup on Google Apps at least a week before your start date. If this has not been organised for you by this time, please contact X at X@ourcompany.com", :when => "Before", :due_date => "5", :category  => "Equipment & Tools" )
+        AdminTask.create( :title => "Personal Preferences Survey", :description => "This survey could include questions about laptop/hardware preferences, desk preferences, dietary requirements etc. ", :when => "Before", :due_date => "3", :category  => "Paperwork" )
+
         #Setup After
-        AdminTask.create( :title => "Team Contact Details", :description => "In the Google doc link below you will find the contact details of all team members. The link is editable by anyone that has it so please add your own. ", :media =>  "Google doc ", :when => "After", :due_date => "1", :category  => "Setting Up" )
-        AdminTask.create( :title => "Github", :description => "Invitation to Github ", :media =>  "Github link ", :when => "After", :due_date => "1", :category  => "Setting Up" )
-        AdminTask.create( :title => "Slack Invite", :description => "Invitation to Slack ", :media =>  "Github link ", :when => "After", :due_date => "1", :category  => "Setting Up" )
-        AdminTask.create( :title => "Our Wifi Access", :description => "Our wifi password is xxx123", :when => "After", :due_date => "1", :category  => "Setting Up" )
-        AdminTask.create( :title => "Project Management Tool", :description => "At our company, we use X to manage our projects. Please join our organisation at the link below ", :media =>  " Invitation link ", :when => "After", :due_date => "1", :category  => "Setting Up" )
+        AdminTask.create( :title => "Team Contact Details", :description => "In the Google doc link below you will find the contact details of all team members. The link is editable by anyone that has it so please add your own. ", :when => "After", :due_date => "1", :category  => "Meet the Company" )
+        AdminTask.create( :title => "Github", :description => "Invitation to Github ", :when => "After", :due_date => "1", :category  => "Equipment & Apps" )
+        AdminTask.create( :title => "Slack Invite", :description => "Invitation to Slack ", :when => "After", :due_date => "1", :category  => "Equipment & Apps" )
+        AdminTask.create( :title => "Our Wifi Access", :description => "Our wifi password is xxx123", :when => "After", :due_date => "1", :category  => "Equipment & Apps" )
+        AdminTask.create( :title => "Project Management Tool", :description => "At our company, we use X to manage our projects. Please join our organisation at the link below ", :when => "After", :due_date => "1", :category  => "Equipment & Apps" )
 
         #Milestones Before & After
-        AdminTask.create( :title => "Your First Day Plan", :description => "Please read the attached plan for your first day with us. We want your first day to be as enjoyable as possible. ", :media =>  "Google Doc", :when => "Before", :due_date => "1", :category  => "Milestones" )
-        AdminTask.create( :title => "First One to One", :description => "Description:At the end of your first week, you'll have your first one to one meeting with Jack to see how your settling in.
- ",  :when => "After", :due_date => "5", :category  => "Milestones" )
-        AdminTask.create( :title => "30 Day Performance Review", :description => "After your first month, you'll have a performance review with John to see how everything's going. Please make sure to organise an exact date with John. ", :when => "After", :due_date => "30", :category  => "Milestones" )
+        AdminTask.create( :title => "Your First Day Plan", :description => "Please read the attached plan for your first day with us. We want your first day to be as enjoyable as possible. ", :when => "Before", :due_date => "1", :category  => "Get Going" )
+        AdminTask.create( :title => "First One to One", :description => "Description:At the end of your first week, you'll have your first one to one meeting with Jack to see how your settling in.",  :when => "After", :due_date => "5", :category  => "Get Going" )
+        AdminTask.create( :title => "30 Day Performance Review", :description => "After your first month, you'll have a performance review with John to see how everything's going. Please make sure to organise an exact date with John. ", :when => "After", :due_date => "30", :category  => "Get Going" )
 
         #Personal Survey/Details Before & After
-        AdminTask.create( :title => "Employee Details", :description => "This survey could include questions such as name, address, social media info, etc. (Please remember that this description box is used to communication a message to your employees, so please update this box with your message) ", :media =>  "Survey Link", :when => "Before", :due_date => "1", :category  => "Personal Survey" )
-        AdminTask.create( :title => "Data Privacy Agreement", :description => "Please view and sign the attached Data Privacy Agreement", :media =>  "Google Doc ", :when => "Before", :due_date => "1", :category  => "Personal Survey" )
-        AdminTask.create( :title => "Your First Week", :description => "Please fill out the attached survey, we want to make everybody's first week as enjoyable as possible.", :media =>  "Survey Link", :when => "After", :due_date => "5", :category  => "Personal Survey" )
-
-
-
+        AdminTask.create( :title => "Employee Details", :description => "This survey could include questions such as name, address, social media info, etc. (Please remember that this description box is used to communication a message to your employees, so please update this box with your message) ", :when => "Before", :due_date => "1", :category  => "Meet the Company" )
+        AdminTask.create( :title => "Data Privacy Agreement", :description => "Please view and sign the attached Data Privacy Agreement", :when => "Before", :due_date => "1", :category  => "Paperwork" )
+        AdminTask.create( :title => "Your First Week", :description => "Please fill out the attached survey, we want to make everybody's first week as enjoyable as possible.", :when => "After", :due_date => "5", :category  => "Get Going" )
 
     end
   end
 
-   
+
 
 end
