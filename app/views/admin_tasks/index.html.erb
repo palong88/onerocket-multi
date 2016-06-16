@@ -87,7 +87,7 @@
             <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false), :target => "_blank" %></p>
           </div>
           <div class="card-action">
-            <%= link_to 'edit', edit_admin_task_path(admin_task), class: "blue-text" %>
+            <%= link_to 'edit', edit_admin_task_path(admin_task, :category => params[:category]), class: "blue-text" %>
             <%= link_to 'delete', admin_task_path(admin_task, :category => params[:category]),method: :delete,  class: "blue-text", data: { confirm: 'Are you sure you want to delete this task?' } %>
             <span class="right"><%= admin_task.due_date %> <%= admin_task.due_date == 1 ? "day" : "days" %> <%= admin_task.when.downcase %> they start</span>
           </div>
@@ -117,8 +117,8 @@
             <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false), :target => "_blank" %></p>
           </div>
           <div class="card-action">
-            <%= link_to 'edit', edit_admin_task_path(admin_task), class: "blue-text" %>
-            <%= link_to 'delete', admin_task, method: :delete, class: "blue-text", data: { confirm: 'Are you sure you want to delete this task?' } %>
+              <%= link_to 'edit', edit_admin_task_path(admin_task, :category => params[:category]), class: "blue-text" %>
+            <%= link_to 'delete', admin_task_path(admin_task, :category => params[:category]),method: :delete,  class: "blue-text", data: { confirm: 'Are you sure you want to delete this task?' } %>
             <span class="right"><%= admin_task.due_date %> <%= admin_task.due_date == 1 ? "day" : "days" %> <%= admin_task.when.downcase %> they start</span>
           </div>
         </div>
