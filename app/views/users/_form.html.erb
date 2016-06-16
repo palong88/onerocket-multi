@@ -11,25 +11,23 @@
     </div>
   <% end %>
 
-  <div class="input-field">
+  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="input-field">
+  <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
-  <div class="input-field">
+  <div class="field">
     <%= f.label :start_date %><br>
     <%= f.text_field :start_date, class: "datepicker"%>
   </div>
 
 
-  
-  <div class="actions valaign center">
-                             
-                                <input type="submit" value="Save" class="btn btn-success btn-lg" >
-                                <%= link_to 'Cancel', users_path, class: "btn btn-primary btn-lg" %>
-                              
-                              </div>
+
+  <div class="actions centered">
+    <input type="submit" value="Save Changes" class="btn btn-large" >
+    <%= link_to 'Cancel', users_path, class: "btn btn-large" %>
+  </div>
 <% end %>

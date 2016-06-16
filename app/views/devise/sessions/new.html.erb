@@ -1,28 +1,44 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="row">
+  <!-- form -->
+  <div class="col s12 m6 l6 top">
+    <!-- Call to action -->
+    <div class="row">
+      <p class="flow-text" style="margin: 1em">
+        Welcome back to OneRocket.
+      </p>
+      <p class="flow-text" style="margin: 1em">
+        Log in and get to work!
+      </p>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
 
-<% if request.subdomain.blank? || request.subdomain == "www" %>
-  <%= render "devise/shared/links" %>
-<% end  %>
+  <div class="col s12 m6 l6 top">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field col s12">
+        <%= f.label :email, "Email Address" %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field col s12">
+        <%= f.label :password, "Password" %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="field col s12">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end -%>
+
+      <div class="actions row" style="float: right">
+        <%= f.submit "Let me in →", class: "btn btn-large" %>
+      </div>
+    <% end %>
+
+    <% if request.subdomain.blank? || request.subdomain == "www" %>
+      <%= render "devise/shared/links" %>
+    <% end  %>
+  </div>
+
+</div>

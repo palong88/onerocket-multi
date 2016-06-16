@@ -1,6 +1,4 @@
-p1 = Stripe::Plan.retrieve("plan_startup")
-p1 = Stripe::Plan.retrieve("Large Plan")
-p1 = Stripe::Plan.retrieve("Medium Plan")
+p1 = Stripe::Plan.retrieve("One Rocket Plan")
 
 Plan.create(:stripe_id => p1.id, :name => p1.name, :price => p1.amount, :interval => p1.interval)
 
@@ -13,6 +11,7 @@ require 'Sidekiq/api'
 user = User.find(1)
 user.add_role :admin
 user.has_role? :admin
+user.remove_role :admin
 
 
 ActiveRecord::Base.connection.tables
@@ -37,12 +36,9 @@ Apartment::Tenant.drop("lattice")
 rake db:migrate:up VERSION=20090408054532
 
 
-
+DON'T EVER USE UNLESS....
 rake db:drop:all
 rake db:create:all
 rake db:migrate
 If you use Rails < 4.1, don't forget to prepare test database:
-
 rake db:test:prepare
-
-

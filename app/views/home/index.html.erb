@@ -1,34 +1,17 @@
-<% if current_user.nil? %>
-    
-    <% if request.subdomain.blank? || request.subdomain == "app" %>
-     
-        <%= link_to 'Sign up', new_user_registration_path, {class: "btn btn-primary"} %>
-        <br>
-    <% else %>
-  
-        <%= link_to 'Log in', new_user_session_path, {class: "btn btn-primary"} %>
-        <br>
-    <% end %>
-
-
-    
+<% if request.subdomain.blank? || request.subdomain == "app" %>
+  <script type="text/javascript">
+    window.location.href="/users/sign_up"
+  </script>
+<% elsif current_user.nil? %>
+  <script type="text/javascript">
+    window.location.href="/users/sign_in"
+  </script>
+<% elsif current_user.has_role? :admin %>
+  <script type="text/javascript">
+    window.location.href="/users"
+  </script>
 <% else %>
-
-
-      
-          <h3>Welcome <%= current_user.name %></h3>
-          <h5>You are already logged in.</h5>
-
-          
-
-    <br>
-
+  <script type="text/javascript">
+    window.location.href="/eadmin_tasks"
+  </script>
 <% end %>
-<br>
-
-
-
-
-
-
-

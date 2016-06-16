@@ -1,5 +1,8 @@
-<h3>Create a New Task</h3>
-
+<div class="container">
+  <div class="row">
+    <div class="s12 m12 l2">&nbsp;</div>
+    <div class="s12 m12 l8"><h4>Add a task for <%= category = params[:category] %></h4></div>
+    <div class="s12 m12 l2">&nbsp;</div>
+  </div>
+</div>
 <%= render 'form' %>
-
-<%= link_to 'Back', admin_tasks_path %>
