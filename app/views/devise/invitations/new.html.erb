@@ -4,7 +4,9 @@
   <div class="col s12 m12 l8">
     <div class="top centered"><h3>Invite a New Hire</h3></div>
     <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
-      <%= devise_error_messages! %>
+      <% if devise_error_messages? %>
+       <script> Materialize.toast('Please fill out all fields!', 3000, 'rounded')</script>
+      <% end %>
       <div class="field">
          <%= f.label :name, "What name typically follows \"Hey...\" " %><br>
          <%= f.text_field :name %>
