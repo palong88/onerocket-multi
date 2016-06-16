@@ -5,6 +5,12 @@ class AdminTasksController < ApplicationController
   # GET /admin_tasks
   # GET /admin_tasks.json
   def index
+
+    @paperwork_link = 'Paperwork<span class="badge">'+AdminTask.where(:category => "Paperwork").count.to_s+'</span>'
+    @eat_link = 'Equipment &amp; Tools<span class="badge">'+AdminTask.where(:category => "Equipment & Tools").count.to_s+'</span>'
+    @mtc_link = 'Meet the Company<span class="badge">'+AdminTask.where(:category => "Meet the Company").count.to_s+'</span>'
+    @getgoing_link = 'Get Going<span class="badge">'+AdminTask.where(:category => "Get Going").count.to_s+'</span>'
+
     if params[:category]
       @admin_tasks = AdminTask.where(:category => params[:category])
     else
@@ -33,11 +39,12 @@ class AdminTasksController < ApplicationController
 
     respond_to do |format|
       if @admin_task.save
-        format.html { redirect_to admin_tasks_url, notice: 'Admin task was successfully created.' }
+        format.html { redirect_to admin_tasks_path(:category =>params[:admin_task][:category]), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @admin_task }
       else
-        format.html { render :new }
         format.json { render json: @admin_task.errors, status: :unprocessable_entity }
+        format.html { redirect_to new_admin_task_path(:category =>params[:admin_task][:category] ), notice: 'Task not Created.'}
+
       end
     end
   end
@@ -47,7 +54,7 @@ class AdminTasksController < ApplicationController
   def update
     respond_to do |format|
       if @admin_task.update(admin_task_params)
-        format.html { redirect_to @admin_task, notice: 'Admin task was successfully updated.' }
+        format.html { redirect_to admin_tasks_path(:category =>params[:admin_task][:category]), notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @admin_task }
       else
         format.html { render :edit }
@@ -61,7 +68,7 @@ class AdminTasksController < ApplicationController
   def destroy
     @admin_task.destroy
     respond_to do |format|
-      format.html { redirect_to admin_tasks_url, notice: 'Admin task was successfully destroyed.' }
+      format.html { redirect_to admin_tasks_path(:category =>params[:category]), notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
