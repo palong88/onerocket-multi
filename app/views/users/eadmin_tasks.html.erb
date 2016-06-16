@@ -88,7 +88,9 @@
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">close</i></span>
             <p><%= eadmin_task.description %></p>
-            <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false), :target => "_blank" %></p>
+            <% if admin_task.document_file_name %>
+              <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false), :target => "_blank" %></p>
+            <% end %>
           </div>
           <div class="card-action">
             <!-- <% if params[:category] %>
@@ -121,7 +123,9 @@
           <div class="card-reveal grey lighten-2">
             <span class="card-title grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">close</i></span>
             <p><%= eadmin_task.description %></p>
-            <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false), :target => "_blank" %></p>
+            <% if admin_task.document_file_name %>
+              <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false), :target => "_blank" %></p>
+            <% end %>
           </div>
           <div class="card-action">
             <!-- <% if params[:category] %>
@@ -155,7 +159,9 @@
           <div class="card-reveal #b2dfdb teal lighten-4">
             <span class="card-title grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">close</i></span>
             <p><%= eadmin_task.description %></p>
-            <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false), :target => "_blank" %></p>
+            <% if admin_task.document_file_name %>
+              <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false), :target => "_blank" %></p>
+            <% end %>
           </div>
           <div class="card-action">
             <!-- <% if params[:category] %>

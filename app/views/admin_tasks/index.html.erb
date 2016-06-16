@@ -84,7 +84,9 @@
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4"><%= admin_task.title %><i class="material-icons right">close</i></span>
             <p><%= admin_task.description %></p>
-            <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false), :target => "_blank" %></p>
+            <% if admin_task.document_file_name %>
+              <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false), :target => "_blank" %></p>
+            <% end %>
           </div>
           <div class="card-action">
             <%= link_to 'edit', edit_admin_task_path(admin_task, :category => params[:category]), class: "blue-text" %>
@@ -113,8 +115,9 @@
           </div>
           <div class="card-reveal grey lighten-2">
             <span class="card-title grey-text text-darken-4"><%= admin_task.title %><i class="material-icons right">close</i></span>
-            <p><%= admin_task.description %></p>
-            <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false), :target => "_blank" %></p>
+            <% if admin_task.document_file_name %>
+              <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false), :target => "_blank" %></p>
+            <% end %>
           </div>
           <div class="card-action">
             <%= link_to 'edit', edit_admin_task_path(admin_task, :category => params[:category]), class: "blue-text" %>
