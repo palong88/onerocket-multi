@@ -65,9 +65,10 @@ class EadminTasksController < ApplicationController
         format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id]), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @eadmin_task }
       else
+        # format.json { render json: @eadmin_task.errors, status: :unprocessable_entity }
+        # format.html { redirect_to new_eadmin_task_path(:user_id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category] ), notice: 'Task not Created. Please fill out all boxes'}
+        format.html { render :edit }
         format.json { render json: @eadmin_task.errors, status: :unprocessable_entity }
-        format.html { redirect_to new_eadmin_task_path(:user_id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category] ), notice: 'Task not Created. Please fill out all boxes'}
-
       end
     end
   end
