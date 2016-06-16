@@ -36,7 +36,7 @@
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">close</i></span>
             <p><%= eadmin_task.description %></p>
-            <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false) %></p>
+            <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false), :target => "_blank" %></p>
           </div>
           <div class="card-action">
             <!-- Runs a completed? method in the eadmin_task model to check the tasks complete status against a 1 or 0 -->
@@ -68,7 +68,7 @@
           <div class="card-reveal grey lighten-2">
             <span class="card-title grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">close</i></span>
             <p><%= eadmin_task.description %></p>
-            <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false) %></p>
+            <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false), :target => "_blank" %></p>
           </div>
           <div class="card-action">
             <!-- Runs a completed? method in the eadmin_task model to check the tasks complete status against a 1 or 0 -->
@@ -101,7 +101,7 @@
           <div class="card-reveal #b2dfdb teal lighten-4">
             <span class="card-title grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">close</i></span>
             <p><%= eadmin_task.description %></p>
-            <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false) %></p>
+            <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false), :target => "_blank" %></p>
           </div>
           <div class="card-action">
             <!-- Runs a completed? method in the eadmin_task model to check the tasks complete status against a 1 or 0 -->
