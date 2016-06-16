@@ -1,79 +1,111 @@
-<%= form_for @eadmin_task,  html: { multipart: true } do |f| %>
-  <% if @eadmin_task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@eadmin_task.errors.count, "error") %> prohibited this eadmin_task from being saved:</h2>
+<!--  FORM ELELEMNTS for Creating New Tasks and Updating Existing Tasks -->
+<div class="row">
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+  <!-- form -->
+  <div class="col s12 m12 l8">
 
+    <%= form_for @eadmin_task,  html: { multipart: true } do |f| %>
+    <% if @eadmin_task.errors.any? %>
+    <div id="error_explanation">
+      <h6>Please fill out the following feilds:</h6>
       <ul>
-      <% @eadmin_task.errors.full_messages.each do |message| %>
+        <% @eadmin_task.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
+        <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
 
-  <!-- BASIC FORM ELELEMNTS -->
-  <div class="form-panel">
-    <div class="input-field">
-      <%= f.label :category  %><br><br>
-        <%= f.radio_button :category, "Learning" %> <%= f.label :category, "Learning", value: "Learning" %>
-        <%= f.radio_button :category, "Setting Up" %> <%= f.label :category, "Setting Up", value: "Setting Up"%>
-        <%= f.radio_button :category, "Milestones" %> <%= f.label :category, "Milestones", value: "Milestones" %>
-        <%= f.radio_button :category, "Personal Survey" %> <%= f.label :category, "Personal Details", value: "Personal Survey" %>
-    </div><br />
-    <div class="input-field">
-      <%= f.label :title  %><br>
-      <%= f.text_field :title %>
-    </div>
-    <div class="input-field">
-      <%= f.label :description %><br>
-      <%= f.text_area :description, class: "materialize-textarea" %>
-    </div>
-    <div class="input-field">
-      <%= f.label :document %>
-      <%= f.file_field :document, class: "form-control" %>
-    </div>
-    <div class="input-field">
-      <%= f.label :media %>
-      <%= f.text_area :media, class: "materialize-textarea" %>
-    </div>
-    <div class="row">
-      <div class="input-field col s6">
-        <label for="Days">Days</label>
-        <%= f.number_field :due_date, :placeholder => "How Many Days"  %></p>
+    <div class="form-panel">
+      <div class="field">
+        <%= f.hidden_field :category, value: params[:category]%>
       </div>
-      <div class="input-field col s6">
-        <label for="when">When</label><br>
-        <p>
-          <%= f.radio_button :when_due, "Before" %> <%= f.label :when_due, "Before Start Date",value: "Before" %>
-          <%= f.radio_button :when_due, "After" %> <%= f.label :when_due, " After Start Date" ,value: "After"%>
-        </p>
+
+      <!-- name -->
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_field :title, required: true %>
+          <%= f.label :title, "What needs to be done?" %>
         </div>
       </div>
 
 
-
-          <%= f.hidden_field :user_id, value: params[:user_id]%>
-
-
-  <div class="actions ">
-
-                                <input type="submit" value="Update" class="btn btn-success btn-lg" >
-                                <%= link_to 'Cancel', url_for(:back), class: "btn btn-primary btn-lg" %>
-
+      <!-- things to help with task -->
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_area :description, class: "materialize-textarea" %>
+          <%= f.label :description, "What other information can help them accomplish this task?" %>
+        </div>
+      </div>
 
 
+      <!-- files -->
+      <div class="row">
+        <div class="file-field input-field col s12">
+          <!-- <div class="file-field input-field"> -->
+          <div class="btn">
+            <span>File</span>
+            <input type="file" for="admin_task_document">
+          </div>
+          <div class="file-path-wrapper">
+            <input id="admin_task_document" name="admin_path[document]" class="file-path validate" type="text" placeholder="Is there a file that they will need?">
+          </div>
+          <!-- </div> -->
+        </div>
+      </div>
 
 
-                              </div>
+      <!-- when -->
+      <div class="row">
+        <div class="input-field col s12 m6 l6">
+          <select name="admin_task[due_date]" id="admin_task_due_date" >
+            <option value="" disabled selected>Choose amount of time</option>
+            <optgroup label="Days">
+              <option value="1">1 day</option>
+              <option value="2">2 days</option>
+              <option value="3">3 days</option>
+              <option value="4">4 days</option>
+              <option value="5">5 days</option>
+              <option value="6">6 days</option>
+            </optgroup>
+            <optgroup label="Weeks">
+              <option value="7">1 week</option>
+              <option value="14">2 weeks</option>
+              <option value="21">3 weeks</option>
+            </optgroup>
+            <optgroup label="Months">
+              <option value="30">1 month</option>
+              <option value="60">2 months</option>
+              <option value="90">3 months</option>
+            </optgroup>
+          </select>
+          <label>How long from the start date?</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <select name="admin_task[when]" id="admin_task_when">
+            <option value="" disabled selected>Choose before or after</option>
+            <option value="Before">Before the start date</option>
+            <option value="After">After the start date</option>
+          </select>
+          <label>Before or After?</label>
+        </div>
+      </div>
+
+      <%= f.hidden_field :user_id, value: params[:user_id]%>
+
+      <!-- buttons to save -->
+      <div class="row">
+        <div class="actions col s12 centered">
+          <%= link_to 'Cancel', admin_tasks_path, class: "btn btn-large" %>
+          <input type="submit" value="Submit!" class="btn btn-large" >
+        </div>
+      </div>
 
 
-
-
-
-
-
-
-
-
-
-        <% end %>
+    </div>
+    <% end %>
+  </div>
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+</div>

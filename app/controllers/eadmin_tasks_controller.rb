@@ -9,8 +9,7 @@ class EadminTasksController < ApplicationController
   # GET /eadmin_tasks.json
   def index
     @users = User.all
-
-    # @eadmin_tasks = current_user.eadmin_tasks
+    #@eadmin_tasks = current_user.eadmin_tasks
     if params[:category]
       @eadmin_tasks = EadminTask.where(:category => params[:category])
     else
@@ -67,7 +66,7 @@ class EadminTasksController < ApplicationController
         format.json { render :show, status: :created, location: @eadmin_task }
       else
         format.json { render json: @eadmin_task.errors, status: :unprocessable_entity }
-        format.html { redirect_to new_eadmin_task_path(:user_id => params[:eadmin_task][:user_id]), notice: 'Task not Created. Please fill out all boxes'}
+        format.html { redirect_to new_eadmin_task_path(:user_id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category] ), notice: 'Task not Created. Please fill out all boxes'}
 
       end
     end
@@ -89,7 +88,7 @@ class EadminTasksController < ApplicationController
 
   # DELETE /admin_tasks/1
   # DELETE /admin_tasks/1.json
-  def destroy   
+  def destroy
     @eadmin_task.destroy
     respond_to do |format|
       format.html { redirect_to user_eadmin_tasks_path(:id => params[:user_id]), notice: 'Task was successfully destroyed.' }
@@ -106,7 +105,7 @@ class EadminTasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def eadmin_task_params
-      params.require(:eadmin_task).permit(:user_id, :title, :description, :media, :due_date, :category, :when_due, :document)
+      params.require(:eadmin_task).permit(:user_id, :title, :description, :due_date, :category, :when_due, :document)
     end
 
 

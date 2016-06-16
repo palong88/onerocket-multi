@@ -2,9 +2,9 @@
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
   <% if params[:category] %>
-    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_eadmin_task_path(:category => params[:category]), class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
+    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_eadmin_task_path(:category => params[:category], :user_id => params[:id]), class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
   <% else %>
-    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_eadmin_task_path(:category => "Paperwork"), class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
+    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_eadmin_task_path(:category => "Paperwork", :user_id => params[:id]), class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
   <% end %>
   <!-- <a href="add.html" class="btn-floating btn-large red tooltipped" data-position="left" data-tooltip="Add Task">
     <i class="large material-icons">add</i>
@@ -31,10 +31,10 @@
     </div>
 
     <div class="collection">
-      <%= link_to 'Learning<span class="badge">1</span>'.html_safe, params.merge(:category => "Learning"), class: "collection-item"%>
-      <%= link_to 'Setting Up<span class="badge">1</span>'.html_safe, params.merge(:category => "Setting Up"), class: "collection-item"%>
-      <%= link_to 'Personal Survey<span class="badge">1</span>'.html_safe, params.merge(:category => "Personal Survey"), class: "collection-item"%>
-      <%= link_to 'Milestones<span class="badge">1</span>'.html_safe, params.merge(:category => "Milestones"), class: "collection-item"%>
+      <%= link_to 'Paperwork<span class="badge">1</span>'.html_safe, params.merge(:category => "Paperwork"), class: "collection-item"%>
+      <%= link_to 'Equipment &amp; Tools<span class="badge">1</span>'.html_safe, params.merge(:category => "Equipment & Tools"), class: "collection-item"%>
+      <%= link_to 'Meet the Company<span class="badge">1</span>'.html_safe, params.merge(:category => "Meet the Company"), class: "collection-item"%>
+      <%= link_to 'Get Going<span class="badge">1</span>'.html_safe, params.merge(:category => "Get Going"), class: "collection-item"%>
     </div>
 
   </div>
