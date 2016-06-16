@@ -2,9 +2,9 @@
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
   <% if params[:category] %>
-    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_eadmin_task_path(:category => params[:category], :user_id => params[:id]), class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
+    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_eadmin_task_path(:category => params[:category], :user_id => params[:id]), id: "addSmallButton", class: "btn-floating btn-large teal tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
   <% else %>
-    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_eadmin_task_path(:category => "Paperwork", :user_id => params[:id]), class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
+    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_eadmin_task_path(:category => "Paperwork", :user_id => params[:id]), id: "addSmallButton", class: "btn-floating btn-large teal tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
   <% end %>
   <!-- <a href="add.html" class="btn-floating btn-large red tooltipped" data-position="left" data-tooltip="Add Task">
     <i class="large material-icons">add</i>
@@ -17,6 +17,8 @@
 </div>
 <!-- End admin tools -->
 
+
+
 <!-- Wrapper for sidebar and layout -->
 
 <div class="row">
@@ -25,8 +27,8 @@
     <!-- Profile card -->
     <div class="card top">
       <div class="card-content">
-        <span class="card-title">Template</span>
-        <p>Any task you add here will be copied to each new hire you onboard.</p>
+        <span class="card-title"><%= @user.name %></span>
+        <p>Here you can see, add, and delete tasks for <%= @user.name %>. Make their first days with your company unforgettable!</p>
       </div>
     </div>
 
@@ -42,8 +44,39 @@
 
   <!-- Content -->
   <div class="col s12 m7 l8">
+    <div class="row top">
+      <% if params[:category] %>
+        <h4 style="display: inline"><%=params[:category]%> Tasks</h4>
+      <% else %>
+        <h4 style="display: inline">Paperwork Tasks</h4>
+      <% end %>
 
-    <h5>Before you start...</h5>
+      <% if params[:category] %>
+        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_eadmin_task_path(:category => params[:category]), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right"  %>
+      <% else %>
+        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_eadmin_task_path(:category => "Paperwork"), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right" %>
+      <% end %>
+    </div>
+
+
+    <% if @eadmin_tasks.empty? %>
+    <div class="row centered">
+      <div class="col s12 m6">
+        <div class="card-panel teal">
+          <span class="white-text">
+            <i class="em em-sweat_smile"></i> Looks like <%= @user.name %> doesn't have any tasks here! You can add one by clicking the big green button!
+          </span>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+
+
+    <% unless @eadmin_tasks.where(:when_due => "Before").empty? %>
+      <h5>Before they start...</h5>
+    <% end %>
+
     <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
       <% if eadmin_task.when_due == "Before" && eadmin_task.completed? == false %>
         <!-- Card -->
@@ -66,7 +99,13 @@
         <!-- End card -->
       <%end%>
     <%end%>
-    <h5>After you start...</h5>
+
+
+
+    <% unless @eadmin_tasks.where(:when_due => "After").empty? %>
+      <h5>After they start...</h5>
+    <% end %>
+
     <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
       <% if eadmin_task.when_due == "After" && eadmin_task.completed? == false %>
         <!-- Card -->
@@ -91,7 +130,12 @@
     <%end%>
 
 
-    <h5>Recently Completed</h5>
+
+
+    <% unless @eadmin_tasks.where(:completed => true).empty? %>
+      <h5>Recently Completed</h5>
+    <% end %>
+
     <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
       <% if eadmin_task.completed? %>
         <!-- Card -->

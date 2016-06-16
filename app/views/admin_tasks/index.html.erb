@@ -2,9 +2,9 @@
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
   <% if params[:category] %>
-    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_admin_task_path(:category => params[:category]), class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
+    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_admin_task_path(:category => params[:category]), id: "addSmallButton", class: "btn-floating btn-large teal tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
   <% else %>
-    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_admin_task_path(:category => "Paperwork"), class: "btn-floating btn-large red tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
+    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_admin_task_path(:category => "Paperwork"), id: "addSmallButton", class: "btn-floating btn-large teal tooltipped", 'data-tooltip': "Add Task", 'data-position': "left" %>
   <% end %>
   <!-- <a href="add.html" class="btn-floating btn-large red tooltipped" data-position="left" data-tooltip="Add Task">
     <i class="large material-icons">add</i>
@@ -42,8 +42,37 @@
 
   <!-- Content -->
   <div class="col s12 m7 l8">
+    <div class="row top">
+      <% if params[:category] %>
+        <h4 style="display: inline"><%=params[:category]%> Tasks</h4>
+      <% else %>
+        <h4 style="display: inline">Paperwork Tasks</h4>
+      <% end %>
 
-    <h5>Before they start...</h5>
+      <% if params[:category] %>
+        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_admin_task_path(:category => params[:category]), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right"  %>
+      <% else %>
+        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_admin_task_path(:category => "Paperwork"), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right" %>
+      <% end %>
+    </div>
+
+    <% if @admin_tasks.empty? %>
+    <div class="row centered">
+      <div class="col s12 m6">
+        <div class="card-panel teal">
+          <span class="white-text">
+            <i class="em em-sweat_smile"></i> Nothing to be done here! Check out other categories to make sure you aren't missing anything.
+          </span>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+
+    <% unless @admin_tasks.where(:when => "Before").empty? %>
+      <h5>Before they start...</h5>
+    <% end %>
+
     <% @admin_tasks.order( 'admin_tasks.due_date DESC' ).each do |admin_task| %>
       <% if admin_task.when == "Before" %>
         <!-- Card -->
@@ -67,7 +96,13 @@
       <%end%>
     <%end%>
 
-    <h5>After they start...</h5>
+
+
+
+    <% unless @admin_tasks.where(:when => "After").empty? %>
+      <h5>After they start...</h5>
+    <% end %>
+
     <% @admin_tasks.order( 'admin_tasks.due_date DESC' ).each do |admin_task| %>
       <% if admin_task.when == "After" %>
         <!-- Card -->

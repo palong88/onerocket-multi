@@ -6,8 +6,8 @@
     <!-- Profile card -->
     <div class="card top">
       <div class="card-content">
-        <span class="card-title">Template</span>
-        <p>Any task you add here will be copied to each new hire you onboard.</p>
+        <span class="card-title"><%= current_user.name %></span>
+        <p>Welcome to the company! We're so excited to have you. <i>One Rocket</i> makes sure you have everything you need to succeed.</p>
       </div>
     </div>
 
@@ -23,8 +23,35 @@
 
   <!-- Content -->
   <div class="col s12 m7 l8">
+    <div class="row top">
+      <% if params[:category] %>
+        <h4 style="display: inline"><%=params[:category]%> Tasks</h4>
+      <% else %>
+        <h4 style="display: inline">Paperwork Tasks</h4>
+      <% end %>
+    </div>
 
-    <h5>Before you start...</h5>
+
+    <% if @eadmin_tasks.empty? %>
+    <div class="row centered">
+      <div class="col s12 m6">
+        <div class="card-panel teal">
+          <span class="white-text">
+            <i class="em em-sweat_smile"></i> Nothing to be done here! Check out other categories to make sure you aren't missing anything.
+          </span>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+
+
+
+
+    <% unless @eadmin_tasks.where(:when_due => "Before").empty? %>
+      <h5>Before you start...</h5>
+    <% end %>
+
     <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
       <% if eadmin_task.when_due == "Before" && eadmin_task.completed? == false %>
         <!-- Card -->
@@ -56,7 +83,14 @@
       <%end%>
     <%end%>
 
-    <h5>After you start...</h5>
+
+
+
+
+    <% unless @eadmin_tasks.where(:when_due => "After").empty? %>
+      <h5>After you start...</h5>
+    <% end %>
+
     <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
       <% if eadmin_task.when_due == "After" && eadmin_task.completed? == false %>
         <!-- Card -->
@@ -89,7 +123,12 @@
     <%end%>
 
 
-    <h5>Recently Completed</h5>
+
+
+    <% unless @eadmin_tasks.where(:completed => true).empty? %>
+      <h5>Recently Completed</h5>
+    <% end %>
+
     <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
       <% if eadmin_task.completed? %>
         <!-- Card -->
@@ -120,6 +159,8 @@
         <!-- End card -->
       <%end%>
     <%end%>
+
+
 
   </div>
   <!-- End content -->
