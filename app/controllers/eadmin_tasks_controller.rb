@@ -11,9 +11,9 @@ class EadminTasksController < ApplicationController
     @users = User.all
     #@eadmin_tasks = current_user.eadmin_tasks
     if params[:category]
-      @eadmin_tasks = EadminTask.where(:category => params[:category])
+      @eadmin_tasks = current_user.eadmin_tasks.where(:category => params[:category])
     else
-      @eadmin_tasks = EadminTask.where(:category => "Paperwork")
+      @eadmin_tasks = current_user.eadmin_tasks.where(:category => "Paperwork")
     end
 
 
