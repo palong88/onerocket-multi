@@ -52,13 +52,17 @@ class AdminTasksController < ApplicationController
   # PATCH/PUT /admin_tasks/1
   # PATCH/PUT /admin_tasks/1.json
   def update
+
     respond_to do |format|
+
       if @admin_task.update(admin_task_params)
-        format.html { redirect_to admin_tasks_path(:category =>params[:admin_task][:category]), notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @admin_task }
+        
+        format.html { redirect_to admin_tasks_path(:category => params[:admin_task][:category]), notice: 'Task was successfully updated.' }
+        # format.json { render :show, status: :ok, location: @admin_task } SHOW REMOVED
       else
-        format.html { render :edit }
-        format.json { render json: @admin_task.errors, status: :unprocessable_entity }
+        # format.html { render :edit } OLD REDIRECT PATH NO PARAMS
+        format.html { redirect_to edit_admin_tasks_path(:category =>params[:admin_task][:category]), notice: 'Task was not updated.' }
+        # format.json { render json: @admin_task.errors, status: :unprocessable_entity }
       end
     end
   end
