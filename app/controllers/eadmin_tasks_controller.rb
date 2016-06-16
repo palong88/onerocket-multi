@@ -66,7 +66,7 @@ class EadminTasksController < ApplicationController
         format.json { render :show, status: :created, location: @eadmin_task }
       else
         format.json { render json: @eadmin_task.errors, status: :unprocessable_entity }
-        format.html { redirect_to new_eadmin_task_path(:user_id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category] ), notice: 'Task not Created. Please fill out all boxes'}
+        format.html { redirect_to new_eadmin_task_path(:user_id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category] ), notice: 'Task was not created.'}
 
       end
     end
@@ -77,12 +77,14 @@ class EadminTasksController < ApplicationController
   def update
 
     respond_to do |format|
+
       if @eadmin_task.update(eadmin_task_params)
-        format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id]), notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @eadmin_task }
+
+        format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id],:category =>params[:eadmin_task][:category]), notice: 'Task was successfully updated.' }
+        # format.json { render :show, status: :ok, location: @eadmin_task }
       else
-        format.html { render :edit }
-        format.json { render json: @eadmin_task.errors, status: :unprocessable_entity }
+        format.html { redirect_to edit_eadmin_task_path(@eadmin_task, :id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category] ), notice: 'Task was not created. TEST'}
+        # format.json { render json: @eadmin_task.errors, status: :unprocessable_entity }
       end
     end
   end
