@@ -1,6 +1,8 @@
-<h3>Edit a Task</h3>
+<div class="row">
+  <div class="s12 m12 l2">&nbsp;</div>
+  <div class="s12 m12 l8"><h4 class="top">Edit this task in <%= category = params[:category] %></h4></div>
+  <div class="s12 m12 l2">&nbsp;</div>
+</div>
+
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @admin_task %> |
-<%= link_to 'Back', admin_tasks_path %>
