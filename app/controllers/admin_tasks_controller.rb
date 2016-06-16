@@ -33,7 +33,7 @@ class AdminTasksController < ApplicationController
 
     respond_to do |format|
       if @admin_task.save
-        format.html { redirect_to admin_tasks_path(:category =>params[:admin_task][:category]), notice: 'Admin task was successfully created.' }
+        format.html { redirect_to admin_tasks_path(:category =>params[:admin_task][:category]), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @admin_task }
       else
         format.json { render json: @admin_task.errors, status: :unprocessable_entity }
@@ -48,7 +48,7 @@ class AdminTasksController < ApplicationController
   def update
     respond_to do |format|
       if @admin_task.update(admin_task_params)
-        format.html { redirect_to @admin_task, notice: 'Admin task was successfully updated.' }
+        format.html { redirect_to admin_tasks_path(:category =>params[:admin_task][:category]), notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @admin_task }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class AdminTasksController < ApplicationController
   def destroy
     @admin_task.destroy
     respond_to do |format|
-      format.html { redirect_to admin_tasks_url, notice: 'Admin task was successfully destroyed.' }
+      format.html { redirect_to admin_tasks_path(:category =>params[:category]), notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
