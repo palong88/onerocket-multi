@@ -19,25 +19,25 @@
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
 
-      <div class="row"> <!-- Current Password -->
-        <div class="input-field col s12">
-          <%= f.label :password, "Current Password <i>(leave blank if you don't want to change it)</i>".html_safe %>
-          <%= f.password_field :password, autocomplete: "off" %>
-        </div>
-      </div>
-
-
       <div class="row"> <!-- New Password -->
         <div class="input-field col s12">
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          <%= f.label :password, "Set a new password <i>(leave blank if you don't want to change it)</i>".html_safe %>
+          <%= f.password_field :password, autocomplete: "off" %>
         </div>
       </div>
 
 
       <div class="row"> <!-- Confirm New Password -->
         <div class="input-field col s12">
-          <%= f.label :current_password, "Confirm New Password" %>
+          <%= f.label :password_confirmation, "Confirm your new password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        </div>
+      </div>
+
+
+      <div class="row"> <!-- Current Password -->
+        <div class="input-field col s12">
+          <%= f.label :current_password, "Old password (just to make sure it's really you)" %>
           <%= f.password_field :current_password, autocomplete: "off" %>
         </div>
       </div>
