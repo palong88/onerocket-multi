@@ -94,6 +94,7 @@ class EadminTasksController < ApplicationController
     respond_to do |format|
       #redirect to  :back is depricated in rails 5 so keep note
       format.html { redirect_to :back, notice: 'Task was successfully deleted.' }
+      # format.html { redirect_to eadmin_tasks_path(:category =>params[:category]), notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
