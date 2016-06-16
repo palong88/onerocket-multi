@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-    before_action :authenticate_user!
-    load_and_authorize_resource
+  before_action :authenticate_user!
+  load_and_authorize_resource
 
   def index
     @users = User.all
@@ -19,18 +19,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-   def eadmin_tasks
+  def eadmin_tasks
     @user = User.find(params[:id])
 
     my_id_param = params[:id]
 
     # @eadmin_tasks = @user.eadmin_tasks.where(:category => params[:category] )
 
-      if params[:category]
-          @eadmin_tasks = @user.eadmin_tasks.where(:category => params[:category] )
-      else
-          @eadmin_tasks = @user.eadmin_tasks.where(:category => "Paperwork" )
-      end
+    if params[:category]
+      @eadmin_tasks = @user.eadmin_tasks.where(:category => params[:category] )
+    else
+      @eadmin_tasks = @user.eadmin_tasks.where(:category => "Paperwork" )
+    end
 
   end
 
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
 
- def new_eadmin
+  def new_eadmin
 
     @eadmin_task = current_user.eadmin_tasks.build
   end
@@ -71,10 +71,10 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :name, :start_date)
-    end
-     def eadmin_task_params
-      params.require(:eadmin_task).permit(:title, :description, :media, :due_date, :category, :when_due)
-    end
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :start_date)
+  end
+  def eadmin_task_params
+    params.require(:eadmin_task).permit(:title, :description, :media, :due_date, :category, :when_due)
+  end
 end
