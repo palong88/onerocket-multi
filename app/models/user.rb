@@ -96,7 +96,8 @@ class User < ActiveRecord::Base
             when_due: default_b.when,
             category: default_b.category,
             document: default_b.document,
-            user_id: id)
+            user_id: id,
+            completed: 0)
 
         end
     else
