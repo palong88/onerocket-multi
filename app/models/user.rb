@@ -23,6 +23,14 @@ class User < ActiveRecord::Base
     false
   end
 
+  #used for tasks... will eventually send out an email to the user.
+  def send_reminder
+    if has_overdue_tasks?
+      NotificationMailer.overdue_email(self).deliver_now
+      puts "sent email to #{self.email}"
+    end
+  end
+
   # Identify if user has outstanding tasks
   def has_overdue_tasks?
     start = self.start_date
@@ -34,13 +42,6 @@ class User < ActiveRecord::Base
       return true if (start + difference).past? # if task was due in the past, return true.
     end
     return false  # Return false if not
-  end
-
-  #used for tasks... will eventually send out an email to the user.
-  def send_reminders
-    if self.has_overdue_tasks?
-      NotificationMailer.overdue_email(self).deliver_now
-    end
   end
 
 
