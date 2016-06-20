@@ -23,10 +23,10 @@ class User < ActiveRecord::Base
     false
   end
 
-
+  #used for tasks... will eventually send out an email to the user.
   def send_reminders
     if self.has_overdue_tasks?
-      puts "send email"
+      NotificationMailer.overdue_email(self).deliver_now
     end
   end
 
