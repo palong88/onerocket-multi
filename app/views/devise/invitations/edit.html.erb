@@ -1,7 +1,9 @@
 <h2><%= t 'devise.invitations.edit.header' %></h2>
 
 <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
-  <%= devise_error_messages! %>
+  <% if devise_error_messages? %>
+   <script> Materialize.toast('Please fill out all fields!', 3000, 'rounded')</script>
+  <% end %>
   <%= f.hidden_field :invitation_token %>
 
   <% if f.object.class.require_password_on_accepting %>

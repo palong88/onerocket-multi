@@ -53,9 +53,9 @@
       <% end %>
 
       <% if params[:category] %>
-        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_eadmin_task_path(:category => params[:category]), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right"  %>
+        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_eadmin_task_path(:user_id => params[:id], :category => params[:category]), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right"  %>
       <% else %>
-        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_eadmin_task_path(:category => "Paperwork"), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right" %>
+        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_eadmin_task_path(:user_id => params[:id], :category => "Paperwork"), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right" %>
       <% end %>
     </div>
 
@@ -74,7 +74,7 @@
 
 
 
-    <% unless @eadmin_tasks.where(:when_due => "Before").empty? %>
+    <% unless @eadmin_tasks.where(:when_due => "Before").where(:completed => 0).empty? %>
       <h5>Before they start...</h5>
     <% end %>
 
@@ -89,8 +89,8 @@
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">close</i></span>
             <p><%= eadmin_task.description %></p>
-            <% if admin_task.document_file_name %>
-              <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false), :target => "_blank" %></p>
+            <% if eadmin_task.document_file_name %>
+              <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false), :target => "_blank" %></p>
             <% end %>
           </div>
           <div class="card-action">
@@ -109,7 +109,7 @@
 
 
 
-    <% unless @eadmin_tasks.where(:when_due => "After").empty? %>
+    <% unless @eadmin_tasks.where(:when_due => "After").where(:completed => 0).empty? %>
       <h5>After they start...</h5>
     <% end %>
 
@@ -124,8 +124,8 @@
           <div class="card-reveal grey lighten-2">
             <span class="card-title grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">close</i></span>
             <p><%= eadmin_task.description %></p>
-            <% if admin_task.document_file_name %>
-              <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false), :target => "_blank" %></p>
+            <% if eadmin_task.document_file_name %>
+              <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false), :target => "_blank" %></p>
             <% end %>
           </div>
           <div class="card-action">
@@ -145,7 +145,7 @@
 
 
 
-    <% unless @eadmin_tasks.where(:completed => true).empty? %>
+    <% unless @eadmin_tasks.where(:completed => 1).empty? %>
       <h5>Recently Completed</h5>
     <% end %>
 
@@ -160,8 +160,8 @@
           <div class="card-reveal #b2dfdb teal lighten-4">
             <span class="card-title grey-text text-darken-4"><%= eadmin_task.title %><i class="material-icons right">close</i></span>
             <p><%= eadmin_task.description %></p>
-            <% if admin_task.document_file_name %>
-              <p><%= link_to admin_task.document_file_name, admin_task.document.url(:original, false), :target => "_blank" %></p>
+            <% if eadmin_task.document_file_name %>
+              <p><%= link_to eadmin_task.document_file_name, eadmin_task.document.url(:original, false), :target => "_blank" %></p>
             <% end %>
           </div>
           <div class="card-action">
