@@ -25,21 +25,43 @@ class User < ActiveRecord::Base
 
   #used for tasks... will eventually send out an email to the user.
   def send_reminder
-    if has_overdue_tasks?
-      NotificationMailer.overdue_email(self).deliver_now
-      puts "sent email to #{self.email}"
+    if has_role? :admin                                           # if user is admin
+      User.where.not(id: self.id).each do |u|                     # select all other users
+        if u.has_three_day_overdue_tasks?                         # if user has task over 3 days old
+          NotificationMailer.tattle_tale(self, u).deliver_now     
+          puts "oh my god, #{u.email} has a task thats 3 days over due!"
+        end
+      end
+    else
+      if has_overdue_tasks?
+        NotificationMailer.overdue_email(self).deliver_now
+        puts "sent email to #{self.email}"
+      end
     end
   end
 
   # Identify if user has outstanding tasks
   def has_overdue_tasks?
     start = self.start_date
-    self.eadmin_tasks.all.each do |task|
+    self.eadmin_tasks.where(completed: 0).each do |task|
       difference = task.due_date.to_i   # Get the number of days from start date
       if task.when_due == "Before"
         difference = difference * -1    # if it is "before", multiply it by negative 1
       end
       return true if (start + difference).past? # if task was due in the past, return true.
+    end
+    return false  # Return false if not
+  end
+
+  # Identify if user has outstanding tasks
+  def has_three_day_overdue_tasks?
+    start = start_date
+    eadmin_tasks.where(completed: 0).each do |task|
+      difference = task.due_date.to_i   # Get the number of days from start date
+      if task.when_due == "Before"
+        difference = difference * -1    # if it is "before", multiply it by negative 1
+      end
+      return true if (start + difference + 3).past? # if task is three days overdue, return true.
     end
     return false  # Return false if not
   end
