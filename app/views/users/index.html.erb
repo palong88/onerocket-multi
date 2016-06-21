@@ -11,8 +11,10 @@
       <ul class="collection">
         <% @users.each do |user| %>
           <% if user.has_role? :registered%>
-            <% if user.has_overdue_tasks? %>
+            <% if user.has_three_day_overdue_tasks? %>
               <li class="collection-item avatar red lighten-4">
+            <% elsif user.has_overdue_tasks? %>
+              <li class="collection-item avatar yellow lighten-4">
             <% else %>
               <li class="collection-item avatar">
             <% end %>

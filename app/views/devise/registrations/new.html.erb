@@ -69,7 +69,7 @@
       </div>
     <% end %>
 
-    <% unless request.subdomain.blank? || request.subdomain == "www" %>
+    <% unless request.subdomain.blank? || request.subdomain == "app" %>
       <%= render "devise/shared/links" %>
     <% end  %>
   </div>
