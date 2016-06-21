@@ -1,8 +1,8 @@
 class SubscriptionsController < ApplicationController
-    
+
+    # skip_before_filter :verify_authenticity_token
     before_action :authenticate_user!
     before_action :authorize_user
-  
 
     def new
         @plans = Plan.all
@@ -49,21 +49,22 @@ class SubscriptionsController < ApplicationController
     def create
         # Get the credit card details submitted by the form
         token           = params[:stripeToken]
-        plan            = params[:plan][:stripe_id]
+        plan            = "One Rocket Plan"
         email           = current_user.email
         current_account = Account.find_by_email(current_user.email)
         customer_id     = current_account.customer_id
+        stripe_plan_id  = current_account.stripe_plan_id
         current_plan = current_account.stripe_plan_id
-
-        if customer_id.nil?
+        ap token
+        if customer_id.nil? || stripe_plan_id.nil?
             #New customer -> Create a customer
             #Create a Customer
             @customer = Stripe::Customer.create(
-              :source => token,
               :plan   => plan,
-              :email  => email
+              :email  => email,
+              :source => token
             )
-            
+
             subscriptions    = @customer.subscriptions
             @subscribed_plan = subscriptions.data.find{|o| o.plan.id == plan}
 
@@ -82,11 +83,11 @@ class SubscriptionsController < ApplicationController
 
         save_account_details(current_account, plan, @customer.id, active_until)
 
-        
+
 
         redirect_to :root, :notice => "Successfully subscribed to a plan" #Plan-name
 
-     rescue => e 
+     rescue => e
         redirect_to :back, :flash => {:error => e.message }
 
     end
@@ -161,10 +162,9 @@ class SubscriptionsController < ApplicationController
     end
 
 
-       #Authorize user or raise exception
+    #Authorize user or raise exception
     def authorize_user
         authorize! :manage, :subscriptions
 
     end
-  
 end
