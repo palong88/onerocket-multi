@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, :confirmable, :async
 
+  before_validation :lowercase_values
   validates :email, :presence => true
   validate :email_is_unique, on: :create
   validate :subdomain_is_unique, on: :create
@@ -28,7 +29,7 @@ class User < ActiveRecord::Base
     if has_role? :admin                                           # if user is admin
       User.where.not(id: self.id).each do |u|                     # select all other users
         if u.has_three_day_overdue_tasks?                         # if user has task over 3 days old
-          NotificationMailer.tattle_tale(self, u).deliver_now     
+          NotificationMailer.tattle_tale(self, u).deliver_now
           puts "oh my god, #{u.email} has a task thats 3 days over due!"
         end
       end
@@ -74,6 +75,9 @@ class User < ActiveRecord::Base
     where(:role => my_role)
   end
 
+  def lowercase_values
+    self.subdomain.downcase!
+  end
   #Email should be unique in the account model
   def email_is_unique
     #Do Not validate email if errors are already in devise or present.
