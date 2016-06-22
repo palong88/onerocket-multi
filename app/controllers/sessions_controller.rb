@@ -1,15 +1,15 @@
 class SessionsController < Devise::SessionsController
-  
-  #Overriding Devise's session controller to check for subdomain 
+
+  #Overriding Devise's session controller to check for subdomain
   #Only allow login if subdomain is present and is not www
-  def new 
-    if request.subdomain.blank? || request.subdomain == "app"
+  def new
+    if request.subdomain.blank? || request.subdomain == "signup"
         flash[:notice] = "Access Restricted"
         redirect_to :root
     else
         super
     end
 
-  end  
+  end
 
 end

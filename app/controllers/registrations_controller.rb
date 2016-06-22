@@ -5,7 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
   #Overriding Devise's registration controller to check for subdomain 
   #Only allow registration if subdomain is absent or is www
   def new 
-    if request.subdomain.blank? || request.subdomain == "app"
+    if request.subdomain.blank? || request.subdomain == "signup"
         super
     else
         flash[:notice] = "Access Restricted"
