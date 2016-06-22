@@ -1,7 +1,7 @@
 <%= form_for(@stakeholder) do |f| %>
   <% if @stakeholder.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@stakeholder.errors.count, "error") %> prohibited this stakeholder from being saved:</h2>
+      <h5><%= pluralize(@stakeholder.errors.count, "error") %> prohibited this stakeholder from being saved:</h5>
 
       <ul>
       <% @stakeholder.errors.full_messages.each do |message| %>
@@ -11,23 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="input-field col s12">
+    <%= f.text_field :name, placeholder: "Johnny Appleseed" %><br />
+    <%= f.label :name %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+  <div class="input-field col s12">
+    <%= f.text_field :email, placeholder: "johnny@apple.com" %><br />
+    <%= f.label :email %>
   </div>
-  <div class="field">
-    <%= f.label :department %><br>
-    <%= f.text_field :department %>
+  <div class="input-field col s12">
+    <%= f.text_field :department, placeholder: "Accounting" %><br />
+    <%= f.label :department %>
   </div>
-  <div class="field">
-    <%= f.label :template %><br>
-    <%= f.text_area :template %>
+
+  <p class="col s12 grey-text">The following template will be inserted after the name and starting date of the new hire, and before the new hire's specific information.</p>
+  <div class="input-field col s12">
+    <%= f.text_area :template, class: "materialize-textarea" %><br />
+    <%= f.label :template, "Instructions for stakeholder."%>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <br />
+  <div class="row">
+    <div class="actions centered">
+      <input type="submit" value="Save Changes" class="btn btn-large" >
+      <%= link_to 'Cancel', users_path, class: "btn btn-large" %>
+    </div>
   </div>
+
 <% end %>
