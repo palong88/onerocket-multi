@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @stakeholder.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @stakeholder.email %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @stakeholder.department %>
+</p>
+
+<p>
+  <strong>Template:</strong>
+  <%= @stakeholder.template %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @stakeholder.account %>
+</p>
+
+<%= link_to 'Edit', edit_stakeholder_path(@stakeholder) %> |
+<%= link_to 'Back', stakeholders_path %>
