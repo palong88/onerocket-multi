@@ -18,7 +18,7 @@ class StakeholdersControllerTest < ActionController::TestCase
 
   test "should create stakeholder" do
     assert_difference('Stakeholder.count') do
-      post :create, stakeholder: { account_id: @stakeholder.account_id, department: @stakeholder.department, email: @stakeholder.email, name: @stakeholder.name, template: @stakeholder.template }
+      post :create, stakeholder: { department: @stakeholder.department, email: @stakeholder.email, name: @stakeholder.name, template: @stakeholder.template }
     end
 
     assert_redirected_to stakeholder_path(assigns(:stakeholder))
@@ -35,7 +35,7 @@ class StakeholdersControllerTest < ActionController::TestCase
   end
 
   test "should update stakeholder" do
-    patch :update, id: @stakeholder, stakeholder: { account_id: @stakeholder.account_id, department: @stakeholder.department, email: @stakeholder.email, name: @stakeholder.name, template: @stakeholder.template }
+    patch :update, id: @stakeholder, stakeholder: { department: @stakeholder.department, email: @stakeholder.email, name: @stakeholder.name, template: @stakeholder.template }
     assert_redirected_to stakeholder_path(assigns(:stakeholder))
   end
 

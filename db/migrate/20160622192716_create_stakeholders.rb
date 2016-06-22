@@ -5,7 +5,6 @@ class CreateStakeholders < ActiveRecord::Migration
       t.string :email
       t.string :department
       t.text :template
-      t.references :account, index: true, foreign_key: true
 
       t.timestamps null: false
     end

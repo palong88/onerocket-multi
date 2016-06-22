@@ -1,1 +1,1 @@
-json.extract! @stakeholder, :id, :name, :email, :department, :template, :account_id, :created_at, :updated_at
+json.extract! @stakeholder, :id, :name, :email, :department, :template, :created_at, :updated_at

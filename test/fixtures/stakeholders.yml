@@ -5,11 +5,9 @@ one:
   email: MyString
   department: MyString
   template: MyText
-  account_id: 
 
 two:
   name: MyString
   email: MyString
   department: MyString
   template: MyText
-  account_id: 

@@ -69,6 +69,6 @@ class StakeholdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stakeholder_params
-      params.require(:stakeholder).permit(:name, :email, :department, :template, :account_id)
+      params.require(:stakeholder).permit(:name, :email, :department, :template)
     end
 end
