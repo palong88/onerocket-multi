@@ -7,7 +7,7 @@ Please choose your new plan :
     <div class="col-sm-3 col-sm-offset-3">
          <%= form_tag "/subscriptions" do %>
 
-              
+
 	    <div class=" col s12">
 	     <%= collection_select :plan, :stripe_id, @plans, :stripe_id, :name, {}, {class: "input-field"} %>
 	   </div>
@@ -24,5 +24,5 @@ Please choose your new plan :
    $(document).ready(function() {
     $('select').material_select();
   });
-         
+
 </script>

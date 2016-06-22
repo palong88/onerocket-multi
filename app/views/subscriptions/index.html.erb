@@ -4,7 +4,7 @@
     <% else %>
         Your subscription expired on <%= @account.active_until %>
     <% end %>
-    
+
 <% else %>
     You do not have a subscription plan.
 <% end %>
@@ -23,4 +23,4 @@
 
 <br>
 <br>
-<%= link_to 'New Subscription', new_subscription_path, {class: "btn btn-primary"} %>
+<%= link_to 'Add a Credit Card', new_subscription_path, {class: "btn btn-primary"} %>
