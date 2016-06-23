@@ -6,6 +6,7 @@
     <div class="row top">
       <h4 style="display: inline">Manage Employees</h4>
       <%= link_to '<i class="material-icons left">add</i>Invite a New Hire</a>'.html_safe, new_user_invitation_path, class: "waves-effect waves-light btn-large", style: "float: right" %>
+      <br /><br /><%= link_to 'Who else needs to know the new hires?', stakeholders_path %>
     </div>
     <div class="row">
       <ul class="collection">

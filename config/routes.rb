@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :stakeholders
   resources :eadmin_tasks do
 		  member do
 		    patch :complete

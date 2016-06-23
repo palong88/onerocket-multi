@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   validate :subdomain_is_unique, on: :create
   after_validation :create_tenant
   after_create :create_account
+  after_create :tell_stakeholders
 
 
   def confirmation_required?
@@ -118,6 +119,12 @@ class User < ActiveRecord::Base
     end
     #Change schema to the tenant
     Apartment::Tenant.switch!(subdomain)
+  end
+
+  def tell_stakeholders
+    Stakeholder.all.each do |u|
+      NotificationMailer.notify_stakeholder(u, self).deliver_later
+    end
   end
 
   #Add default role to the user who signs up
