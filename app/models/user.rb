@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   validate :subdomain_is_unique, on: :create
   after_validation :create_tenant
   after_create :create_account
+  after_create :tell_stakeholders
 
 
   def confirmation_required?
@@ -28,7 +29,7 @@ class User < ActiveRecord::Base
     if has_role? :admin                                           # if user is admin
       User.where.not(id: self.id).each do |u|                     # select all other users
         if u.has_three_day_overdue_tasks?                         # if user has task over 3 days old
-          NotificationMailer.tattle_tale(self, u).deliver_now     
+          NotificationMailer.tattle_tale(self, u).deliver_now
           puts "oh my god, #{u.email} has a task thats 3 days over due!"
         end
       end
@@ -114,6 +115,12 @@ class User < ActiveRecord::Base
     end
     #Change schema to the tenant
     Apartment::Tenant.switch!(subdomain)
+  end
+
+  def tell_stakeholders
+    Stakeholder.all.each do |u|
+      NotificationMailer.notify_stakeholder(u, self).deliver_later
+    end
   end
 
   #Add default role to the user who signs up

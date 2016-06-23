@@ -15,10 +15,18 @@
     <%= f.label :name %><br>
     <%= f.text_field :name, placeholder: "Patrick Long"  %>
   </div>
+
   <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email, placeholder: "patrick@onerocket.io" %>
   </div>
+
+  <p class="col s12 grey-text">Write any additional information here that can be helpful to others during the onboarding process. is specific to this new hire. Department, location, who they are reporting</p>
+  <div class="input-field col s12">
+    <%= f.text_area :user_info, class: "materialize-textarea" %><br />
+    <%= f.label :user_info, "This new hire's specific info:"%>
+  </div>
+
   <div class="field">
     <%= f.label :start_date %><br>
     <%= f.text_field :start_date, class: "datepicker"%>
