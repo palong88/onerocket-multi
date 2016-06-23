@@ -55,11 +55,11 @@
   <div class="col s12 m6 l6">
     <div class="row">
       <h5>Credit Card</h5>
-      <!-- <a class="waves-effect waves-light btn"><i class="material-icons left">payment</i>Add a credit card</a> -->
+      <!-- <a class="waves-effect waves-light btn"><i class="material-icons left">payment</i>Add a credit card</a> , data: { no_turbolink: true }}-->
       <!-- <h6>Credit card already on file | Credit card not on file</h6> -->
       <% if !@account.stripe_plan_id.blank? %>
-        <%= link_to 'Update card', subscriptions_update_card_path, {class: "waves-effect waves-light btn-large"} %>
-        <%= link_to 'Cancel Subscription', subscriptions_cancel_subscription_path, class: "btn btn-primary", confirm: 'Are you sure you want to cancel your subscription?'  %>
+        <%= link_to 'Update card', subscriptions_update_card_path,{class: "waves-effect waves-light btn-large"}%>
+        <%= link_to 'Cancel Subscription', subscriptions_cancel_subscription_path, class: "btn btn-primary" %>
         <h6>Credit card already on file</h6>
       <% else %>
         <%= link_to 'Add a Credit Card', new_subscription_path,{class: "waves-effect waves-light btn-large"} %>

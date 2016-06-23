@@ -1,37 +1,49 @@
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-
-<%= form_tag "/subscriptions/update_card_details", id: "payment-form" do %>
-  <span class="payment-errors"></span>
-
-  <div class="form-row">
-     <label>
-        <input type="text" size="20" data-stripe="number" placeholder= "Card Number">
-     </label>
+<div class="container">
+  <div class="row">
+    <div class="s12 m12 l2">&nbsp;</div>
+    <div class="s12 m12 l8"><h4>Update your Payment Details</h4></div>
+    <div class="s12 m12 l2">&nbsp;</div>
   </div>
-  <div class="form-row">
-    <div class = "col s3 ">
-      <label>
-        <input type="text" size="2" data-stripe="exp_month" placeholder="MM">
-      </label>
-    </div>
-    <div class = "col s3 ">
-      <label>
-        <input type="text" size="2" data-stripe="exp_year" placeholder="YY">
-      </label>
-    </div>
-  </div>
-  <div class="form-row" >
-    <label>
-      <input type="text" size="4" data-stripe="cvc" placeholder="CVC">
-    </label>
-  </div>
-  <div class="form-row" >
-    <input type="submit" class="submit" value="Sign Up"></input>
-  </div>
-<% end %>
-<!--Stripe Key: Needs to be changed to live key after stripe is integrated. -->
-<script type="text/javascript">
+</div>
 
-  Stripe.setPublishableKey('pk_test_vDSiuOkeTaV8mLnuOgqAQyWd');
+<!--  FORM ELELEMNTS for Creating New Tasks and Updating Existing Tasks -->
+<div class="row">
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+  <!-- form -->
+  <div class="col s12 m12 l8">
 
-</script>
+
+    <%= form_tag "/subscriptions/update_card_details", id: "payment-form" do %>
+      <span class="payment-errors"></span>
+
+      <div class="form-row">
+         <label>
+            <input type="text" size="20" data-stripe="number" placeholder= "Card Number">
+         </label>
+      </div>
+      <div class="form-row">
+        <div class = "col s3 ">
+          <label>
+            <input type="text" size="2" data-stripe="exp_month" placeholder="MM">
+          </label>
+        </div>
+        <div class = "col s3 ">
+          <label>
+            <input type="text" size="2" data-stripe="exp_year" placeholder="YY">
+          </label>
+        </div>
+      </div>
+      <div class="form-row" >
+        <label>
+          <input type="text" size="4" data-stripe="cvc" placeholder="CVC">
+        </label>
+      </div>
+      <div class="form-row" >
+        <input type="submit" class="submit" value="Sign Up"></input>
+      </div>
+    <% end %>
+  </div>
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+</div>

@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-#Jquery turbolin fix
+#Jquery turbolinks fix
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 
@@ -29,7 +29,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-#Redirect logs output to terminal 
+#Redirect logs output to terminal
 gem 'rails_12factor', group: :production
 #Material Design CSS
 gem 'materialize-sass'
@@ -41,14 +41,12 @@ gem 'apartment-sidekiq'
 gem "rolify"
 #for authorisation of roles
 gem 'cancancan', '~> 1.10'
-
 #User Auth
 gem 'devise'
 #For sending Emails Asynchronously
 gem "devise-async"
 #invite users
 gem  'devise_invitable'
-
 #Sidekiq for background process
 gem "sidekiq"
 #Print ruby object with color and indention in console
@@ -62,7 +60,6 @@ gem "stripe"
 #For uploading user documents/Images
 gem 'paperclip', '~> 4.2'
 #Amazon S# services for storing documents/Images online.
-
 gem 'aws-sdk', '< 2.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -85,4 +82,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
