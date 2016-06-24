@@ -14,7 +14,7 @@
 
 
 
- 
+
 
 
 
@@ -9407,55 +9407,55 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   opacity: 1;
 }
 
-/* line 29, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+/* line 28, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
 body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 
-/* line 35, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+/* line 34, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
 main {
   flex: 1 0 auto;
 }
 
-/* line 40, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+/* line 39, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
 nav {
   background-color: #424A5D;
 }
 
-/* line 47, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+/* line 46, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
 footer.page-footer {
   background-color: #424A5D;
 }
 
-/* line 53, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+/* line 52, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
 .collapsible-body p {
   padding: 0rem;
   padding-left: 1rem;
 }
 
-/* line 60, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+/* line 59, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
 .card .card-action a {
   color: white;
 }
 
-/* line 68, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+/* line 67, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
 #error_explanation {
   color: #f00;
 }
-/* line 70, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+/* line 69, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
 #error_explanation ul {
   list-style: none;
   margin: 0 0 18px 0;
 }
 
-/* line 77, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+/* line 76, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
 [type="checkbox"] + label {
   padding-top: 5px;
 }
 
-/* line 83, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+/* line 82, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
 [type="checkbox"] + label:before, [type="checkbox"]:not(.filled-in) + label:after {
   content: '';
   position: absolute;
@@ -9470,13 +9470,44 @@ footer.page-footer {
   transition: .2s;
 }
 
-/* line 102, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
-nav {
-  color: #fff;
-  background-color: #302DBD;
-  width: 100%;
-  height: 56px;
-  line-height: 56px;
+/* line 98, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+[type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
+  position: relative;
+  padding-left: 25px;
+  padding-right: 30px;
+  cursor: pointer;
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  font-size: 1rem;
+  transition: .28s ease;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media only screen and (max-width: 992px) {
+  /* line 116, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+  #addBigButton {
+    display: none;
+  }
+
+  /* line 120, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+  #addSmallButton {
+    display: block;
+  }
+}
+@media only screen and (min-width: 993px) {
+  /* line 127, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+  #addBigButton {
+    display: block;
+  }
+
+  /* line 131, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+  #addSmallButton {
+    display: none;
+  }
 }
 /*!
  *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome

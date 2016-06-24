@@ -3,15 +3,17 @@ p1 = Stripe::Plan.retrieve("One Rocket Plan")
 Plan.create(:stripe_id => p1.id, :name => p1.name, :price => p1.amount, :interval => p1.interval)
 
 
-#Requiring sidekiq in console
-require 'Sidekiq/api'
+
+u = User.create :password => "11111111",:password_confirmation => "11111111", :email => "test1@email.com", :name => "Patrick Long1", :subdomain => "microwave"
+
+a = Account.create :email => "test@email.com", :subdomain => "microwave"
 
 #Rolify methods
 ----
-user = User.find(1)
+user = User.find(2)
 user.add_role :admin
 user.has_role? :admin
-user.remove_role :admin
+user.remove_role :registered
 
 
 ActiveRecord::Base.connection.tables
@@ -26,11 +28,16 @@ stats = Sidekiq::Stats.new
 require 'Sidekiq/api'
 Sidekiq::RetrySet.new.clear
 
+#Requiring sidekiq in console
+-----
+require 'Sidekiq/api'
+
+
 #Aprtment stuff
 -------
 Apartment::Tenant.current
-Apartment::Tenant.switch!("public")
-Apartment::Tenant.drop("lattice")
+Apartment::Tenant.switch!("ginkgo")
+Apartment::Tenant.drop("hii")
 
 
 rake db:migrate:up VERSION=20090408054532

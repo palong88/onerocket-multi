@@ -80,14 +80,11 @@ Rails.application.configure do
 
 
 
+  
 
   Paperclip.options[:command_path] = "/usr/local/bin/"
-  # Config for devise 
+  # Config for devise
   config.action_mailer.default_url_options = { host: 'lvh.me:5000' }
   #config.action_mailer.delivery_method = :letter_opener
 
 end
-
-
-
-

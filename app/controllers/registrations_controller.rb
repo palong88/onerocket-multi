@@ -2,9 +2,9 @@
 class RegistrationsController < Devise::RegistrationsController
 
 
-  #Overriding Devise's registration controller to check for subdomain 
-  #Only allow registration if subdomain is absent or is www
-  def new 
+  #Overriding Devise's registration controller to check for subdomain
+  #Only allow registration if subdomain is absent or is wwww
+  def new
     if request.subdomain.blank? || request.subdomain == "signup"
         super
     else
@@ -12,7 +12,12 @@ class RegistrationsController < Devise::RegistrationsController
         redirect_to :root
     end
 
-  end  
+  end
+
+  def edit
+    @account = Account.find_by_email(current_user.email)
+  end
+
 
 
   protected
@@ -24,6 +29,8 @@ class RegistrationsController < Devise::RegistrationsController
 
   end
 
-  
+
+
+
 
 end
