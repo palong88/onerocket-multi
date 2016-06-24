@@ -76,7 +76,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :start_date)
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :user_info, :start_date)
   end
   def eadmin_task_params
     params.require(:eadmin_task).permit(:title, :description, :media, :due_date, :category, :when_due)

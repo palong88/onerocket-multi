@@ -6,12 +6,19 @@
     <div class="row top">
       <h4 style="display: inline">Manage Employees</h4>
       <%= link_to '<i class="material-icons left">add</i>Invite a New Hire</a>'.html_safe, new_user_invitation_path, class: "waves-effect waves-light btn-large", style: "float: right" %>
+      <br /><br /><%= link_to 'Who else needs to know the new hires?', stakeholders_path %>
     </div>
     <div class="row">
       <ul class="collection">
         <% @users.each do |user| %>
           <% if user.has_role? :registered%>
-            <li class="collection-item avatar">
+            <% if user.has_three_day_overdue_tasks? %>
+              <li class="collection-item avatar red lighten-4">
+            <% elsif user.has_overdue_tasks? %>
+              <li class="collection-item avatar yellow lighten-4">
+            <% else %>
+              <li class="collection-item avatar">
+            <% end %>
               <i class="material-icons circle">perm_identity</i>
               <span class="title"><%= user.name %></span>
               <p><a href="mailto:<%= user.email %>"><%= user.email %></a> <br>
