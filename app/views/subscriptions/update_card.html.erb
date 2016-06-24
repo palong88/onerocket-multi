@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="s12 m12 l2">&nbsp;</div>
-    <div class="s12 m12 l8"><h4>Update your Payment Details</h4></div>
+    <div class="s12 m12 l8"><h4>Update Payment Details</h4></div>
     <div class="s12 m12 l2">&nbsp;</div>
   </div>
 </div>
@@ -17,30 +17,31 @@
     <%= form_tag "/subscriptions/update_card_details", id: "payment-form" do %>
       <span class="payment-errors"></span>
 
-      <div class="form-row">
+      <div class="row">
          <label>
             <input type="text" size="20" data-stripe="number" placeholder= "Card Number">
          </label>
       </div>
-      <div class="form-row">
+      <div class="row">
         <div class = "col s3 ">
           <label>
-            <input type="text" size="2" data-stripe="exp_month" placeholder="MM">
+            <input type="text" maxlength="2"  data-stripe="exp_month" placeholder="MM">
           </label>
         </div>
         <div class = "col s3 ">
           <label>
-            <input type="text" size="2" data-stripe="exp_year" placeholder="YY">
+            <input type="text" maxlength="2"  data-stripe="exp_year" placeholder="YY">
+          </label>
+        </div>
+        <div class = "col s3 ">
+          <label>
+            <input type="text" maxlength="3" data-stripe="cvc" placeholder="CVC">
           </label>
         </div>
       </div>
-      <div class="form-row" >
-        <label>
-          <input type="text" size="4" data-stripe="cvc" placeholder="CVC">
-        </label>
-      </div>
-      <div class="form-row" >
-        <input type="submit" class="submit" value="Sign Up"></input>
+      <div class="row" >
+        <input type="submit" class="btn btn-large" value="Update Payment Details"></input>
+        <%= link_to 'Cancel', :back, class: "btn btn-large" %>
       </div>
     <% end %>
   </div>

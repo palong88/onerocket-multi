@@ -59,7 +59,7 @@
       <!-- <h6>Credit card already on file | Credit card not on file</h6> -->
       <% if !@account.stripe_plan_id.blank? %>
         <%= link_to 'Update card', subscriptions_update_card_path,{class: "waves-effect waves-light btn-large"}%>
-        <%= link_to 'Cancel Subscription', subscriptions_cancel_subscription_path, class: "btn btn-primary" %>
+        <%= link_to 'Cancel Subscription', subscriptions_cancel_subscription_path, { class: "btn btn-primary", data: { confirm: 'Are you sure you want to cancel your subscription?' },:onclick => 'alert("Please no!")'} %>
         <h6>Credit card already on file</h6>
       <% else %>
         <%= link_to 'Add a Credit Card', new_subscription_path,{class: "waves-effect waves-light btn-large"} %>
