@@ -70,6 +70,9 @@ class User < ActiveRecord::Base
 
   def percentage_of_completed_tasks
     tasks = eadmin_tasks.all.count # total number of tasks
+    if tasks = 0
+      return 1
+    end
     completed = eadmin_tasks.where(completed: 1).count # total tasks completed
 
     return ((completed / tasks.to_d)*100).to_i
