@@ -22,6 +22,9 @@ ActiveRecord::Base.connection.tables
 ----
 foreman start --procfile=Procfile.dev
 
+# Start Rails with lvh.me and port 5000
+rails s -p 5000 -b lvh.me
+
 #Sidekiq Stats
 -----
 stats = Sidekiq::Stats.new
