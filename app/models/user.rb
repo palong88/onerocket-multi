@@ -78,6 +78,17 @@ class User < ActiveRecord::Base
     return ((completed / tasks.to_d)*100).to_i
   end
 
+  # Promote a user to an administrator, delete all eadmin tasks
+  def promote_to_admin
+    # user = User.find(uid)
+    if self.has_role? :registered
+      self.add_role :admin
+      self.remove_role :registered
+
+      self.eadmin_tasks.destroy_all
+    end
+  end
+  
   private
 
   def self.with_role(role)

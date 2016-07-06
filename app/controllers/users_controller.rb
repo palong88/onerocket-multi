@@ -74,6 +74,12 @@ class UsersController < ApplicationController
     redirect_to users_path, :flash => { :success => 'User was successfully deleted.' }
   end
 
+  def promote_to_admin
+    @user = User.find(params[:id])
+    @user.promote_to_admin
+    redirect_to users_path, notice: "They are now an admin!"
+  end
+
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :name, :user_info, :start_date)
