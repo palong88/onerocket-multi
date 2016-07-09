@@ -1,26 +1,29 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Teams</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @teams.each do |team| %>
-      <tr>
-        <td><%= team.name %></td>
-        <td><%= link_to 'Show', team %></td>
-        <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Team', new_team_path %>
+<div class="row">
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+  <!-- form -->
+  <div class="col s12 m12 l8">
+    <div class="row top">
+      <h4 style="display: inline">Manage Teams</h4>
+      <%= link_to '<i class="material-icons left">add</i>Create a new team</a>'.html_safe, new_team_path, class: "waves-effect waves-light btn-large", style: "float: right" %>
+      <!-- <br /><br /><%= link_to 'Who else needs to know the new hires?', stakeholders_path %> -->
+    </div>
+    <div class="row">
+      <ul class="collection">
+        <% @teams.each do |team| %>
+          <li class="collection-item avatar">
+            <span class="title"><%= team.name %></span>
+            <p>
+              <%= @user.count %>
+            </p>
+            <div class="secondary-content">
+              <%= link_to '<i class="material-icons">delete</i>'.html_safe, team, method: :delete, data: { confirm: 'Are you sure you want to delete this team?' } %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+</div>
