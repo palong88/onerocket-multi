@@ -6,7 +6,10 @@ class AdminTasksController < ApplicationController
   # GET /admin_tasks.json
   def index
     @teams = Team.all
+
+
     if params[:team]
+      @categories1 = Category.all
       @categories = Category.where(:team => params[:team])
       @admin_tasks = AdminTask.where(:team => params[:team]) && AdminTask.where(:category => params[:category])
     else
