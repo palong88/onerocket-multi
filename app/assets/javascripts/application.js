@@ -18,7 +18,3 @@
 //= require materialize-sprockets
 //= require materialize/extras/nouislider
 //= require_tree .
-
-
-$(document).ready(ready)
-$(document).on('page:load', ready)

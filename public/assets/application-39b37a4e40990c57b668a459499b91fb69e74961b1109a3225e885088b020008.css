@@ -9487,34 +9487,24 @@ footer.page-footer {
   user-select: none;
 }
 
-/* line 113, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
-.vertical-align-middle {
-  vertical-align: middle;
-}
-
-/* line 117, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
-.padding-bottom-3 {
-  padding-bottom: 3px;
-}
-
 @media only screen and (max-width: 992px) {
-  /* line 123, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+  /* line 116, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
   #addBigButton {
     display: none;
   }
 
-  /* line 127, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+  /* line 120, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
   #addSmallButton {
     display: block;
   }
 }
 @media only screen and (min-width: 993px) {
-  /* line 134, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+  /* line 127, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
   #addBigButton {
     display: block;
   }
 
-  /* line 138, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
+  /* line 131, /Users/Pa/Desktop/onerocket-multi/app/assets/stylesheets/application.css.scss */
   #addSmallButton {
     display: none;
   }
