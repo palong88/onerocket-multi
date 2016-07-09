@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :eadmin_tasks
 
   belongs_to :team
+  # belongs_to :categories
   belongs_to :role
   #after_create :set_buildings
   after_create :add_role_to_user

@@ -8,7 +8,7 @@ class AdminTasksController < ApplicationController
     @teams = Team.all
     @categories = Category.all
 
-    @link = 'Paperwork<span class="badge">'+AdminTask.where(:category => params[:category]).count.to_s+'</span>'
+    # @link = 'Paperwork<span class="badge">'+AdminTask.where(:category => params[:category]).count.to_s+'</span>'
 
     # @eat_link = 'Equipment &amp; Tools<span class="badge">'+AdminTask.where(:category => "Equipment & Tools").count.to_s+'</span>'
     # @mtc_link = 'Meet the Company<span class="badge">'+AdminTask.where(:category => "Meet the Company").count.to_s+'</span>'
