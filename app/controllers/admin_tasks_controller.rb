@@ -59,10 +59,11 @@ class AdminTasksController < ApplicationController
   # POST /admin_tasks.json
   def create
     @admin_task = AdminTask.new(admin_task_params)
+    ap @admin_task = AdminTask.new(admin_task_params)
 
     respond_to do |format|
       if @admin_task.save
-        format.html { redirect_to admin_tasks_path(:category =>params[:admin_task][:category]), notice: 'Task was successfully created.' }
+        format.html { redirect_to admin_tasks_path(:category =>params[:admin_task][:category],:team =>params[:admin_task][:team]), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @admin_task }
       else
 
@@ -81,7 +82,7 @@ class AdminTasksController < ApplicationController
 
       if @admin_task.update(admin_task_params)
 
-        format.html { redirect_to admin_tasks_path(:category => params[:admin_task][:category]), notice: 'Task was successfully updated.' }
+        format.html { redirect_to admin_tasks_path(:category =>params[:admin_task][:category],:team =>params[:admin_task][:team]), notice: 'Task was successfully updated.' }
         # format.json { render :show, status: :ok, location: @admin_task } SHOW REMOVED
       else
         # format.html { render :edit } OLD REDIRECT PATH NO PARAMS
@@ -94,9 +95,10 @@ class AdminTasksController < ApplicationController
   # DELETE /admin_tasks/1
   # DELETE /admin_tasks/1.json
   def destroy
+    ap @admin_task
     @admin_task.destroy
     respond_to do |format|
-      format.html { redirect_to admin_tasks_path(:category =>params[:category]), notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Task was successfully deleted.' }
       format.json { head :no_content }
     end
   end

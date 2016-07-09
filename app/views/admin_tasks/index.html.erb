@@ -1,5 +1,6 @@
 <!-- Team  Tools -->
 <ul class="pagination">
+  <span font-size:"32px">Teams:</span>
   <!-- <li class="waves-effect <%= 'active' if params[:team] == nil %> ">  <%= link_to "All", admin_tasks_path %></li> -->
   <% @teams.each do |team| %>
 
@@ -145,7 +146,7 @@
             <% else %>
               <%= link_to 'edit', edit_admin_task_path(admin_task, :category => "Paperwork"), class: "blue-text" %>
             <% end %>
-            <%= link_to 'delete', admin_task_path(admin_task, :category => params[:category]),method: :delete,  class: "blue-text", data: { confirm: 'Are you sure you want to delete this task?' } %>
+            <%= link_to 'delete', admin_task_path(admin_task, :category => params[:category], :team => params[:team]),method: :delete,  class: "blue-text", data: { confirm: 'Are you sure you want to delete this task?' } %>
             <span class="right"><%= admin_task.due_date %> <%= admin_task.due_date == 1 ? "day" : "days" %> <%= admin_task.when.downcase %> they start</span>
           </div>
         </div>
