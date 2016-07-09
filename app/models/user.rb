@@ -174,11 +174,15 @@ class User < ActiveRecord::Base
       add_role :admin
       id = self.id
       #Sets Default Categories for new users accounts.
-      Category.create(:title => "Paperwork")
-      Category.create(:title => "Equipment & Tools")
-      Category.create(:title => "Meet the Company")
-      Category.create(:title => "Get Going")
-      # Crates default tasks on a new account. 
+      Category.create(:name => "Paperwork")
+      Category.create(:name => "Equipment & Tools")
+      Category.create(:name => "Meet the Company")
+      Category.create(:name => "Get Going")
+
+      Team.create(:name => "Finance")
+      Team.create(:name => "HR")
+      Team.create(:name => "IT")
+      # Crates default tasks on a new account.
       #Paperwork
       AdminTask.create( :title => "Your Contract", :description => "Please view and sign your contract. f you have any issues please contact X at X@yourcompany.com", :when => "Before", :due_date => "5", :category  => "Paperwork" )
       AdminTask.create( :title => "Data Privacy Agreement", :description => "Please view and sign our data privacy agreement.", :when => "Before", :due_date => "5", :category  => "Paperwork" )
