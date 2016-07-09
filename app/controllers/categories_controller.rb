@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to admin_tasks_path(:team => params[:category][:team], :category => @category.first.name), notice: 'Category was successfully created.' }
+        format.html { redirect_to admin_tasks_path(:team => params[:category][:team], :category => params[:category][:name]), notice: 'Category was successfully created.' }
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new }
