@@ -156,7 +156,8 @@ class User < ActiveRecord::Base
       add_role :registered
       #copies admin task list to new eadmin task list for new inited employees
       id = self.id
-      AdminTask.all.each do |default_b|
+      team = self.user_info
+      AdminTask.where(:team => team).each do |default_b|
         eadmin_tasks.create(
         title: default_b.title,
         description: default_b.description,
