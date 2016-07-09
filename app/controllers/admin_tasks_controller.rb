@@ -6,14 +6,16 @@ class AdminTasksController < ApplicationController
   # GET /admin_tasks.json
   def index
     @teams = Team.all
+    @categories = Category.all
 
-    @paperwork_link = 'Paperwork<span class="badge">'+AdminTask.where(:category => "Paperwork").count.to_s+'</span>'
-    @eat_link = 'Equipment &amp; Tools<span class="badge">'+AdminTask.where(:category => "Equipment & Tools").count.to_s+'</span>'
-    @mtc_link = 'Meet the Company<span class="badge">'+AdminTask.where(:category => "Meet the Company").count.to_s+'</span>'
-    @getgoing_link = 'Get Going<span class="badge">'+AdminTask.where(:category => "Get Going").count.to_s+'</span>'
+    @link = 'Paperwork<span class="badge">'+AdminTask.where(:category => params[:category]).count.to_s+'</span>'
+
+    # @eat_link = 'Equipment &amp; Tools<span class="badge">'+AdminTask.where(:category => "Equipment & Tools").count.to_s+'</span>'
+    # @mtc_link = 'Meet the Company<span class="badge">'+AdminTask.where(:category => "Meet the Company").count.to_s+'</span>'
+    # @getgoing_link = 'Get Going<span class="badge">'+AdminTask.where(:category => "Get Going").count.to_s+'</span>'
 
 
-  # This was working the same way before I changed it. No I don;t remember why I changed it  
+  # This was working the same way before I changed it. No I don;t remember why I changed it
     if params[:category] && params[:team]
       @admin_tasks = AdminTask.where(:category => params[:category]).where(:team => params[:team])
     elsif params[:team]

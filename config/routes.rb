@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :categories
+  resources :categories
   get 'team/scaffold'
 
   resources :stakeholders

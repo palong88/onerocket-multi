@@ -43,11 +43,13 @@
       </div>
     </div>
 
+
+
     <div class="collection">
-      <%= link_to @paperwork_link.html_safe, params.merge(:category => "Paperwork"), class: "collection-item"%>
-      <%= link_to @eat_link.html_safe, params.merge(:category => "Equipment & Tools"), class: "collection-item"%>
-      <%= link_to @mtc_link.html_safe, params.merge(:category => "Meet the Company"), class: "collection-item"%>
-      <%= link_to @getgoing_link.html_safe, params.merge(:category => "Get Going"), class: "collection-item"%>
+      <% @categories.each do |category| %>
+        <%= link_to category.name, params.merge(:category => category.name), class: "collection-item"%>
+      <% end %>
+      <%= link_to 'Add Category<i class="material-icons vertical-align-middle padding-bottom-3">add</i>'.html_safe, new_category_path, class: "collection-item"%>
     </div>
 
   </div>
