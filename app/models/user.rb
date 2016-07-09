@@ -183,13 +183,27 @@ class User < ActiveRecord::Base
       Team.create(:name => "HR")
       Team.create(:name => "IT")
       # Crates default tasks on a new account.
-      #Paperwork
-      AdminTask.create( :title => "Your Contract", :description => "Please view and sign your contract. f you have any issues please contact X at X@yourcompany.com", :when => "Before", :due_date => "5", :category  => "Paperwork" )
-      AdminTask.create( :title => "Data Privacy Agreement", :description => "Please view and sign our data privacy agreement.", :when => "Before", :due_date => "5", :category  => "Paperwork" )
-      AdminTask.create( :title => "Health Insurance Enrollment Form", :description => "Please fill out this health insurance enrollment form", :when => "Before", :due_date => "5", :category  => "Paperwork")
-      AdminTask.create( :title => "Sexual Harassment Policy", :description => "Please read the attached sexual harassment policy.", :when => "Before", :due_date => "5", :category  => "Paperwork")
-      AdminTask.create( :title => "Employee Manual", :description => "Please read the attached employee handbook.", :when => "Before", :due_date => "5", :category  => "Paperwork")
-      AdminTask.create( :title => "Employee Details Form", :description => "Please fill out the attached employee details form with info about your bank a/c and preferred payment frequency.", :when => "Before", :due_date => "5", :category  => "Paperwork")
+      #Paperwork HR
+      AdminTask.create( :team => "HR", :title => "Your Contract - HR", :description => "Please view and sign your contract. f you have any issues please contact X at X@yourcompany.com", :when => "Before", :due_date => "5", :category  => "Paperwork" )
+      AdminTask.create( :team => "HR", :title => "Data Privacy Agreement - HR", :description => "Please view and sign our data privacy agreement.", :when => "Before", :due_date => "5", :category  => "Paperwork" )
+      AdminTask.create( :team => "HR", :title => "Health Insurance Enrollment Form - HR", :description => "Please fill out this health insurance enrollment form", :when => "Before", :due_date => "5", :category  => "Paperwork")
+      AdminTask.create( :team => "HR", :title => "Sexual Harassment Policy - HR", :description => "Please read the attached sexual harassment policy.", :when => "Before", :due_date => "5", :category  => "Paperwork")
+      AdminTask.create( :team => "HR", :title => "Employee Manual - HR", :description => "Please read the attached employee handbook.", :when => "Before", :due_date => "5", :category  => "Paperwork")
+      AdminTask.create( :team => "HR", :title => "Employee Details Form - HR", :description => "Please fill out the attached employee details form with info about your bank a/c and preferred payment frequency.", :when => "Before", :due_date => "5", :category  => "Paperwork")
+      #Paperwork IT
+      AdminTask.create( :team => "IT", :title => "Your Contract - IT", :description => "Please view and sign your contract. f you have any issues please contact X at X@yourcompany.com", :when => "Before", :due_date => "5", :category  => "Paperwork" )
+      AdminTask.create( :team => "IT", :title => "Data Privacy Agreement - IT", :description => "Please view and sign our data privacy agreement.", :when => "Before", :due_date => "5", :category  => "Paperwork" )
+      AdminTask.create( :team => "IT", :title => "Health Insurance Enrollment Form - IT", :description => "Please fill out this health insurance enrollment form", :when => "Before", :due_date => "5", :category  => "Paperwork")
+      AdminTask.create( :team => "IT", :title => "Sexual Harassment Policy - IT", :description => "Please read the attached sexual harassment policy.", :when => "Before", :due_date => "5", :category  => "Paperwork")
+      AdminTask.create( :team => "IT", :title => "Employee Manual - IT", :description => "Please read the attached employee handbook.", :when => "Before", :due_date => "5", :category  => "Paperwork")
+      AdminTask.create( :team => "IT", :title => "Employee Details Form - IT", :description => "Please fill out the attached employee details form with info about your bank a/c and preferred payment frequency.", :when => "Before", :due_date => "5", :category  => "Paperwork")
+      #Paperwork Finance
+      AdminTask.create( :team => "Finance", :title => "Your Contract - Finance", :description => "Please view and sign your contract. f you have any issues please contact X at X@yourcompany.com", :when => "Before", :due_date => "5", :category  => "Paperwork" )
+      AdminTask.create( :team => "Finance", :title => "Data Privacy Agreement - Finance", :description => "Please view and sign our data privacy agreement.", :when => "Before", :due_date => "5", :category  => "Paperwork" )
+      AdminTask.create( :team => "Finance", :title => "Health Insurance Enrollment Form - Finance", :description => "Please fill out this health insurance enrollment form", :when => "Before", :due_date => "5", :category  => "Paperwork")
+      AdminTask.create( :team => "Finance", :title => "Sexual Harassment Policy - Finance", :description => "Please read the attached sexual harassment policy.", :when => "Before", :due_date => "5", :category  => "Paperwork")
+      AdminTask.create( :team => "Finance", :title => "Employee Manual - Finance", :description => "Please read the attached employee handbook.", :when => "Before", :due_date => "5", :category  => "Paperwork")
+      AdminTask.create( :team => "Finance", :title => "Employee Details Form - Finance", :description => "Please fill out the attached employee details form with info about your bank a/c and preferred payment frequency.", :when => "Before", :due_date => "5", :category  => "Paperwork")
 
       #Equipment & Tools
       AdminTask.create( :title => "Google Apps", :description => "Make sure you've been setup on Google Apps at least a week before your start date. If this has not been organised for you by this time, please contact X at X@ourcompany.com", :when => "Before", :due_date => "5", :category  => "Equipment & Tools" )
@@ -199,11 +213,21 @@ class User < ActiveRecord::Base
       AdminTask.create( :title => "Perks", :description => "Check out our company perks at the following link:  ", :when => "Before", :due_date => "3", :category  => "Equipment & Tools" )
       AdminTask.create( :title => "Our Wifi Access", :description => "Our wifi password is xxx123", :when => "After", :due_date => "1", :category  => "Equipment & Tools" )
 
-      #Meet the Company
-      AdminTask.create( :title => "Tell us about yourself", :description => "This short survey includes short questions such as favourite food, favourite pasttimes etc. Just so the whole team can get to know you better. ", :when => "Before", :due_date => "3", :category  => "Meet the Company" )
-      AdminTask.create( :title => "About Our Company", :description => "Read the attached document about our company, our goals and vision for the future. ", :when => "Before", :due_date => "1", :category  => "Meet the Company" )
-      AdminTask.create( :title => "The Team", :description => "This document includes details about our team and their roles, so you always know who to contact about a certain issue. ", :when => "Before", :due_date => "1", :category  => "Meet the Company" )
-      AdminTask.create( :title => "Everything about working with us", :description => "This document includes all the little details about our company.", :when => "After", :due_date => "1", :category  => "Meet the Company" )
+      #Meet the Company HR
+      AdminTask.create( :team => "HR", :title => "Tell us about yourself - HR", :description => "This short survey includes short questions such as favourite food, favourite pasttimes etc. Just so the whole team can get to know you better. ", :when => "Before", :due_date => "3", :category  => "Meet the Company" )
+      AdminTask.create( :team => "HR", :title => "About Our Company - HR", :description => "Read the attached document about our company, our goals and vision for the future. ", :when => "Before", :due_date => "1", :category  => "Meet the Company" )
+      AdminTask.create( :team => "HR", :title => "The Team - HR", :description => "This document includes details about our team and their roles, so you always know who to contact about a certain issue. ", :when => "Before", :due_date => "1", :category  => "Meet the Company" )
+      AdminTask.create( :team => "HR", :title => "Everything about working with us - HR", :description => "This document includes all the little details about our company.", :when => "After", :due_date => "1", :category  => "Meet the Company" )
+      #Meet the Company IT
+      AdminTask.create( :team => "IT", :title => "Tell us about yourself - IT", :description => "This short survey includes short questions such as favourite food, favourite pasttimes etc. Just so the whole team can get to know you better. ", :when => "Before", :due_date => "3", :category  => "Meet the Company" )
+      AdminTask.create( :team => "IT", :title => "About Our Company - IT", :description => "Read the attached document about our company, our goals and vision for the future. ", :when => "Before", :due_date => "1", :category  => "Meet the Company" )
+      AdminTask.create( :team => "IT", :title => "The Team - IT", :description => "This document includes details about our team and their roles, so you always know who to contact about a certain issue. ", :when => "Before", :due_date => "1", :category  => "Meet the Company" )
+      AdminTask.create( :team => "IT", :title => "Everything about working with us - IT", :description => "This document includes all the little details about our company.", :when => "After", :due_date => "1", :category  => "Meet the Company" )
+      #Meet the Company Finance
+      AdminTask.create( :team => "Finance", :title => "Tell us about yourself - Finance", :description => "This short survey includes short questions such as favourite food, favourite pasttimes etc. Just so the whole team can get to know you better. ", :when => "Before", :due_date => "3", :category  => "Meet the Company" )
+      AdminTask.create( :team => "Finance", :title => "About Our Company - Finance", :description => "Read the attached document about our company, our goals and vision for the future. ", :when => "Before", :due_date => "1", :category  => "Meet the Company" )
+      AdminTask.create( :team => "Finance", :title => "The Team - Finance", :description => "This document includes details about our team and their roles, so you always know who to contact about a certain issue. ", :when => "Before", :due_date => "1", :category  => "Meet the Company" )
+      AdminTask.create( :team => "Finance", :title => "Everything about working with us - Finance", :description => "This document includes all the little details about our company.", :when => "After", :due_date => "1", :category  => "Meet the Company" )
 
       #Get Going
       AdminTask.create( :title => "Manager Reach Out", :description => "Your manager will reach out to you at least 2 days before you start to discuss your role as part of our team. If they haven't contacted you by then, please email X at X@ourcompany.com.",  :when => "Before", :due_date => "2", :category  => "Get Going" )
