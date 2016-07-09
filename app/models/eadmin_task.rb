@@ -6,7 +6,7 @@ class EadminTask < ActiveRecord::Base
 
 	belongs_to :admin_tasks
 	# belongs_to :category
-	belongs_to :employee
+	# belongs_to :employee
 	belongs_to :user
 
 	has_attached_file :document

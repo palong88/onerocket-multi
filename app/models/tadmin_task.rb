@@ -1,3 +1,3 @@
 class TadminTask < AdminTask
-    has_one :team
+    # has_one :team
 end

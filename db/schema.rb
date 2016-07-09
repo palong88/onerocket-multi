@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20160709050415) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
+    t.string   "team"
   end
 
   create_table "categories", force: :cascade do |t|
