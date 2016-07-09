@@ -1,3 +1,16 @@
+<!-- Team  Tools -->
+<ul class="pagination">
+  <li class="waves-effect <%= 'active' if params[:team] == nil %> ">  <%= link_to "All", admin_tasks_path %></li>
+  <% @teams.each do |team| %>
+
+    <li class="waves-effect <%= 'active' if params[:team] == team.name %>">  <%= link_to team.name, admin_tasks_path(:team=> team.name)%></li>
+  <% end %>
+  <!-- <li class="waves-effect"><a href="#!">New Team<i class="tiny material-icons">add</i></a></li> -->
+</ul>
+
+
+
+<!-- Team Navbar end -->
 <!-- Admin Tools -->
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
@@ -25,7 +38,7 @@
     <!-- Profile card -->
     <div class="card top">
       <div class="card-content">
-        <span class="card-title">Template</span>
+        <span class="card-title"> <%= params[:team] ? params[:team] : 'All' %> Template</span>
         <p>Any task you add here will be copied to each new hire you onboard.</p>
       </div>
     </div>

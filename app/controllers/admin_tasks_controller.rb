@@ -5,17 +5,25 @@ class AdminTasksController < ApplicationController
   # GET /admin_tasks
   # GET /admin_tasks.json
   def index
+    @teams = Team.all
 
     @paperwork_link = 'Paperwork<span class="badge">'+AdminTask.where(:category => "Paperwork").count.to_s+'</span>'
     @eat_link = 'Equipment &amp; Tools<span class="badge">'+AdminTask.where(:category => "Equipment & Tools").count.to_s+'</span>'
     @mtc_link = 'Meet the Company<span class="badge">'+AdminTask.where(:category => "Meet the Company").count.to_s+'</span>'
     @getgoing_link = 'Get Going<span class="badge">'+AdminTask.where(:category => "Get Going").count.to_s+'</span>'
 
-    if params[:category]
+
+  # This was working the same way before I changed it. No I don;t remember why I changed it  
+    if params[:category] && params[:team]
+      @admin_tasks = AdminTask.where(:category => params[:category]).where(:team => params[:team])
+    elsif params[:team]
+      @admin_tasks = AdminTask.where(:category => "Paperwork").where(:team => params[:team])
+    elsif params[:category]
       @admin_tasks = AdminTask.where(:category => params[:category])
     else
       @admin_tasks = AdminTask.where(:category => "Paperwork")
     end
+
   end
 
   # GET /admin_tasks/1
@@ -26,6 +34,7 @@ class AdminTasksController < ApplicationController
   # GET /admin_tasks/new
   def new
     @admin_task = AdminTask.new
+    @team = Team.all
   end
 
   # GET /admin_tasks/1/edit
@@ -42,6 +51,7 @@ class AdminTasksController < ApplicationController
         format.html { redirect_to admin_tasks_path(:category =>params[:admin_task][:category]), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @admin_task }
       else
+
         format.json { render json: @admin_task.errors, status: :unprocessable_entity }
         format.html { redirect_to new_admin_task_path(:category =>params[:admin_task][:category] ), notice: 'Task not Created.'}
 
@@ -56,7 +66,7 @@ class AdminTasksController < ApplicationController
     respond_to do |format|
 
       if @admin_task.update(admin_task_params)
-        
+
         format.html { redirect_to admin_tasks_path(:category => params[:admin_task][:category]), notice: 'Task was successfully updated.' }
         # format.json { render :show, status: :ok, location: @admin_task } SHOW REMOVED
       else
@@ -85,6 +95,6 @@ class AdminTasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_task_params
-      params.require(:admin_task).permit(:title, :description, :media, :due_date, :category, :when, :document)
+      params.require(:admin_task).permit(:title, :description, :media, :due_date, :category, :when, :document, :team)
     end
 end

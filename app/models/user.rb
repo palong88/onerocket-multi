@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   rolify
   has_many :admin_tasks
   has_many :eadmin_tasks
+
+  belongs_to :team
   belongs_to :role
   #after_create :set_buildings
   after_create :add_role_to_user
@@ -88,7 +90,7 @@ class User < ActiveRecord::Base
       self.eadmin_tasks.destroy_all
     end
   end
-  
+
   private
 
   def self.with_role(role)
