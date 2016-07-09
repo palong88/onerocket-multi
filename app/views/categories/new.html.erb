@@ -1,5 +1,8 @@
-<h1>New Category</h1>
-
+<div class="container">
+  <div class="row">
+    <div class="s12 m12 l2">&nbsp;</div>
+    <div class="s12 m12 l8"><h4>Add a category for <%= category = params[:team] %></h4></div>
+    <div class="s12 m12 l2">&nbsp;</div>
+  </div>
+</div>
 <%= render 'form' %>
-
-<%= link_to 'Back', categories_path %>

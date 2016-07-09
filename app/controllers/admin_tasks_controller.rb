@@ -6,7 +6,16 @@ class AdminTasksController < ApplicationController
   # GET /admin_tasks.json
   def index
     @teams = Team.all
-    @categories = Category.all
+    if params[:team]
+      @categories = Category.where(:team => params[:team])
+      @admin_tasks = AdminTask.where(:team => params[:team]) && AdminTask.where(:category => params[:category])
+    else
+      #  redirect_to admin_task_path()
+       redirect_to :controller => 'admin_tasks', :action => 'index', :team => Category.first.team, :category => Category.first.name
+      # @categories = Category.where(:team => Category.first.team)
+      # @admin_tasks = AdminTask.where(:team => Category.first.team)
+    end
+
 
     # @link = 'Paperwork<span class="badge">'+AdminTask.where(:category => params[:category]).count.to_s+'</span>'
 
@@ -16,15 +25,15 @@ class AdminTasksController < ApplicationController
 
 
   # This was working the same way before I changed it. No I don;t remember why I changed it
-    if params[:category] && params[:team]
-      @admin_tasks = AdminTask.where(:category => params[:category]).where(:team => params[:team])
-    elsif params[:team]
-      @admin_tasks = AdminTask.where(:category => "Paperwork").where(:team => params[:team])
-    elsif params[:category]
-      @admin_tasks = AdminTask.where(:category => params[:category])
-    else
-      @admin_tasks = AdminTask.where(:category => "Paperwork")
-    end
+    # if params[:category] && params[:team]
+    #   @admin_tasks = AdminTask.where(:category => params[:category]).where(:team => params[:team])
+    # elsif params[:team]
+    #   @admin_tasks = AdminTask.where(:category => "Paperwork").where(:team => params[:team])
+    # elsif params[:category]
+    #   @admin_tasks = AdminTask.where(:category => params[:category])
+    # else
+    #   @admin_tasks = AdminTask.where(:category => "Paperwork")
+    # end
 
   end
 

@@ -1,9 +1,9 @@
 <!-- Team  Tools -->
 <ul class="pagination">
-  <li class="waves-effect <%= 'active' if params[:team] == nil %> ">  <%= link_to "All", admin_tasks_path %></li>
+  <!-- <li class="waves-effect <%= 'active' if params[:team] == nil %> ">  <%= link_to "All", admin_tasks_path %></li> -->
   <% @teams.each do |team| %>
 
-    <li class="waves-effect <%= 'active' if params[:team] == team.name %>">  <%= link_to team.name, admin_tasks_path(:team=> team.name)%></li>
+    <li class="waves-effect <%= 'active' if params[:team] == team.name %>">  <%= link_to team.name, admin_tasks_path(:team=> team.name, :category => Category.first.name)%></li>
   <% end %>
   <!-- <li class="waves-effect"><a href="#!">New Team<i class="tiny material-icons">add</i></a></li> -->
 </ul>
@@ -49,7 +49,7 @@
       <% @categories.each do |category| %>
         <%= link_to category.name, params.merge(:category => category.name), class: "collection-item"%>
       <% end %>
-      <%= link_to 'Add Category<i class="material-icons vertical-align-middle padding-bottom-3">add</i>'.html_safe, new_category_path, class: "collection-item"%>
+      <%= link_to 'Add Category<i class="material-icons vertical-align-middle padding-bottom-3">add</i>'.html_safe, new_category_path(:team => params[:team]), class: "collection-item"%>
     </div>
 
   </div>
@@ -58,7 +58,7 @@
   <!-- Content -->
   <div class="col s12 m7 l8">
     <div class="row top">
-      <% if params[:category] %>
+      <% if params[:team] %>
         <h4 style="display: inline"><%=params[:category]%> Tasks</h4>
       <% else %>
         <h4 style="display: inline">Paperwork Tasks</h4>
@@ -76,7 +76,7 @@
       <div class="col s12 m6">
         <div class="card-panel teal">
           <span class="white-text">
-            <i class="em em-sweat_smile"></i> Nothing to be done here! Check out other categories to make sure you aren't missing anything.
+            <i class="em em-sweat_smile"></i> Nothing to be done here! Create a task for your new employees.
           </span>
         </div>
       </div>
