@@ -3,7 +3,7 @@
   <!-- <li class="waves-effect <%= 'active' if params[:team] == nil %> ">  <%= link_to "All", admin_tasks_path %></li> -->
   <% @teams.each do |team| %>
 
-    <li class="waves-effect <%= 'active' if params[:team] == team.name %>">  <%= link_to team.name, admin_tasks_path(:team=> team.name, :category => Category.first.name)%></li>
+    <li class="waves-effect <%= 'active' if params[:team] == team.name %>">  <%= link_to team.name, admin_tasks_path(:team => team.name, :category => @categories.first.name) %> </li>
   <% end %>
   <!-- <li class="waves-effect"><a href="#!">New Team<i class="tiny material-icons">add</i></a></li> -->
 </ul>
