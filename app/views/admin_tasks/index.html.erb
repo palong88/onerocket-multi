@@ -1,6 +1,5 @@
 <!-- Team  Tools -->
 <ul class="pagination">
-  <span style="font-size: 22px;"> Team: </span>
   <li class="waves-effect <%= 'active' if params[:team] == nil %> ">  <%= link_to "All", admin_tasks_path %></li>
   <% @teams.each do |team| %>
 

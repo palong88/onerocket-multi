@@ -1,44 +1,21 @@
-
-
-
-
-<!--  FORM ELELEMNTS for Creating New Tasks and Updating Existing Tasks -->
-<div class="row">
-  <!-- spaceholder -->
-  <div class="col s12 m12 l2">&nbsp;</div>
-  <!-- form -->
-  <div class="col s12 m12 l8">
-
-    <%= form_for @category do |f| %>
-    <% if @category.errors.any? %>
+<%= form_for(@category) do |f| %>
+  <% if @category.errors.any? %>
     <div id="error_explanation">
-      <h4>Please fill out the following feilds:</h4>
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
       <ul>
-        <% @category.errors.full_messages.each do |message| %>
+      <% @category.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-        <% end %>
+      <% end %>
       </ul>
     </div>
-    <% end %>
+  <% end %>
 
-    <div class="form-panel">
-      <div class="row">
-        <div class="input-field col s12 m12 l8">
-          <%= f.text_field :name,placeholder: "Paperwork / Apps / Videos", required: true%>
-          <%= f.label :title, "What is the category name?" %>
-        </div>
-      </div>
-      <!-- buttons to save -->
-      <div class="row">
-        <div class="actions col s12 m12 l8 ">
-          <%= link_to 'Cancel', admin_tasks_path, class: "btn btn-large" %>
-          <input type="submit" value="Submit" class="btn btn-large" >
-        </div>
-      </div>
-
-    </div>
-    <% end %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
   </div>
-  <!-- spaceholder -->
-  <div class="col s12 m12 l2">&nbsp;</div>
-</div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
