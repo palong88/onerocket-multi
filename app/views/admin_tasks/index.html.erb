@@ -4,7 +4,8 @@
   <!-- <li class="waves-effect <%= 'active' if params[:team] == nil %> ">  <%= link_to "All", admin_tasks_path %></li> -->
   <% @teams.each do |team| %>
 
-    <li class="waves-effect <%= 'active' if params[:team] == team.name %>">  <%= link_to team.name, admin_tasks_path(:team => team.name, :category => @categories1.where(:team => team.name).first.name) %> </li>
+
+    <li class="waves-effect ">  <%= link_to team.name, admin_tasks_path(:team => team.name) %> </li>
   <% end %>
   <!-- <li class="waves-effect"><a href="#!">New Team<i class="tiny material-icons">add</i></a></li> -->
 </ul>
@@ -39,7 +40,7 @@
     <!-- Profile card -->
     <div class="card top">
       <div class="card-content">
-        <span class="card-title"> <%= params[:team] ? params[:team] : 'All' %> Template</span>
+        <span class="card-title"> <%= params[:team] %> Template</span>
         <p>Any task you add here will be copied to each new hire you onboard.</p>
       </div>
     </div>
@@ -66,7 +67,7 @@
       <% end %>
 
       <% if params[:category] %>
-        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_admin_task_path(:category => params[:category]), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right"  %>
+        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_admin_task_path(:category => params[:category], :team => params[:team]), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right"  %>
       <% else %>
         <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_admin_task_path(:category => "Paperwork"), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right" %>
       <% end %>

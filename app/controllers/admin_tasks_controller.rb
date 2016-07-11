@@ -5,38 +5,28 @@ class AdminTasksController < ApplicationController
   # GET /admin_tasks
   # GET /admin_tasks.json
   def index
-    @teams = Team.all
 
-
-    if params[:team]
-      @categories1 = Category.all
+    if params[:team] && params[:category]
+      ap 'Option 0'
+      @teams = Team.all
       @categories = Category.where(:team => params[:team])
       @admin_tasks = AdminTask.where(:team => params[:team]) && AdminTask.where(:category => params[:category])
+    elsif params[:team]
+      ap 'Option 1'
+      @teams = Team.all
+      @categories = Category.where(:team => params[:team])
+      @admin_tasks = AdminTask.where(:team => params[:team]) && AdminTask.where(:category => params[:category])
+      redirect_to :controller => 'admin_tasks', :action => 'index', :team => params[:team], :category => Category.where(:team => params[:team]).first.name
     else
+      ap 'Option 2'
+      @teams = Team.all
+      @categories = Category.where(:team => params[:team])
+      @admin_tasks = AdminTask.where(:team => params[:team]) && AdminTask.where(:category => params[:category])
       #  redirect_to admin_task_path()
-       redirect_to :controller => 'admin_tasks', :action => 'index', :team => Category.first.team, :category => Category.first.name
+       redirect_to :controller => 'admin_tasks', :action => 'index', :team => Team.first.name, :category => Category.first.name
       # @categories = Category.where(:team => Category.first.team)
       # @admin_tasks = AdminTask.where(:team => Category.first.team)
     end
-
-
-    # @link = 'Paperwork<span class="badge">'+AdminTask.where(:category => params[:category]).count.to_s+'</span>'
-
-    # @eat_link = 'Equipment &amp; Tools<span class="badge">'+AdminTask.where(:category => "Equipment & Tools").count.to_s+'</span>'
-    # @mtc_link = 'Meet the Company<span class="badge">'+AdminTask.where(:category => "Meet the Company").count.to_s+'</span>'
-    # @getgoing_link = 'Get Going<span class="badge">'+AdminTask.where(:category => "Get Going").count.to_s+'</span>'
-
-
-  # This was working the same way before I changed it. No I don;t remember why I changed it
-    # if params[:category] && params[:team]
-    #   @admin_tasks = AdminTask.where(:category => params[:category]).where(:team => params[:team])
-    # elsif params[:team]
-    #   @admin_tasks = AdminTask.where(:category => "Paperwork").where(:team => params[:team])
-    # elsif params[:category]
-    #   @admin_tasks = AdminTask.where(:category => params[:category])
-    # else
-    #   @admin_tasks = AdminTask.where(:category => "Paperwork")
-    # end
 
   end
 
@@ -68,7 +58,7 @@ class AdminTasksController < ApplicationController
       else
 
         format.json { render json: @admin_task.errors, status: :unprocessable_entity }
-        format.html { redirect_to new_admin_task_path(:category =>params[:admin_task][:category] ), notice: 'Task not Created.'}
+        format.html { redirect_to new_admin_task_path(:category =>params[:admin_task][:category],:team =>params[:admin_task][:team] ), notice: 'Task not Created.'}
 
       end
     end

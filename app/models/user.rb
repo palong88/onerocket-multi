@@ -175,9 +175,15 @@ class User < ActiveRecord::Base
       add_role :admin
       id = self.id
       #Sets Default Teams for new users accounts.
+      Team.create(:name => "All")
       Team.create(:name => "HR")
       Team.create(:name => "IT")
       Team.create(:name => "Finance")
+      #Sets Default Categories for new users accounts.
+      Category.create(:name => "Paperwork - All",:team => "All" )
+      Category.create(:name => "Equipment & Tools - All", :team => "All")
+      Category.create(:name => "Meet the Company - All", :team => "All")
+      Category.create(:name => "Get Going - All", :team => "All")
 
       #Sets Default Categories for new users accounts.
       Category.create(:name => "Paperwork - HR",:team => "HR" )
@@ -195,6 +201,12 @@ class User < ActiveRecord::Base
       Category.create(:name => "Meet the Company - Finance", :team => "Finance")
       Category.create(:name => "Get Going - Finance", :team => "Finance")
       # Crates default tasks on a new account.
+
+      #All Tasks
+      AdminTask.create( :team => "All", :title => "Your Contract - All", :description => "Please view and sign your contract. f you have any issues please contact X at X@yourcompany.com", :when => "Before", :due_date => "5", :category  => "Paperwork - All", )
+      AdminTask.create( :team => "All", :title => "Data Privacy Agreement - All", :description => "Please view and sign our data privacy agreement.", :when => "Before", :due_date => "5", :category  => "Equipment & Tools - All", )
+      AdminTask.create( :team => "All", :title => "Health Insurance Enrollment Form - All", :description => "Please fill out this health insurance enrollment form", :when => "Before", :due_date => "5", :category  => "Meet the Company - All",)
+      AdminTask.create( :team => "All", :title => "Sexual Harassment Policy - All", :description => "Please read the attached sexual harassment policy.", :when => "Before", :due_date => "5", :category  => "Get Going - All",)
 
       #Paperwork HR
       AdminTask.create( :team => "HR", :title => "Your Contract - HR", :description => "Please view and sign your contract. f you have any issues please contact X at X@yourcompany.com", :when => "Before", :due_date => "5", :category  => "Paperwork - HR", )
