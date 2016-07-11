@@ -87,7 +87,6 @@ class User < ActiveRecord::Base
     if self.has_role? :registered
       self.add_role :admin
       self.remove_role :registered
-
       self.eadmin_tasks.destroy_all
     end
   end

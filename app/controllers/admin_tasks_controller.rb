@@ -10,18 +10,12 @@ class AdminTasksController < ApplicationController
       ap 'Option 0'
       @teams = Team.all
       @categories = Category.where(:team => params[:team])
-      @admin_tasks = AdminTask.where(:team => params[:team]) && AdminTask.where(:category => params[:category])
+      @admin_tasks = AdminTask.where(:team => params[:team], :category => params[:category])
     elsif params[:team]
       ap 'Option 1'
-      @teams = Team.all
-      @categories = Category.where(:team => params[:team])
-      @admin_tasks = AdminTask.where(:team => params[:team]) && AdminTask.where(:category => params[:category])
       redirect_to :controller => 'admin_tasks', :action => 'index', :team => params[:team], :category => Category.where(:team => params[:team]).first.name
     else
       ap 'Option 2'
-      @teams = Team.all
-      @categories = Category.where(:team => params[:team])
-      @admin_tasks = AdminTask.where(:team => params[:team]) && AdminTask.where(:category => params[:category])
       #  redirect_to admin_task_path()
        redirect_to :controller => 'admin_tasks', :action => 'index', :team => Team.first.name, :category => Category.first.name
       # @categories = Category.where(:team => Category.first.team)
