@@ -1,3 +1,6 @@
+
+
+
 <div class="row">
   <!-- spaceholder -->
   <div class="col s12 m12 l2">&nbsp;</div>
@@ -17,11 +20,12 @@
         <%= f.text_field field, placeholder: "patrick@onerocket.io" %></p>
       <% end -%>
 
-      <p class="grey-text">Write any additional information here that can be helpful to others during the onboarding process. This information is specific to this new hire and will be sent as part of an email to all stakeholders. Things to include here could be their department, role or desk location.</p>
       <div class="field">
-        <%= f.label :user_info, "This new hire's specific info:"%>
-        <%= f.text_area :user_info, class: "materialize-textarea" %><br />
+        <%= f.label :user_info, "Team / Department"%>
+        <%= f.collection_select :user_info, Team.order(:name),:name,:name, { include_blank: "Select a Team", disabled: 'false'}, { required: true}%>
+        <p style="font-size: 0.8rem;"> <%= link_to 'OR create a new team', new_team_path %></p> <br>
       </div>
+
 
       <div class="field">
         <%= f.label :start_date, "When is their first day?" %><br>

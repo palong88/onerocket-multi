@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
 
+  resources :categories
+  resources :categories
+  resources :categories
+  get 'team/scaffold'
+
   resources :stakeholders
   resources :eadmin_tasks do
 		  member do
@@ -39,7 +44,7 @@ get "edit/employee" => "users#edit"
 
 get "etasks" => "eadmin_tasks#index"
 
-
+resources :teams
 
 
 

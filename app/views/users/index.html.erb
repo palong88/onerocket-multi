@@ -29,8 +29,9 @@
                   </div>
                 </div>
               </div>
-              <span class="title"><%= user.name %></span>
+              <span class="title"><%= user.name %></span> - <%= user.user_info%> Team <br>
               <p><a href="mailto:<%= user.email %>"><%= user.email %></a> <br>
+
                 <%= link_to 'Edit tasks &rarr;'.html_safe, user_eadmin_tasks_path(:id => user.id) %>
 
               </p>

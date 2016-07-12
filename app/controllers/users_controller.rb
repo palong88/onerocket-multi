@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+
   end
 
   def show
@@ -13,6 +14,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @team = Team.all
   end
 
   def edit
@@ -71,6 +73,8 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+    ap @eadmin_tasks = EadminTask.where(:user_id => @user.id)
+    @eadmin_tasks.destroy_all
     redirect_to users_path, :flash => { :success => 'User was successfully deleted.' }
   end
 
