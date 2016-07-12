@@ -55,9 +55,10 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1.json
   def destroy
     ap @category.name
-    @admin_tasks = AdminTask.where(:category => @category.name )
+    ap @admin_tasks = AdminTask.where(:category => @category.name, :team => @category.team )
+    @admin_tasks.destroy_all
     @category.destroy
-    @admin_tasks.destroy(params[:admin_tasks][:id])
+    # @admin_tasks.destroy(params[:admin_tasks][:id])
     # ap @admin_tasks.where(:category => @category.name)
     respond_to do |format|
       format.html { redirect_to :back, notice: 'Category was successfully destroyed.' }
