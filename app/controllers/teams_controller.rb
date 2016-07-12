@@ -55,7 +55,12 @@ class TeamsController < ApplicationController
   # DELETE /teams/1
   # DELETE /teams/1.json
   def destroy
+
+    ap @category = Category.where(:team => @team.name)
+    ap @admin_tasks = AdminTask.where(:team => @team.name)
     @team.destroy
+    @admin_tasks.destroy_all
+    @category.destroy_all
     respond_to do |format|
       format.html { redirect_to teams_url, notice: 'Team was successfully destroyed.' }
       format.json { head :no_content }
