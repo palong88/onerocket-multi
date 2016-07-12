@@ -2,8 +2,6 @@ p1 = Stripe::Plan.retrieve("One Rocket Plan")
 
 Plan.create(:stripe_id => p1.id, :name => p1.name, :price => p1.amount, :interval => p1.interval)
 
-
-
 u = User.create :password => "11111111",:password_confirmation => "11111111", :email => "test1@email.com", :name => "Patrick Long1", :subdomain => "microwave"
 
 a = Account.create :email => "test@email.com", :subdomain => "microwave"
@@ -47,6 +45,7 @@ rake db:migrate:up VERSION=20090408054532
 
 
 DON'T EVER USE UNLESS....
+
 rake db:drop:all
 rake db:create:all
 rake db:migrate
