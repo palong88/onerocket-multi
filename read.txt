@@ -43,6 +43,10 @@ Apartment::Tenant.drop("hii")
 
 rake db:migrate:up VERSION=20090408054532
 
+# Take current database and make schema from it
+rake db:schema:dump
+# Take current schema and make database from it
+rake db:schema:load
 
 DON'T EVER USE UNLESS....
 

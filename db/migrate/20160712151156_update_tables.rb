@@ -10,6 +10,7 @@ class UpdateTables < ActiveRecord::Migration
     category3 = Category.create( :name => "Meet the Company", :team => "All")
     category4 = Category.create( :name => "Get Going", :team => "All")
 
+    category.save
     category2.save
     category3.save
     category4.save
@@ -20,7 +21,22 @@ class UpdateTables < ActiveRecord::Migration
   end
 
   def down
-    remove_column :users, :status
+
+    AdminTask.update_all(:team => nil )
+
+    category  = Category.where( :name => "Paperwork", :team => "All")
+    category2 = Category.where( :name => "Equipment & Tools", :team => "All")
+    category3 = Category.where( :name => "Meet the Company", :team => "All")
+    category4 = Category.where( :name => "Get Going", :team => "All")
+
+    category.destroy_all
+    category2.destroy_all
+    category3.destroy_all
+    category4.destroy_all
+
+    team = Team.find_by(name: "All")
+    team.destroy
+
   end
 
 end
