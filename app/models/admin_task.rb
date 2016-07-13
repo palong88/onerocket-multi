@@ -5,6 +5,7 @@ class AdminTask < ActiveRecord::Base
 	resourcify
 
 	belongs_to :user
+	# belongs_to :category
 	has_many :eadmin_tasks
 
 

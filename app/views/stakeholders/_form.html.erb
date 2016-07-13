@@ -1,0 +1,40 @@
+<%= form_for(@stakeholder) do |f| %>
+  <% if @stakeholder.errors.any? %>
+    <div id="error_explanation">
+      <h5><%= pluralize(@stakeholder.errors.count, "error") %> prohibited this stakeholder from being saved:</h5>
+
+      <ul>
+      <% @stakeholder.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-field col s12">
+    <%= f.text_field :name, placeholder: "Johnny Appleseed" %><br />
+    <%= f.label :name %>
+  </div>
+  <div class="input-field col s12">
+    <%= f.text_field :email, placeholder: "johnny@apple.com" %><br />
+    <%= f.label :email %>
+  </div>
+  <div class="input-field col s12">
+    <%= f.text_field :department, placeholder: "Accounting" %><br />
+    <%= f.label :department %>
+  </div>
+
+  <p class="col s12 grey-text">The following template will be inserted after the name and starting date of the new hire, and before the new hire's specific information.</p>
+  <div class="input-field col s12">
+    <%= f.text_area :template, class: "materialize-textarea" %><br />
+    <%= f.label :template, "Instructions for stakeholder."%>
+  </div>
+  <br />
+  <div class="row">
+    <div class="actions centered">
+      <input type="submit" value="Save Changes" class="btn btn-large" >
+      <%= link_to 'Cancel', users_path, class: "btn btn-large" %>
+    </div>
+  </div>
+
+<% end %>

@@ -1,3 +1,6 @@
+
+
+
 <div class="row">
   <!-- spaceholder -->
   <div class="col s12 m12 l2">&nbsp;</div>
@@ -9,13 +12,20 @@
       <% end %>
       <div class="field">
          <%= f.label :name, "What name typically follows \"Hey...\" " %><br>
-         <%= f.text_field :name %>
+         <%= f.text_field :name, placeholder: "Patrick Long" %>
       </div>
 
       <% resource.class.invite_key_fields.each do |field| -%>
         <%= f.label field, "At what email address will they say \"Yay!\" " %><br />
-        <%= f.text_field field %></p>
+        <%= f.text_field field, placeholder: "patrick@onerocket.io" %></p>
       <% end -%>
+
+      <div class="field">
+        <%= f.label :user_info, "Team / Department"%>
+        <%= f.collection_select :user_info, Team.order(:name),:name,:name, { include_blank: "Select a Team", disabled: 'false'}, { required: true}%>
+        <p style="font-size: 0.8rem;"> <%= link_to 'OR create a new team', new_team_path %></p> <br>
+      </div>
+
 
       <div class="field">
         <%= f.label :start_date, "When is their first day?" %><br>

@@ -15,10 +15,18 @@
     <%= f.label :name %><br>
     <%= f.text_field :name, placeholder: "Patrick Long"  %>
   </div>
+
   <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email, placeholder: "patrick@onerocket.io" %>
   </div>
+  
+  <div class="field">
+    <%= f.label :user_info, "Team / Department"%>
+    <%= f.collection_select :user_info, Team.order(:name),:name,:name, { include_blank: "Select a Team", disabled: 'false'}, { required: true}%>
+    <p style="font-size: 0.8rem;"> <%= link_to 'OR create a new team', new_team_path %></p> <br>
+  </div>
+
   <div class="field">
     <%= f.label :start_date %><br>
     <%= f.text_field :start_date, class: "datepicker"%>

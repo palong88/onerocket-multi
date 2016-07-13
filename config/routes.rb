@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
 
+  resources :categories
+  resources :categories
+  resources :categories
+  get 'team/scaffold'
+
+  resources :stakeholders
   resources :eadmin_tasks do
 		  member do
 		    patch :complete
@@ -19,7 +25,7 @@ resources :admin_tasks
 resources :users
 
 get 'users/:id/eadmin_tasks' => 'users#eadmin_tasks', :as => :user_eadmin_tasks
-
+get 'users/:id/promote_to_admin' => 'users#promote_to_admin', :as => :promote_user_to_admin
 get "subscriptions/cancel_subscription" => "subscriptions#cancel_subscription"
 get "subscriptions/update_card" => "subscriptions#update_card"
 post "subscriptions/update_card_details" => "subscriptions#update_card_details"
@@ -38,7 +44,7 @@ get "edit/employee" => "users#edit"
 
 get "etasks" => "eadmin_tasks#index"
 
-
+resources :teams
 
 
 

@@ -6,6 +6,7 @@
     <div class="row top">
       <h4 style="display: inline">Manage Employees</h4>
       <%= link_to '<i class="material-icons left">add</i>Invite a New Hire</a>'.html_safe, new_user_invitation_path, class: "waves-effect waves-light btn-large", style: "float: right" %>
+      <br /><br /><%= link_to 'Who else needs to know the new hires?', stakeholders_path %>
     </div>
     <div class="row">
       <ul class="collection">
@@ -18,9 +19,19 @@
             <% else %>
               <li class="collection-item avatar">
             <% end %>
-              <i class="material-icons circle">perm_identity</i>
-              <span class="title"><%= user.name %></span>
+              <div style="position: absolute; overflow: hidden; left: 15px; display: inline-block; vertical-align: middle;">
+                <% percent = user.percentage_of_completed_tasks.to_s %>
+                <div class="c100 p<%= percent %> small left-align">
+                  <span><%= percent %>%</span>
+                  <div class="slice">
+                    <div class="bar"></div>
+                    <div class="fill"></div>
+                  </div>
+                </div>
+              </div>
+              <span class="title"><%= user.name %></span> - <%= user.user_info%> Team <br>
               <p><a href="mailto:<%= user.email %>"><%= user.email %></a> <br>
+
                 <%= link_to 'Edit tasks &rarr;'.html_safe, user_eadmin_tasks_path(:id => user.id) %>
 
               </p>

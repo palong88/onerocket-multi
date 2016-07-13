@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+
+
   <title>One Rocket - Simple Employee Onboarding</title>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'circle', 'data-turbolinks-track' => true %>
   <%= favicon_link_tag 'favicon-32x32.png' %>
 
   <!-- Compiled and minified CSS -->
@@ -33,6 +41,21 @@
 
 <body>
 
+  <script type="text/javascript">
+    $( document ).ready(function(){
+      $(".dropdown-button").dropdown();
+      $(".button-collapse").sideNav();
+      $('select').material_select();
+    })
+  </script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script>
+
+    Stripe.setPublishableKey('pk_test_vDSiuOkeTaV8mLnuOgqAQyWd');
+
+  </script>
+
+
   <header>
     <% if user_signed_in? %>
       <%= render 'layouts/header' %>
@@ -46,6 +69,7 @@
       </script>
     <% end %>
 
+
   </header>
 
   <main>
@@ -55,8 +79,6 @@
     <%= yield %>
     </div>
   </main>
-
-
 
 </body>
 
@@ -70,14 +92,5 @@
 </footer>
 
 <!-- All the javascripts -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-<script type="text/javascript">
-  $( document ).ready(function(){
-    $(".button-collapse").sideNav();
-    $('select').material_select();
-  })
-</script>
 
 </html>

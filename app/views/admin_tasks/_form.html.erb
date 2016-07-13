@@ -21,6 +21,9 @@
       <div class="field">
         <%= f.hidden_field :category, value: params[:category]%>
       </div>
+      <div class="field">
+        <%= f.hidden_field :team, value: params[:team]%>
+      </div>
 
       <!-- name -->
       <div class="row">
@@ -46,8 +49,15 @@
 
       <br><br>
 
-          <input class="file-path" type="file" name="admin_task[document]" id="admin_task_document" />
-     </div>
+          <input class="file-path " type="file" name="admin_task[document]" id="admin_task_document" />
+     </div><br><br>
+
+<!-- 
+     <div class="field">
+       <%= f.label :team, "For which team?"%>
+       <%= f.collection_select :team, Team.order(:name),:name,:name, { include_blank: "Select a Team", disabled: 'false'}, { required: true}%>
+       <p style="font-size: 0.8rem;"> <%= link_to 'OR create a new team', new_team_path %></p> <br>
+     </div> -->
 
 
       <!-- when -->
@@ -72,6 +82,11 @@
               <option value="30">1 month</option>
               <option value="60">2 months</option>
               <option value="90">3 months</option>
+              <option value="120">4 months</option>
+              <option value="150">5 months</option>
+              <option value="180">6 months</option>
+              <option value="270">9 months</option>
+              <option value="360">12 months</option>
             </optgroup>
           </select>
           <label>How long from the start date?</label>

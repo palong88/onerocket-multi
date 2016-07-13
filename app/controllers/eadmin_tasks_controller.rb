@@ -1,27 +1,40 @@
 
 class EadminTasksController < ApplicationController
-
-
+  before_action :authenticate_user!
   before_action :set_eadmin_task, only: [:show, :edit, :update, :destroy]
 
 
   # GET /eadmin_tasks
   # GET /eadmin_tasks.json
   def index
+    @categories = Category.where(:team => current_user.user_info)
+    @categories_all = Category.where(:team => "All")
 
 
-    @paperwork_link = 'Paperwork<span class="badge">'+current_user.eadmin_tasks.where(:category => "Paperwork").where(:completed => [nil, 0]).count.to_s+'</span>'
-    @eat_link = 'Equipment &amp; Tools<span class="badge">'+current_user.eadmin_tasks.where(:category => "Equipment & Tools").where(:completed => [nil, 0]).count.to_s+'</span>'
-    @mtc_link = 'Meet the Company<span class="badge">'+current_user.eadmin_tasks.where(:category => "Meet the Company").where(:completed => [nil, 0]).count.to_s+'</span>'
-    @getgoing_link = 'Get Going<span class="badge">'+current_user.eadmin_tasks.where(:category => "Get Going").where(:completed => [nil, 0]).count.to_s+'</span>'
-
-    # @users = User.all
-    #@eadmin_tasks = current_user.eadmin_tasks
     if params[:category]
-      @eadmin_tasks = current_user.eadmin_tasks.where(:category => params[:category])
+      ap "Option 1"
+      @eadmin_tasks = EadminTask.where(:category => params[:category])
+
     else
-      @eadmin_tasks = current_user.eadmin_tasks.where(:category => "Paperwork")
+      ap "Option 2"
+      redirect_to :controller => 'eadmin_tasks', :action => 'index', :category => Category.where(:team => "All").first.name
+
     end
+
+
+    #å
+    # @paperwork_link = 'Paperwork<span class="badge">'+current_user.eadmin_tasks.where(:category => "Paperwork").where(:completed => [nil, 0]).count.to_s+'</span>'
+    # @eat_link = 'Equipment &amp; Tools<span class="badge">'+current_user.eadmin_tasks.where(:category => "Equipment & Tools").where(:completed => [nil, 0]).count.to_s+'</span>'
+    # @mtc_link = 'Meet the Company<span class="badge">'+current_user.eadmin_tasks.where(:category => "Meet the Company").where(:completed => [nil, 0]).count.to_s+'</span>'
+    # @getgoing_link = 'Get Going<span class="badge">'+current_user.eadmin_tasks.where(:category => "Get Going").where(:completed => [nil, 0]).count.to_s+'</span>'
+    #
+    # # @users = User.all
+    # #@eadmin_tasks = current_user.eadmin_tasks
+    # if params[:category]
+    #   @eadmin_tasks = current_user.eadmin_tasks.where(:category => params[:category])
+    # else
+    #   @eadmin_tasks = current_user.eadmin_tasks.where(:category => "Paperwork")
+    # end
 
 
   end
@@ -50,13 +63,14 @@ class EadminTasksController < ApplicationController
   def complete
      @eadmin_task = EadminTask.find(params[:id])
      @eadmin_task.update_attribute(:completed, 1)
-     redirect_to eadmin_tasks_path, notice: "Task Completed"
+
+     redirect_to eadmin_tasks_path(:category =>  @eadmin_task.category), notice: "Task Completed"
   end
 
   def not_complete
      @eadmin_task = EadminTask.find(params[:id])
      @eadmin_task.update_attribute(:completed, 0)
-     redirect_to eadmin_tasks_path, notice: "Task Not Completed"
+     redirect_to eadmin_tasks_path(:category =>  @eadmin_task.category), notice: "Task Not Completed"
   end
 
   # POST /eadmin_tasks

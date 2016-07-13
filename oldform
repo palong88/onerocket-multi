@@ -1,0 +1,87 @@
+				<form id="booking-form" class="booking-form" name="form1" method="post" action="">
+					<div class="form-notify"></div>
+					<div class="h1">
+						 Book Online
+					</div>
+					<div id="form-message" class="message hide">
+						 <h2> Booking Confirmed.</h2> <br> Check your Email for booking confirmation.
+					</div>
+					<div id="form-content">
+						<div class="group">
+							<label for="name">Name</label>
+							<div>
+								<input id="name" name="name" class="form-control" type="text" placeholder="Name">
+							</div>
+						</div>
+						<div class="group">
+							<label for="phone">Phone</label>
+							<div>
+								<input id="phone" name="phone" class="form-control" type="text" placeholder="(555)555 5555">
+							</div>
+						</div>
+						<div class="group">
+							<label for="email">Email</label>
+							<div>
+								<input id="email" name="email" class="form-control" type="text" placeholder="example@example.com">
+							</div>
+						</div>
+
+						<div class="group">
+							<label for="date">Date</label>
+							<div class="addon-right">
+								<input id="date" name="date" class="form-control" type="text" placeholder="DD/MM/YY">
+								<i class="fa fa-calendar"></i>
+							</div>
+						</div>
+						<div class="group">
+							<label for="time">Time</label>
+							<div class="addon-right">
+                <input id="time" name="time" type="text" class="form-control"  />
+								<i class="fa fa-clock-o"></i>
+							</div>
+						</div>
+						<div class="group">
+							<label for="collection">Collected at Location:</label>
+							<div>
+								<input id="collection" name="collection" class="form-control" type="text" placeholder="Location">
+							</div>
+						</div>
+						<div class="group">
+							<label for="drop">Destination / Tour:</label>
+						      <div>
+								<input id="drop" name="drop" class="form-control" type="text" placeholder="Destination / Tour">
+							</div>
+						</div>
+						<div class="group">
+							<label for="adults">Number of People</label>
+							<div>
+								<select id="adults" name="adults" class="form-control">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10+">10+</option>
+								</select>
+							</div>
+						</div>
+
+
+
+
+
+						<div class="group submit">
+							<label class="empty"></label>
+							<div>
+								<input id="submit" name="submit" type="submit" class="btn btn-primary" value="Book Now"/>
+							</div>
+						</div>
+					</div>
+					<div id="form-loading" class="hide">
+						<i class="fa fa-circle-o-notch fa-spin"></i>
+					</div>
+				</form>
