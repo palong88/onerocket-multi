@@ -15,7 +15,7 @@
       <% @categories_all.each do |category| %>
 
           <%= link_to category.name, params.merge(:category => category.name), class: "collection-item"%>
-      
+
       <% end %>
       <% @categories.each do |category| %>
         <%= link_to category.name, params.merge(:category => category.name), class: "collection-item"%>
@@ -28,11 +28,10 @@
   <!-- Content -->
   <div class="col s12 m7 l8">
     <div class="row top">
-      <% if params[:category] %>
+
         <h4 style="display: inline"><%=params[:category]%> Tasks</h4>
-      <% else %>
-        <h4 style="display: inline">Paperwork Tasks</h4>
-      <% end %>
+
+
     </div>
 
 
@@ -75,7 +74,7 @@
             <!-- Runs a completed? method in the eadmin_task model to check the tasks complete status against a 1 or 0 -->
             <% unless eadmin_task.completed? %>
               <!-- Link to Mark Complete and Done: calls a patch method to the eadmin_tasks controller -->
-              <%= link_to 'mark as complete', complete_eadmin_task_path(eadmin_task), class: "blue-text", method: :patch %>
+              <%= link_to 'mark as complete', complete_eadmin_task_path(eadmin_task, params[:category]), class: "blue-text", method: :patch %>
             <% else %>
               <%= link_to 'mark as uncompleted', not_complete_eadmin_task_path(eadmin_task), class: "blue-text", method: :patch %>
             <% end %>
