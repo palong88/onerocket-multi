@@ -8,23 +8,21 @@ class EadminTasksController < ApplicationController
   # GET /eadmin_tasks
   # GET /eadmin_tasks.json
   def index
+    @categories = Category.where(:team => current_user.user_info)
+    @categories_all = Category.where(:team => "All")
 
-    @teams = Team.all
 
-    if params[:team]
-      @categories = Category.where(:team => params[:team])
-      @admin_tasks = AdminTask.where(:team => current_user.team) && AdminTask.where(:category => params[:category])
+    if params[:category]
+      ap "Option 1"
+      @eadmin_tasks = EadminTask.where(:category => params[:category])
+
     else
-      #  redirect_to admin_task_path()
-       redirect_to :controller => 'admin_tasks', :action => 'index', :team => Category.first.team, :category => Category.first.name
-      # @categories = Category.where(:team => Category.first.team)
-      # @admin_tasks = AdminTask.where(:team => Category.first.team)
+      ap "Option 2"
+      @eadmin_tasks = EadminTask.where(:category => "All")
     end
 
 
-
-
-    #
+    #å
     # @paperwork_link = 'Paperwork<span class="badge">'+current_user.eadmin_tasks.where(:category => "Paperwork").where(:completed => [nil, 0]).count.to_s+'</span>'
     # @eat_link = 'Equipment &amp; Tools<span class="badge">'+current_user.eadmin_tasks.where(:category => "Equipment & Tools").where(:completed => [nil, 0]).count.to_s+'</span>'
     # @mtc_link = 'Meet the Company<span class="badge">'+current_user.eadmin_tasks.where(:category => "Meet the Company").where(:completed => [nil, 0]).count.to_s+'</span>'

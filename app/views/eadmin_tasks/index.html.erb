@@ -12,10 +12,14 @@
     </div>
 
     <div class="collection">
+      <% @categories_all.each do |category| %>
+
+          <%= link_to category.name, params.merge(:category => category.name), class: "collection-item"%>
+      
+      <% end %>
       <% @categories.each do |category| %>
         <%= link_to category.name, params.merge(:category => category.name), class: "collection-item"%>
       <% end %>
-      <%= link_to 'Add Category<i class="material-icons vertical-align-middle padding-bottom-3">add</i>'.html_safe, new_category_path(:team => params[:team]), class: "collection-item"%>
     </div>
 
   </div>
