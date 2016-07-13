@@ -154,31 +154,35 @@ class User < ActiveRecord::Base
       #copies admin task list to new eadmin task list for new inited employees
       id = self.id
       team = self.user_info
-      AdminTask.where(:team => 'All').each do |default_b|
+
+      ap 'ALL'
+      ap team
+      # ap AdminTask.where(team: team, "All")
+
+      AdminTask.where(:team => team).each do |task|
         eadmin_tasks.create(
-        title: default_b.title,
-        description: default_b.description,
-        media: default_b.media,
-        due_date: default_b.due_date,
-        when_due: default_b.when,
-        category: default_b.category,
-        document: default_b.document,
+        title: task.title,
+        description: task.description,
+        media: task.media,
+        due_date: task.due_date,
+        when_due: task.when,
+        category: task.category,
+        document: task.document,
         user_id: id,
         completed: 0)
-
       end
-      AdminTask.where(:team => team).each do |default_b|
+
+      AdminTask.where(:team => "All").each do |task|
         eadmin_tasks.create(
-        title: default_b.title,
-        description: default_b.description,
-        media: default_b.media,
-        due_date: default_b.due_date,
-        when_due: default_b.when,
-        category: default_b.category,
-        document: default_b.document,
+        title: task.title,
+        description: task.description,
+        media: task.media,
+        due_date: task.due_date,
+        when_due: task.when,
+        category: task.category,
+        document: task.document,
         user_id: id,
         completed: 0)
-
       end
     else
       add_role :admin

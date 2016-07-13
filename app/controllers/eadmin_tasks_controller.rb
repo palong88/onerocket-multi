@@ -1,30 +1,28 @@
 
 class EadminTasksController < ApplicationController
-
-
+  before_action :authenticate_user!
   before_action :set_eadmin_task, only: [:show, :edit, :update, :destroy]
 
 
   # GET /eadmin_tasks
   # GET /eadmin_tasks.json
   def index
+    @categories = Category.where(:team => current_user.user_info)
+    @categories_all = Category.where(:team => "All")
 
-    @teams = Team.all
 
-    if params[:team]
-      @categories = Category.where(:team => params[:team])
-      @admin_tasks = AdminTask.where(:team => current_user.team) && AdminTask.where(:category => params[:category])
+    if params[:category]
+      ap "Option 1"
+      @eadmin_tasks = EadminTask.where(:category => params[:category])
+
     else
-      #  redirect_to admin_task_path()
-       redirect_to :controller => 'admin_tasks', :action => 'index', :team => Category.first.team, :category => Category.first.name
-      # @categories = Category.where(:team => Category.first.team)
-      # @admin_tasks = AdminTask.where(:team => Category.first.team)
+      ap "Option 2"
+      redirect_to :controller => 'eadmin_tasks', :action => 'index', :category => Category.where(:team => "All").first.name
+
     end
 
 
-
-
-    #
+    #å
     # @paperwork_link = 'Paperwork<span class="badge">'+current_user.eadmin_tasks.where(:category => "Paperwork").where(:completed => [nil, 0]).count.to_s+'</span>'
     # @eat_link = 'Equipment &amp; Tools<span class="badge">'+current_user.eadmin_tasks.where(:category => "Equipment & Tools").where(:completed => [nil, 0]).count.to_s+'</span>'
     # @mtc_link = 'Meet the Company<span class="badge">'+current_user.eadmin_tasks.where(:category => "Meet the Company").where(:completed => [nil, 0]).count.to_s+'</span>'
@@ -65,13 +63,14 @@ class EadminTasksController < ApplicationController
   def complete
      @eadmin_task = EadminTask.find(params[:id])
      @eadmin_task.update_attribute(:completed, 1)
-     redirect_to eadmin_tasks_path, notice: "Task Completed"
+
+     redirect_to eadmin_tasks_path(:category =>  @eadmin_task.category), notice: "Task Completed"
   end
 
   def not_complete
      @eadmin_task = EadminTask.find(params[:id])
      @eadmin_task.update_attribute(:completed, 0)
-     redirect_to eadmin_tasks_path, notice: "Task Not Completed"
+     redirect_to eadmin_tasks_path(:category =>  @eadmin_task.category), notice: "Task Not Completed"
   end
 
   # POST /eadmin_tasks

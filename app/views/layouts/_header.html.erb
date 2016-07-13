@@ -7,12 +7,9 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li class="<%= 'active' if current_page?(admin_path) %>"  ><%= link_to "Onboarding Process", admin_path %></li>
         <!-- <li class="<%= 'active' if current_page?(users_path) %>"  ><%= link_to "Our People", users_path %></li> -->
-
-        <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%= teams_path ? "Our People" : "Our Teams" %><i class="material-icons right">arrow_drop_down</i></a></li>
-        <ul id="dropdown1" class="dropdown-content">
           <li class="<%= 'active' if current_page?(users_path) %>"  ><%= link_to "Our People", users_path %></li>
           <li class="<%= 'active' if current_page?(teams_path) %>"  ><%= link_to "Teams", teams_path %></li>
-        </ul>
+
         <li class="<%= 'active' if current_page?(edit_user_registration_path) %>"  ><%= link_to "Account Settings", edit_user_registration_path %></li>
         <li class="<%= 'active' if current_page?(destroy_user_session_path) %>"   ><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
       </ul>
