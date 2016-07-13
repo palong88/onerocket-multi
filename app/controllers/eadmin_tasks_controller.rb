@@ -1,7 +1,6 @@
 
 class EadminTasksController < ApplicationController
-
-
+  before_action :authenticate_user!
   before_action :set_eadmin_task, only: [:show, :edit, :update, :destroy]
 
 
@@ -18,7 +17,8 @@ class EadminTasksController < ApplicationController
 
     else
       ap "Option 2"
-      @eadmin_tasks = EadminTask.where(:category => "All")
+      redirect_to :controller => 'eadmin_tasks', :action => 'index', :category => Category.where(:team => "All").first.name
+
     end
 
 
@@ -63,13 +63,14 @@ class EadminTasksController < ApplicationController
   def complete
      @eadmin_task = EadminTask.find(params[:id])
      @eadmin_task.update_attribute(:completed, 1)
-     redirect_to eadmin_tasks_path, notice: "Task Completed"
+
+     redirect_to eadmin_tasks_path(:category =>  @eadmin_task.category), notice: "Task Completed"
   end
 
   def not_complete
      @eadmin_task = EadminTask.find(params[:id])
      @eadmin_task.update_attribute(:completed, 0)
-     redirect_to eadmin_tasks_path, notice: "Task Not Completed"
+     redirect_to eadmin_tasks_path(:category =>  @eadmin_task.category), notice: "Task Not Completed"
   end
 
   # POST /eadmin_tasks
