@@ -1,14 +1,16 @@
 <!-- Team  Tools -->
-<ul class="pagination">
-  <span font-size:"32px">Teams:</span>
+<div class="row right-align" style="margin-top: 1%; margin-bottom:-1%">
+  <span class="valign">Teams:</span>
   <!-- <li class="waves-effect <%= 'active' if params[:team] == nil %> ">  <%= link_to "All", admin_tasks_path %></li> -->
   <% @teams.each do |team| %>
+    <div class="chip">
 
-
-    <li class="waves-effect ">  <%= link_to team.name, admin_tasks_path(:team => team.name) %> </li>
+      <%= link_to team.name, admin_tasks_path(:team => team.name), style: "color: rgba(0,0,0,0.6)" %>
+    </div>
   <% end %>
   <!-- <li class="waves-effect"><a href="#!">New Team<i class="tiny material-icons">add</i></a></li> -->
-</ul>
+</div>
+
 
 
 
@@ -51,7 +53,7 @@
       <% @categories.each do |category| %>
         <%= link_to category.name, params.merge(:category => category.name), class: "collection-item"%>
       <% end %>
-      <%= link_to 'Add Category<i class="material-icons vertical-align-middle padding-bottom-3">add</i>'.html_safe, new_category_path(:team => params[:team]), class: "collection-item"%>
+      <%= link_to '+ <strong>Add Category</strong>'.html_safe, new_category_path(:team => params[:team]), class: "collection-item"%>
     </div>
 
   </div>
