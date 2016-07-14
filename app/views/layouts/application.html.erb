@@ -40,22 +40,6 @@
 </head>
 
 <body>
-
-  <script type="text/javascript">
-    $( document ).ready(function(){
-      $(".dropdown-button").dropdown();
-      $(".button-collapse").sideNav();
-      $('select').material_select();
-    })
-  </script>
-  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-  <script>
-
-    Stripe.setPublishableKey('pk_test_vDSiuOkeTaV8mLnuOgqAQyWd');
-
-  </script>
-
-
   <header>
     <% if user_signed_in? %>
       <%= render 'layouts/header' %>
@@ -80,8 +64,6 @@
     </div>
   </main>
 
-</body>
-
 <!-- Modal -->
 <footer class="page-footer">
   <div class="footer-copyright">
@@ -92,5 +74,21 @@
 </footer>
 
 <!-- All the javascripts -->
+<script type="text/javascript">
+  $( document ).ready(function(){
+    $(".dropdown-button").dropdown();
+    $(".button-collapse").sideNav();
+    $('.collapsible').collapsible();
+    $('select').material_select();
+  })
+</script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script>
+
+  Stripe.setPublishableKey('pk_test_vDSiuOkeTaV8mLnuOgqAQyWd');
+
+</script>
+
+</body>
 
 </html>
