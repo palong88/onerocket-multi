@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   rolify
   has_many :admin_tasks
   has_many :eadmin_tasks
+  has_many :attendances
+  has_many :events, through: :attendances
 
   belongs_to :team
   # belongs_to :categories
