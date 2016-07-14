@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :events
   resources :categories
   resources :categories
   resources :categories
