@@ -109,7 +109,7 @@
           </div>
           <div class="card-action">
             <% if params[:category] %>
-              <%= link_to 'edit', edit_admin_task_path(admin_task, :category => params[:category]), class: "blue-text" %>
+              <%= link_to 'edit', edit_admin_task_path(admin_task, :category => params[:category], :team => params[:team]), class: "blue-text" %>
             <% else %>
               <%= link_to 'edit', edit_admin_task_path(admin_task, :category => "Paperwork"), class: "blue-text" %>
             <% end %>
@@ -145,7 +145,7 @@
           </div>
           <div class="card-action">
             <% if params[:category] %>
-              <%= link_to 'edit', edit_admin_task_path(admin_task, :category => params[:category]), class: "blue-text" %>
+              <%= link_to 'edit', edit_admin_task_path(admin_task, :category => params[:category], :team => params[:team]), class: "blue-text" %>
             <% else %>
               <%= link_to 'edit', edit_admin_task_path(admin_task, :category => "Paperwork"), class: "blue-text" %>
             <% end %>
