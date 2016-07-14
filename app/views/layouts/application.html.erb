@@ -3,7 +3,7 @@
 <head>
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
 
 
 
@@ -40,22 +40,6 @@
 </head>
 
 <body>
-
-  <script type="text/javascript">
-    $( document ).ready(function(){
-      $(".dropdown-button").dropdown();
-      $(".button-collapse").sideNav();
-      $('select').material_select();
-    })
-  </script>
-  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-  <script>
-
-    Stripe.setPublishableKey('pk_test_vDSiuOkeTaV8mLnuOgqAQyWd');
-
-  </script>
-
-
   <header>
     <% if user_signed_in? %>
       <%= render 'layouts/header' %>
@@ -74,13 +58,10 @@
 
   <main>
     <div class="container">
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 
     <%= yield %>
     </div>
   </main>
-
-</body>
 
 <!-- Modal -->
 <footer class="page-footer">
@@ -92,5 +73,22 @@
 </footer>
 
 <!-- All the javascripts -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".dropdown-button").dropdown();
+    $(".button-collapse").sideNav();
+    $('.collapsible').collapsible();
+    $('select').material_select();
+    $('ul.tabs').tabs();
+  })
+</script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script>
+
+  Stripe.setPublishableKey('pk_test_vDSiuOkeTaV8mLnuOgqAQyWd');
+
+</script>
+
+</body>
 
 </html>
