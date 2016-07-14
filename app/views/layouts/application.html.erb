@@ -58,7 +58,6 @@
 
   <main>
     <div class="container">
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 
     <%= yield %>
     </div>
@@ -80,6 +79,7 @@
     $(".button-collapse").sideNav();
     $('.collapsible').collapsible();
     $('select').material_select();
+    $('ul.tabs').tabs();
     console.log( "ready!" );
   })
 </script>
