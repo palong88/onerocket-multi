@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709135103) do
+ActiveRecord::Schema.define(version: 20160714194203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(version: 20160709135103) do
     t.string   "team"
   end
 
+  create_table "attendances", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.string   "rsvp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "attendances", ["event_id"], name: "index_attendances_on_event_id", using: :btree
+  add_index "attendances", ["user_id"], name: "index_attendances_on_user_id", using: :btree
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -66,6 +77,19 @@ ActiveRecord::Schema.define(version: 20160709135103) do
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
   end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.string   "organizer"
+    t.string   "organizer_email"
+    t.string   "location"
+    t.date     "event_date"
+    t.integer  "team_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "events", ["team_id"], name: "index_events_on_team_id", using: :btree
 
   create_table "plans", force: :cascade do |t|
     t.string   "stripe_id"
@@ -165,4 +189,7 @@ ActiveRecord::Schema.define(version: 20160709135103) do
   add_index "views", ["email"], name: "index_views_on_email", unique: true, using: :btree
   add_index "views", ["reset_password_token"], name: "index_views_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "attendances", "events"
+  add_foreign_key "attendances", "users"
+  add_foreign_key "events", "teams"
 end
