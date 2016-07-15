@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20160714194203) do
   end
 
   add_index "attendances", ["event_id"], name: "index_attendances_on_event_id", using: :btree
+  add_index "attendances", ["user_id", "event_id"], name: "index_attendances_on_user_id_and_event_id", using: :btree
   add_index "attendances", ["user_id"], name: "index_attendances_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
