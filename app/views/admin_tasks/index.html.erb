@@ -94,7 +94,7 @@
 
 
     <% unless @admin_tasks.where(:when => "Before").empty? %>
-      <h5>Before they start...</h5>
+      <h5 class="top">Before they start...</h5>
     <% end %>
 
     <% @admin_tasks.order( 'admin_tasks.due_date DESC' ).each do |admin_task| %>
@@ -130,7 +130,7 @@
 
 
     <% unless @admin_tasks.where(:when => "After").empty? %>
-      <h5>After they start...</h5>
+      <h5 class="top">After they start...</h5>
     <% end %>
 
     <% @admin_tasks.order( 'admin_tasks.due_date DESC' ).each do |admin_task| %>

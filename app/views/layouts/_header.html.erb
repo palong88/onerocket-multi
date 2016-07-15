@@ -14,14 +14,14 @@
                   <li class="<%= 'active' if current_page?(teams_path) %>"  ><%= link_to "Teams", teams_path %></li>
                   <li class="<%= 'active' if current_page?(admin_path) %>"  ><%= link_to "Tasks for Everybody", admin_path %></li>
                   <% @teams.each do |t| %>
-                  <li class=><%= link_to "#{t.name} Tasks", admin_path(:team => t.name) %></li>
+                  <li><%= link_to "#{t.name} Tasks", admin_path(:team => t.name) %></li>
                   <% end %>
                 </ul>
               </div>
             </li>
           </ul>
         </li>
-        <li class"waves-effect"><a href="#!">Events</a></li>
+        <li class="<%= 'active' if current_page?(events_path) %>"><%= link_to "Events", events_path %></li>
         <%# MOBILE ONLY %>
         <div class="hide-on-large-only">
           <li class="<%= 'active' if current_page?(users_path) %>"  ><%= link_to "Our People", users_path %></li>

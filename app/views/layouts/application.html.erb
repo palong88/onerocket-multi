@@ -24,7 +24,7 @@
     html {
       font-family: "Open Sans", "Roboto", sans-serif;
     }
-    h5, .top {
+    .top {
       margin-top: 10%;
       margin-bottom: 5%;
     }
@@ -80,6 +80,10 @@
     $('.collapsible').collapsible();
     $('select').material_select();
     $('ul.tabs').tabs();
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
   })
 </script>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>

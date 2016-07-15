@@ -85,7 +85,7 @@
 
 
     <% unless @eadmin_tasks.where(:when_due => "Before").where(:completed => 0).empty? %>
-      <h5>Before they start...</h5>
+      <h5 class="top">Before they start...</h5>
     <% end %>
 
     <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
@@ -120,7 +120,7 @@
 
 
     <% unless @eadmin_tasks.where(:when_due => "After").where(:completed => 0).empty? %>
-      <h5>After they start...</h5>
+      <h5 class="top">After they start...</h5>
     <% end %>
 
     <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
@@ -156,7 +156,7 @@
 
 
     <% unless @eadmin_tasks.where(:completed => 1).empty? %>
-      <h5>Recently Completed</h5>
+      <h5 class="top">Recently Completed</h5>
     <% end %>
 
     <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>

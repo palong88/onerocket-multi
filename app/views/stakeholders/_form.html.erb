@@ -1,7 +1,7 @@
 <%= form_for(@stakeholder) do |f| %>
   <% if @stakeholder.errors.any? %>
     <div id="error_explanation">
-      <h5><%= pluralize(@stakeholder.errors.count, "error") %> prohibited this stakeholder from being saved:</h5>
+      <h5 class="top"><%= pluralize(@stakeholder.errors.count, "error") %> prohibited this stakeholder from being saved:</h5>
 
       <ul>
       <% @stakeholder.errors.full_messages.each do |message| %>
