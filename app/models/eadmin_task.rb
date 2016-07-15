@@ -7,7 +7,7 @@ class EadminTask < ActiveRecord::Base
 	belongs_to :admin_tasks
 	# belongs_to :category
 	# belongs_to :employee
-	belongs_to :user
+	belongs_to :users
 
 	has_attached_file :document
 	validates_attachment :document, content_type: { content_type: "application/pdf" }
