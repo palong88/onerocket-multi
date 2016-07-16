@@ -69,7 +69,8 @@
           <p><%= link_to "Open document", document.file.url(:original, false), :target => "_blank" %><br>
 
           </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">delete</i></a>
+
+          <%= link_to '<i class="material-icons">delete</i>'.html_safe, document_path(document),method: :delete,  class: "secondary-content", data: { confirm: 'Are you sure you want to delete this document?' } %>
         </li>
       <%end%>
     </ul>
