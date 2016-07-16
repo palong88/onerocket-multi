@@ -42,10 +42,10 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to document_path, notice: 'Document was successfully updated.' }
+        format.html { redirect_to documents_url(:team_id => @document.team_id), notice: 'Document was successfully updated.' }
         format.json { render :show, status: :ok, location: @document }
       else
-        format.html { render :edit }
+        format.html { redirect_to edit_document_path(:team_id => @document.team_id), notice: 'Document was not updated.'  }
         format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
