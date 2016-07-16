@@ -39,18 +39,22 @@
   <!-- End Sidebar -->
 
   <!-- Content -->
-  <div class="col s12 m8 l6">
+  <div class="col s12 m8 l8">
     <div class="row top">
-
-
-
-        <%= link_to '<i class="material-icons left">add</i>Add a new document</a>'.html_safe, new_document_path( :team_id => 1), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right"  %>
-
+      <h4 style="display: inline">Information Centre</h4>
+      <%= link_to '<i class="material-icons left">add</i>Add a document</a>'.html_safe, new_document_path( :team_id => 1), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right"  %>
     </div>
+
+    <div class="row">
+     <ul class="tabs">
+       <li class="tab"><a  href="/#">Tasks</a></li>
+       <li class="tab"><a class="active" > Helpful Documents</a></li>
+     </ul>
+   </div>
 
     <% if @documents.empty? %>
     <div class="row centered">
-      <div class="col s12 m6">
+      <div class="col s12 m8">
         <div class="card-panel teal">
           <span class="white-text">
             <i class="em em-sweat_smile"></i>  Add a new document for your new employees.
@@ -59,21 +63,19 @@
       </div>
     </div>
     <% end %>
+    <!-- Start of collection for displaying documents for ADMINS -->
     <ul class="collection">
       <% @documents.each do |document| %>
         <li class="collection-item avatar">
-
           <%= image_tag Document::FileIcon[document.file(:thumb).match(/\.(\w+)\?\d*$/)[1].try(:to_sym)], :width => "50", :class => "circle" if document.file %>
-            <!-- <img src="images/yuna.jpg" alt="" class="square"> -->
-          <span class="title"><%= document.title %></span>
-          <p><%= link_to "Open document", document.file.url(:original, false), :target => "_blank" %><br>
-
-          </p>
-
-          <%= link_to '<i class="material-icons">delete</i>'.html_safe, document_path(document),method: :delete,  class: "secondary-content", data: { confirm: 'Are you sure you want to delete this document?' } %>
+          <span class="title"><%= link_to document.title, document.file.url(:original, false), :target => "_blank" %></span>
+          <p><%= document.updated_at.strftime("%e, %B, %Y %l:%M %P") %><br></p>
+          <%= link_to '<i class="material-icons">edit</i>'.html_safe, edit_document_path(document, :team_id => 1),  class: "secondary-content blue-text", style: "margin-right:50px" %>
+          <%= link_to '<i class="material-icons">delete</i>'.html_safe, document_path(document),method: :delete,  class: "secondary-content blue-text", data: { confirm: 'Are you sure you want to delete this document?' } %>
         </li>
       <%end%>
     </ul>
+      <!-- END of collection for displaying documents -->
   </div>
   <!-- End content -->
 </div>
