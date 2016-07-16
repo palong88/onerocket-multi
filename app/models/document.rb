@@ -6,6 +6,10 @@ class Document < ActiveRecord::Base
     :thumb => ["200x200>", :pdf],
     :medium => ["500x500>", :png]}
 
+    validates :title, :presence => true
+    validates :file, :presence => true
+    validates :team_id, :presence => true
+
 
     FileIcon = {
 

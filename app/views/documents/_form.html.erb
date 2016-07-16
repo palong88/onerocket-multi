@@ -1,31 +1,68 @@
-<%= form_for @document, html: { multipart: true } do |f| %>
-  <% if @document.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@document.errors.count, "error") %> prohibited this document from being saved:</h2>
 
+
+
+
+<!--  FORM ELELEMNTS for Creating New Tasks and Updating Existing Tasks -->
+<div class="row">
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+  <!-- form -->
+  <div class="col s12 m12 l8">
+
+    <%= form_for @document,  html: { multipart: true } do |f| %>
+    <% if @document.errors.any? %>
+    <div id="error_explanation">
+      <h4>Please fill out the following feilds:</h4>
       <ul>
-      <% @document.errors.full_messages.each do |message| %>
+        <% @document.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
+        <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :team_id %><br>
-    <%= f.text_field :team_id %>
-  </div>
-  <div class="input-field">
-      <label for="document_document">Document</label>
-  <br><br>
+    <div class="form-panel">
+      <div class="field">
+        <%= f.hidden_field :team_id, value: params[:team_id]%>
+      </div>
+      <!-- name -->
+      <!-- things to help with task -->
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_area :title, class: "materialize-textarea" %>
+          <%= f.label :title, "Whats the name of the document?" %>
+        </div>
+      </div>
 
-       <%= f.file_field :file %>
- </div><br><br>
-  <div class="actions">
-    <%= f.submit %>
+
+      <div class="input-field">
+          <label for="document_document">Document</label>
+      <br><br>
+
+           <%= f.file_field :file %>
+     </div>
+
+<!--
+     <div class="field">
+       <%= f.label :team, "For which team?"%>
+       <%= f.collection_select :team, Team.order(:name),:name,:name, { include_blank: "Select a Team", disabled: 'false'}, { required: true}%>
+       <p style="font-size: 0.8rem;"> <%= link_to 'OR create a new team', new_team_path %></p> <br>
+     </div> -->
+
+
+
+      <!-- buttons to save -->
+      <div class="row">
+        <div class="actions col s12 centered">
+          <%= link_to 'Cancel', :back, class: "btn btn-large" %>
+          <input type="submit" value="Submit!" class="btn btn-large" >
+        </div>
+      </div>
+
+
+    </div>
+    <% end %>
   </div>
-<% end %>
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+</div>

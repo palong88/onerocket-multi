@@ -25,13 +25,14 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     @document = Document.new(document_params)
+    ap @document.team_id
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
+        format.html { redirect_to document_path, notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
-        format.html { render :new }
+        format.html { redirect_to new_document_path(:team_id => @document.team_id), notice: 'Document not created.' }
         format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
@@ -42,7 +43,7 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
+        format.html { redirect_to document_path, notice: 'Document was successfully updated.' }
         format.json { render :show, status: :ok, location: @document }
       else
         format.html { render :edit }
