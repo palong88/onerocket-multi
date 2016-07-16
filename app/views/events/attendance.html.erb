@@ -1,0 +1,61 @@
+<!-- Header -->
+<div class="row">
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+  <!-- form -->
+  <div class="col s12 m12 l8">
+    <div class="row top">
+      <h4 class="center-align">Attendees for <%= @current_event.name %></h4>
+    </div>
+  </div>
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+</div>
+
+<div class="row">
+    <div class="col s12 m4 l4">
+      <h5 class="center-align">Attending</h5>
+      <% if @attendance.includes(:attendances).where(attendances: {rsvp: "Going"}).references(:attendances).empty? %>
+        <p>Nobody is attending... (yet!)</p>
+      <% elsif %>
+        <% @attendance.includes(:attendances).where(attendances: {rsvp: "Going"}).references(:attendances).each do |a| %>
+        <div class="chip">
+          <%= a.name %> (<%= a.email %>)
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col s12 m4 l4">
+      <h5 class="center-align">Not Attending</h5>
+      <% if @attendance.includes(:attendances).where(attendances: {rsvp: "Not Going"}).references(:attendances).empty? %>
+        <p>So far so good! Nobody is saying no!</p>
+      <% elsif %>
+        <% @attendance.includes(:attendances).where(attendances: {rsvp: "Not Going"}).references(:attendances).each do |a| %>
+        <div class="chip">
+          <%= a.name %> (<%= a.email %>)
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col s12 m4 l4">
+      <h5 class="center-align">Invited</h5>
+      <% if @attendance.includes(:attendances).where(attendances: {rsvp: "Invited"}).references(:attendances).empty? %>
+        <p>Either everybody has RSVP'd, or you have some inviting to do!</p>
+      <% elsif %>
+        <% @attendance.includes(:attendances).where(attendances: {rsvp: "Invited"}).references(:attendances).each do |a| %>
+        <div class="chip">
+          <%= a.name %> (<%= a.email %>)
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+</div>
+
+<%# This is the glory section. Making this work separates boys from men. %>
+<div class="row">
+  <div class="col s12 m12 l2">&nbsp;</div>
+  <div class="col s12 m12 l8">
+    
+  </div>
+  <div class="col s12 m12 l2">&nbsp;</div>
+</div>

@@ -21,6 +21,13 @@ class EventsController < ApplicationController
   def edit
   end
 
+
+  def attendance
+    @current_event = Event.find(params[:event_id])
+    @attendance = User.includes(:events).where(events: {id: params[:event_id]})
+  end
+
+
   # POST /events
   # POST /events.json
   def create
@@ -42,7 +49,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
