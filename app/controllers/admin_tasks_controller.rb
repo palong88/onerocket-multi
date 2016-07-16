@@ -80,6 +80,8 @@ class AdminTasksController < ApplicationController
   # DELETE /admin_tasks/1.json
   def destroy
     ap @admin_task
+    @admin_task.document = nil
+    @admin_task.save
     @admin_task.destroy
     respond_to do |format|
       format.html { redirect_to :back, notice: 'Task was successfully deleted.' }
