@@ -5,6 +5,7 @@ class DocumentsController < ApplicationController
   # GET /documents.json
   def index
     @documents = Document.all
+
   end
 
   # GET /documents/1
@@ -25,11 +26,9 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     @document = Document.new(document_params)
-    ap @document.team_id
-
     respond_to do |format|
       if @document.save
-        format.html { redirect_to document_path, notice: 'Document was successfully created.' }
+        format.html { redirect_to documents_url(:team_id => @document.team_id), notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { redirect_to new_document_path(:team_id => @document.team_id), notice: 'Document not created.' }
@@ -59,7 +58,7 @@ class DocumentsController < ApplicationController
     @document.save
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
+      format.html { redirect_to documents_url(:team_id => @document.team_id), notice: 'Document was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
