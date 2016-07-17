@@ -3,8 +3,13 @@ Rails.application.routes.draw do
 
   resources :events
   resources :categories
+  resources :attendances
   get 'team/scaffold'
 
+  resources :events do
+    get :autocomplete_user_name, :on => :collection
+  end
+  
   resources :stakeholders
   resources :eadmin_tasks do
 		  member do

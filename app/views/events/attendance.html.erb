@@ -15,36 +15,36 @@
 <div class="row">
     <div class="col s12 m4 l4">
       <h5 class="center-align">Attending</h5>
-      <% if @attendance.includes(:attendances).where(attendances: {rsvp: "Going"}).references(:attendances).empty? %>
+      <% if @users.includes(:attendances).where(attendances: {rsvp: "Going"}).references(:attendances).empty? %>
         <p>Nobody is attending... (yet!)</p>
       <% elsif %>
-        <% @attendance.includes(:attendances).where(attendances: {rsvp: "Going"}).references(:attendances).each do |a| %>
+        <% @users.includes(:attendances).where(attendances: {rsvp: "Going"}).references(:attendances).each do |u| %>
         <div class="chip">
-          <%= a.name %> (<%= a.email %>)
+          <%= u.name %> (<%= u.email %>)
         </div>
         <% end %>
       <% end %>
     </div>
     <div class="col s12 m4 l4">
       <h5 class="center-align">Not Attending</h5>
-      <% if @attendance.includes(:attendances).where(attendances: {rsvp: "Not Going"}).references(:attendances).empty? %>
+      <% if @users.includes(:attendances).where(attendances: {rsvp: "Not Going"}).references(:attendances).empty? %>
         <p>So far so good! Nobody is saying no!</p>
       <% elsif %>
-        <% @attendance.includes(:attendances).where(attendances: {rsvp: "Not Going"}).references(:attendances).each do |a| %>
+        <% @users.includes(:attendances).where(attendances: {rsvp: "Not Going"}).references(:attendances).each do |u| %>
         <div class="chip">
-          <%= a.name %> (<%= a.email %>)
+          <%= u.name %> (<%= u.email %>)
         </div>
         <% end %>
       <% end %>
     </div>
     <div class="col s12 m4 l4">
       <h5 class="center-align">Invited</h5>
-      <% if @attendance.includes(:attendances).where(attendances: {rsvp: "Invited"}).references(:attendances).empty? %>
+      <% if @users.includes(:attendances).where(attendances: {rsvp: "Invited"}).references(:attendances).empty? %>
         <p>Either everybody has RSVP'd, or you have some inviting to do!</p>
       <% elsif %>
-        <% @attendance.includes(:attendances).where(attendances: {rsvp: "Invited"}).references(:attendances).each do |a| %>
+        <% @users.includes(:attendances).where(attendances: {rsvp: "Invited"}).references(:attendances).each do |u| %>
         <div class="chip">
-          <%= a.name %> (<%= a.email %>)
+          <%= u.name %> (<%= u.email %>)
         </div>
         <% end %>
       <% end %>
@@ -55,7 +55,15 @@
 <div class="row">
   <div class="col s12 m12 l2">&nbsp;</div>
   <div class="col s12 m12 l8">
-    
+    <h5 class="top centered">Invite people to <%= @current_event.name %></h5>
+    <% form_for(@attendance) do |f| %>
+      <div class="field centered">
+        <%= f.autocomplete_field :user, autocomplete_user_name_events_path %>
+      </div>
+      <div class="actions centered">
+        <%= f.submit 'Invite!' %>
+      </div>
+    <% end %>
   </div>
   <div class="col s12 m12 l2">&nbsp;</div>
 </div>

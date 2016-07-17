@@ -152,6 +152,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-jquery-autocomplete (1.0.3)
+      rails (>= 3.2)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -237,6 +239,7 @@ DEPENDENCIES
   pg (~> 0.15)
   puma
   rails (= 4.2.5.1)
+  rails-jquery-autocomplete
   rails_12factor
   rolify
   sass-rails (~> 5.0)
@@ -249,4 +252,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.12.3

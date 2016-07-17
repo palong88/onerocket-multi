@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  autocomplete :user, :name, :full => true#, :extra_data => [:start_date]#, :display_value => :name_plus_start
 
   # GET /events
   # GET /events.json
@@ -21,10 +22,11 @@ class EventsController < ApplicationController
   def edit
   end
 
-
+  # GET /events/1/attendance
   def attendance
-    @current_event = Event.find(params[:event_id])
-    @attendance = User.includes(:events).where(events: {id: params[:event_id]})
+    @current_event = Event.find(params[:id])
+    @users = User.includes(:events).where(events: {id: params[:id]})
+    @attendance = Attendance.new
   end
 
 

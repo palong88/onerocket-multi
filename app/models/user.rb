@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     false
   end
 
+  def name_plus_start
+    "#{self.name} (#{self.start_date.to_formatted_s(:short)})"
+  end
+
   #used for tasks... will eventually send out an email to the user.
   def send_reminder
     if has_role? :admin                                           # if user is admin

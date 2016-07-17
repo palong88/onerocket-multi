@@ -2,10 +2,10 @@ class Attendance < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
 
+  # Invite each employee id passed in an array to the event of choice
   def invite_employee(employees, event)
-    # add event for each employee id
     employees.each do |e|
-      Attendance.create(user_id: e.id, event_id: event, rsvp: "Invited")
+      Attendance.create(user_id: e, event_id: event, rsvp: "Invited")
     end
   end
 
