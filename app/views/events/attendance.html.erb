@@ -56,7 +56,7 @@
   <div class="col s12 m12 l2">&nbsp;</div>
   <div class="col s12 m12 l8">
     <h5 class="top centered">Invite people to <%= @current_event.name %></h5>
-    <% form_for(@attendance) do |f| %>
+    <%= form_for @attendance do |f| %>
       <div class="field centered">
         <%= f.autocomplete_field :user, autocomplete_user_name_events_path %>
       </div>
