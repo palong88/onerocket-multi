@@ -33,14 +33,16 @@
     </div>
 
 
+    <h5>Tasks for Everyone</h5>
     <div class="collection">
       <% @categories_all.each do |category| %>
-
-          <%= link_to category.name, params.merge(:category => category.name), class: "collection-item"%>
-
+          <%= link_to category.name, params.merge(:category => category.name, :team => "Everyone"), class: "collection-item"%>
       <% end %>
+    </div>
+    <h5>Team Tasks</h5>
+    <div class="collection">
       <% @categories.each do |category| %>
-        <%= link_to category.name, params.merge(:category => category.name), class: "collection-item"%>
+          <%= link_to category.name, params.merge(:category => category.name, :team => @user.user_info), class: "collection-item"%>
       <% end %>
     </div>
 
@@ -57,7 +59,7 @@
       <% end %>
 
       <% if params[:category] %>
-        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_eadmin_task_path(:user_id => params[:id], :category => params[:category]), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right"  %>
+        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_eadmin_task_path(:user_id => params[:id], :category => params[:category], :team => params[:team]), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right"  %>
       <% else %>
         <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_eadmin_task_path(:user_id => params[:id], :category => @categories_all.first.name ), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right" %>
       <% end %>
@@ -69,7 +71,7 @@
         <li class="tab"><a href="#test2">Helpful Documents</a></li>
       </ul>
     </div>
-    
+
     <% if @eadmin_tasks.empty? %>
     <div class="row centered">
       <div class="col s12 m6">

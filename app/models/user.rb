@@ -159,20 +159,9 @@ class User < ActiveRecord::Base
       ap team
       # ap AdminTask.where(team: team, "All")
 
-      AdminTask.where(:team => team).each do |task|
-        eadmin_tasks.create(
-        title: task.title,
-        description: task.description,
-        media: task.media,
-        due_date: task.due_date,
-        when_due: task.when,
-        category: task.category,
-        document: task.document,
-        user_id: id,
-        completed: 0)
-      end
 
-      AdminTask.where(:team => "All").each do |task|
+
+      AdminTask.where(:team => "Everyone").each do |task|
         eadmin_tasks.create(
         title: task.title,
         description: task.description,
@@ -181,6 +170,7 @@ class User < ActiveRecord::Base
         when_due: task.when,
         category: task.category,
         document: task.document,
+        team: "Everyone",
         user_id: id,
         completed: 0)
       end

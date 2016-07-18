@@ -10,14 +10,17 @@
         <p>Welcome to the company! We're so excited to have you. <i>One Rocket</i> makes sure you have everything you need to succeed.</p>
       </div>
     </div>
-
+    <h5>Tasks for Everyone</h5>
     <div class="collection">
       <% @categories_all.each do |category| %>
-
-          <%= link_to category.name, params.merge(:category => category.name), class: "collection-item"%> - ALL
-
+          <%= link_to category.name, params.merge(:category => category.name, :team => "Everyone"), class: "collection-item"%>
       <% end %>
-
+    </div>
+    <h5>Team Tasks</h5>
+    <div class="collection">
+      <% @categories.each do |category| %>
+          <%= link_to category.name, params.merge(:category => category.name, :team => current_user.user_info), class: "collection-item"%>
+      <% end %>
     </div>
 
   </div>
