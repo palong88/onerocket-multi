@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_mailer_host
+  before_filter :populate_teams
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
@@ -15,6 +16,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
   protected
+
+  def populate_teams
+    @teams = Team.all
+  end
 
   def authenticate_inviter!
     unless current_user.has_role? :admin

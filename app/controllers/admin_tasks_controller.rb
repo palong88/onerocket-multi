@@ -17,7 +17,7 @@ class AdminTasksController < ApplicationController
     else
       ap 'Option 2'
       #  redirect_to admin_task_path()
-       redirect_to :controller => 'admin_tasks', :action => 'index', :team => Team.first.name, :category => Category.first.name
+       redirect_to :controller => 'admin_tasks', :action => 'index', :team => "Everyone", :category => Category.first.name
       # @categories = Category.where(:team => Category.first.team)
       # @admin_tasks = AdminTask.where(:team => Category.first.team)
     end
@@ -80,6 +80,8 @@ class AdminTasksController < ApplicationController
   # DELETE /admin_tasks/1.json
   def destroy
     ap @admin_task
+    @admin_task.document = nil
+    @admin_task.save
     @admin_task.destroy
     respond_to do |format|
       format.html { redirect_to :back, notice: 'Task was successfully deleted.' }

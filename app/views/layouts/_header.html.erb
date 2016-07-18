@@ -1,25 +1,51 @@
 <nav>
   <div class="nav-wrapper">
+    <%# Side nav for Admin %>
+    <% if can? :delete, @post %>
+      <%# DESKTOP and MOBILE %>
+      <ul id="slide-out" class="side-nav">
+        <img  src="/assets/site-logo.png" class="center-align responsive-img" style="margin-top:3%" alt="logo"></a>
+        <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header">Teams</a>
+              <div class="collapsible-body">
+                <ul>
+
+                  <li class="<%= 'active' if current_page?(admin_path) %>"  ><%= link_to "Tasks for Everybody", admin_path %></li>
+                  <% @teams.where.not(name: 'Everyone').each do |t| %>
+                  <li class=><%= link_to "#{t.name} Tasks", admin_path(:team => t.name) %></li>
+                  <% end %>
+                  <li class="<%= 'active' if current_page?(teams_path) %>"  ><%= link_to "Manage Teams", teams_path %></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class"waves-effect"><a href="#!">Events</a></li>
+        <%# MOBILE ONLY %>
+        <div class="hide-on-large-only">
+          <li class="<%= 'active' if current_page?(users_path) %>"  ><%= link_to "Our People", users_path %></li>
+          <li class="<%= 'active' if current_page?(edit_user_registration_path) %>"  ><%= link_to "Account Settings", edit_user_registration_path %></li>
+          <li class="<%= 'active' if current_page?(destroy_user_session_path) %>"   ><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+        </div>
+      </ul>
+
+      <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+    <% end %>
+    <%# END SIDE NAV %>
     <div class="container">
       <% if can? :delete, @post %>
-      <%= link_to "One Rocket", root_path, class: "brand-logo" %>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li class="<%= 'active' if current_page?(admin_path) %>"  ><%= link_to "Onboarding Process", admin_path %></li>
-        <!-- <li class="<%= 'active' if current_page?(users_path) %>"  ><%= link_to "Our People", users_path %></li> -->
-          <li class="<%= 'active' if current_page?(users_path) %>"  ><%= link_to "Our People", users_path %></li>
-          <li class="<%= 'active' if current_page?(teams_path) %>"  ><%= link_to "Teams", teams_path %></li>
-
-        <li class="<%= 'active' if current_page?(edit_user_registration_path) %>"  ><%= link_to "Account Settings", edit_user_registration_path %></li>
-        <li class="<%= 'active' if current_page?(destroy_user_session_path) %>"   ><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-        <li class="<%= 'active' if current_page?(admin_path) %>"  ><%= link_to "Onboarding Process", admin_path %></li>
+      <%# START ADMIN DESKTOP NAVBAR LINKS %>
+      <%= link_to "One<strong>Rocket</strong>".html_safe, root_path, class: "brand-logo" %>
+      <ul class="right hide-on-med-and-down">
         <li class="<%= 'active' if current_page?(users_path) %>"  ><%= link_to "Our People", users_path %></li>
         <li class="<%= 'active' if current_page?(edit_user_registration_path) %>"  ><%= link_to "Account Settings", edit_user_registration_path %></li>
         <li class="<%= 'active' if current_page?(destroy_user_session_path) %>"   ><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
       </ul>
+      <%# END ADMIN DESKTOP NAVBAR LINKS %>
       <% else %>
+      <%# START USER NAVIGATION %>
       <%= link_to "One Rocket", eadmin_tasks_path, class: "brand-logo" %>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -30,6 +56,7 @@
         <li class="<%= 'active' if current_page?(root_path) %>" ><%= link_to "My Onboarding Steps ", eadmin_tasks_path %></li>
         <li class="<%= 'active' if current_page?(destroy_user_session_path) %>"   ><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
       </ul>
+      <%# END USER NAVIGATION %>
       <% end %>
     </div>
   </div>
