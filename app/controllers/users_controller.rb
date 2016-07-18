@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     # @getgoing_link = 'Get Going<span class="badge">'+@user.eadmin_tasks.where(:category => "Get Going").where(:completed => [nil, 0]).count.to_s+'</span>'
     @categories = Category.where(:team => current_user.user_info)
     @categories_all = Category.where(:team => "All")
+    @events = Event.includes(:users).where(users: {id: params[:id]})
 
 
     if params[:category]

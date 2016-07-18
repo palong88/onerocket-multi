@@ -26,6 +26,7 @@ class EventsController < ApplicationController
   def attendance
     @current_event = Event.find(params[:id])
     @users = User.includes(:events).where(events: {id: params[:id]})
+    @employees = User.all.order(:name)
     @attendance = Attendance.new
   end
 

@@ -35,14 +35,20 @@
 
     <div class="collection">
       <% @categories_all.each do |category| %>
-
           <%= link_to category.name, params.merge(:category => category.name), class: "collection-item"%>
-
       <% end %>
       <% @categories.each do |category| %>
         <%= link_to category.name, params.merge(:category => category.name), class: "collection-item"%>
       <% end %>
     </div>
+
+    <% unless @events.empty? %>
+    <ul class="collection">
+      <% @events.each do |e| %>
+        <li class="collection-item"><div><%= e.name %> <span class="grey-color darken-1">(<%= e.event_date.to_s %>)</span><a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+      <% end %>
+    </ul>
+    <% end %>
 
   </div>
   <!-- End Sidebar -->
@@ -69,7 +75,7 @@
         <li class="tab"><a href="#test2">Helpful Documents</a></li>
       </ul>
     </div>
-    
+
     <% if @eadmin_tasks.empty? %>
     <div class="row centered">
       <div class="col s12 m6">

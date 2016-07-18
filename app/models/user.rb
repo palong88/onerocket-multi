@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   rolify
   has_many :admin_tasks
   has_many :eadmin_tasks
-  has_many :attendances
+  has_many :attendances, dependent: :destroy
   has_many :events, through: :attendances
 
   belongs_to :team

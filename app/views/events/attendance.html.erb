@@ -56,10 +56,10 @@
   <div class="col s12 m12 l2">&nbsp;</div>
   <div class="col s12 m12 l8">
     <h5 class="top centered">Invite people to <%= @current_event.name %></h5>
-    <%= form_for @attendance do |f| %>
-      <div class="field centered">
-        <%= f.autocomplete_field :user, autocomplete_user_name_events_path %>
-      </div>
+    <%= form_for @attendance, :url => create_attendance_path do |f| %>
+      <%= f.select :user_id, User.all.order(:name).collect { |u| [ u.name, u.id ] }, :multiple => true, include_blank: true %>
+      <%= f.hidden_field(:event_id, :value => @current_event.id)%>
+      <%= f.hidden_field(:rsvp, :value => "Invited")%>
       <div class="actions centered">
         <%= f.submit 'Invite!' %>
       </div>
