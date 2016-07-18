@@ -34,7 +34,6 @@ class UsersController < ApplicationController
     @categories_all = Category.where(:team => "All")
     @events = Event.includes(:users).where(users: {id: params[:id]})
 
-
     if params[:category]
       @eadmin_tasks = @user.eadmin_tasks.where(:category => params[:category] )
     else

@@ -61,7 +61,7 @@
       <%= f.hidden_field(:event_id, :value => @current_event.id)%>
       <%= f.hidden_field(:rsvp, :value => "Invited")%>
       <div class="actions centered">
-        <%= f.submit 'Invite!' %>
+        <%= f.submit 'Invite!', class: "btn btn-large"%>
       </div>
     <% end %>
   </div>

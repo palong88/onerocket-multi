@@ -45,7 +45,9 @@
     <% unless @events.empty? %>
     <ul class="collection">
       <% @events.each do |e| %>
-        <li class="collection-item"><div><%= e.name %> <span class="grey-color darken-1">(<%= e.event_date.to_s %>)</span><a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+      <% attendance = Attendance.where(event_id: e.id).where(user_id: @user.id).first %>
+      <%# attendance = @events.includes(:attendances).where(attendances: {event_id: e.id}).first %>
+        <li class="collection-item"><div><%= e.name %><%= link_to '<i class="material-icons">send</i>'.html_safe, edit_attendance_path(:id => attendance.id), class: "secondary-content" %></div></li>
       <% end %>
     </ul>
     <% end %>
