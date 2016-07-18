@@ -21,8 +21,9 @@
       <% end -%>
 
       <div class="field">
+          <%    @team = Team.where.not(name: 'Everyone') %>
         <%= f.label :user_info, "Team / Department"%>
-        <%= f.collection_select :user_info, Team.order(:name),:name,:name, { include_blank: "Select a Team", disabled: 'false'}, { required: true}%>
+        <%= f.collection_select :user_info, @team,:name,:name, { include_blank: "Select a Team", disabled: 'false'}, { required: true}%>
         <p style="font-size: 0.8rem;"> <%= link_to 'OR create a new team', new_team_path %></p> <br>
       </div>
 

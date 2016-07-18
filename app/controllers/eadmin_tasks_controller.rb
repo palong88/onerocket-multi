@@ -8,16 +8,15 @@ class EadminTasksController < ApplicationController
   # GET /eadmin_tasks.json
   def index
     @categories = Category.where(:team => current_user.user_info)
-    @categories_all = Category.where(:team => "All")
-
+    @categories_all = Category.where(:team => "Everyone")
 
     if params[:category]
       ap "Option 1"
-      @eadmin_tasks = EadminTask.where(:category => params[:category])
+      @eadmin_tasks = EadminTask.where(:category => params[:category], :team =>  current_user.user_info)
 
     else
       ap "Option 2"
-      redirect_to :controller => 'eadmin_tasks', :action => 'index', :category => Category.where(:team => "All").first.name
+      redirect_to :controller => 'eadmin_tasks', :action => 'index', :category => Category.where(:team => "Everyone").first.name
 
     end
 
