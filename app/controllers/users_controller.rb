@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @team = Team.all
+    @team = Team.where.not(name: 'Everyone')
   end
 
   def edit

@@ -10,7 +10,7 @@
     </div>
     <div class="row">
       <ul class="collection">
-        <% @teams.each do |team| %>
+        <% @teams.where.not(name: 'Everyone').each do |team| %>
           <li class="collection-item avatar">
             <span class="title"><%= team.name %></span>
             <p>

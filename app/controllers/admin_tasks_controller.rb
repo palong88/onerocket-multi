@@ -17,7 +17,7 @@ class AdminTasksController < ApplicationController
     else
       ap 'Option 2'
       #  redirect_to admin_task_path()
-       redirect_to :controller => 'admin_tasks', :action => 'index', :team => Team.first.name, :category => Category.first.name
+       redirect_to :controller => 'admin_tasks', :action => 'index', :team => "Everyone", :category => Category.first.name
       # @categories = Category.where(:team => Category.first.team)
       # @admin_tasks = AdminTask.where(:team => Category.first.team)
     end
