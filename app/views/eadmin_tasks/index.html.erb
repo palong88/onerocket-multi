@@ -22,6 +22,16 @@
       <% end %>
     </div>
 
+    <% unless @events.empty? %>
+    <ul class="collection">
+      <% @events.each do |e| %>
+      <% attendance = Attendance.where(event_id: e.id).where(user_id: current_user.id).first %>
+      <%# attendance = @events.includes(:attendances).where(attendances: {event_id: e.id}).first %>
+        <li class="collection-item"><div><%= e.name %><%= link_to '<i class="material-icons">send</i>'.html_safe, edit_attendance_path(:id => attendance.id), class: "secondary-content" %></div></li>
+      <% end %>
+    </ul>
+    <% end %>
+
   </div>
   <!-- End Sidebar -->
 
@@ -33,7 +43,7 @@
 
 
     </div>
-    
+
     <div class="row">
       <ul class="tabs">
         <li class="tab"><a class="active" href="#test1">Tasks</a></li>

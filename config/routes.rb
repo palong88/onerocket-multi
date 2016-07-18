@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :events
   resources :categories
 
-  post '/attendance/create' => 'attendance#create', :as => :create_attendance
+  post '/attendances/create' => 'attendances#create', :as => :create_attendance
   resources :attendances
 
   get 'team/scaffold'

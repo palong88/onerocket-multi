@@ -10,7 +10,8 @@ class EadminTasksController < ApplicationController
     @categories = Category.where(:team => current_user.user_info)
     @categories_all = Category.where(:team => "All")
 
-
+    @events = Event.includes(:users).where(users: {id: current_user.id})
+    
     if params[:category]
       ap "Option 1"
       @eadmin_tasks = EadminTask.where(:category => params[:category])
