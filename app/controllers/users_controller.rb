@@ -30,14 +30,18 @@ class UsersController < ApplicationController
     # @eat_link = 'Equipment &amp; Tools<span class="badge">'+@user.eadmin_tasks.where(:category => "Equipment & Tools").where(:completed => [nil, 0]).count.to_s+'</span>'
     # @mtc_link = 'Meet the Company<span class="badge">'+@user.eadmin_tasks.where(:category => "Meet the Company").where(:completed => [nil, 0]).count.to_s+'</span>'
     # @getgoing_link = 'Get Going<span class="badge">'+@user.eadmin_tasks.where(:category => "Get Going").where(:completed => [nil, 0]).count.to_s+'</span>'
-    @categories = Category.where(:team => current_user.user_info)
-    @categories_all = Category.where(:team => "All")
+    @categories = Category.where(:team => @user.user_info)
+    @categories_all = Category.where(:team => "Everyone")
 
 
     if params[:category]
-      @eadmin_tasks = @user.eadmin_tasks.where(:category => params[:category] )
+      ap "Option 1"
+      @eadmin_tasks = EadminTask.where( :category => params[:category], :team => params[:team])
+
     else
-      @eadmin_tasks = @user.eadmin_tasks.where(:category => @categories_all.first.name )
+      ap "Option 2"
+      redirect_to :controller => 'users', :action => 'eadmin_tasks', :category => Category.where(:team => "Everyone").first.name, :team => "Everyone"
+
     end
 
   end

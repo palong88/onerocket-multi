@@ -12,11 +12,11 @@ class EadminTasksController < ApplicationController
 
     if params[:category]
       ap "Option 1"
-      @eadmin_tasks = EadminTask.where(:category => params[:category], :team =>  current_user.user_info)
+      @eadmin_tasks = EadminTask.where( :category => params[:category], :team => params[:team])
 
     else
       ap "Option 2"
-      redirect_to :controller => 'eadmin_tasks', :action => 'index', :category => Category.where(:team => "Everyone").first.name
+      redirect_to :controller => 'eadmin_tasks', :action => 'index', :category => Category.where(:team => "Everyone").first.name, :team => "Everyone"
 
     end
 
@@ -63,13 +63,13 @@ class EadminTasksController < ApplicationController
      @eadmin_task = EadminTask.find(params[:id])
      @eadmin_task.update_attribute(:completed, 1)
 
-     redirect_to eadmin_tasks_path(:category =>  @eadmin_task.category), notice: "Task Completed"
+     redirect_to eadmin_tasks_path(:category =>  @eadmin_task.category, :team => @eadmin_task.team), notice: "Task Completed"
   end
 
   def not_complete
      @eadmin_task = EadminTask.find(params[:id])
      @eadmin_task.update_attribute(:completed, 0)
-     redirect_to eadmin_tasks_path(:category =>  @eadmin_task.category), notice: "Task Not Completed"
+     redirect_to eadmin_tasks_path(:category =>  @eadmin_task.category, :team => @eadmin_task.team), notice: "Task Not Completed"
   end
 
   # POST /eadmin_tasks
@@ -82,11 +82,11 @@ class EadminTasksController < ApplicationController
 
     respond_to do |format|
       if @eadmin_task.save
-        format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category]), notice: 'Task was successfully created.' }
+        format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category], :team => params[:eadmin_task][:team]), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @eadmin_task }
       else
         format.json { render json: @eadmin_task.errors, status: :unprocessable_entity }
-        format.html { redirect_to new_eadmin_task_path(:user_id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category] ), notice: 'Task was not created.'}
+        format.html { redirect_to new_eadmin_task_path(:user_id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category], :team => params[:eadmin_task][:team] ), notice: 'Task was not created.'}
 
       end
     end
@@ -130,7 +130,7 @@ class EadminTasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def eadmin_task_params
-      params.require(:eadmin_task).permit(:user_id, :title, :description, :due_date, :category, :when_due, :document)
+      params.require(:eadmin_task).permit(:user_id, :title, :description, :due_date, :category, :when_due, :document, :team)
     end
 
 
