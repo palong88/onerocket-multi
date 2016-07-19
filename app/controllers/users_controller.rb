@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @team = Team.where.not(name: 'Everyone')
   end
 
   def eadmin_tasks

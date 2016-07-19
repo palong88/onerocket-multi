@@ -17,12 +17,15 @@
   </ul> -->
 </div>
 <!-- End admin tools -->
-<div class="row">
-  <ul class="tabs">
-    <li class="tab"><a class="active" href="#test1">Tasks</a></li>
-    <li class="tab"><a href="/documents">Helpful Documents</a></li>
-  </ul>
-</div>
+<ul class="pagination">
+  <% team = @teams.find_by_name(params[:team]) %>
+  <li class="waves-effect active"><a href="#!">Tasks</a></li>
+  <li class="waves-effect"><%= link_to 'Documents', documents_path(:category => params[:category],:team => params[:team], :team_id => team.id) %>
+  </li>
+
+
+</ul>
+
 
 <!-- Wrapper for sidebar and layout -->
 
@@ -32,7 +35,7 @@
     <!-- Profile card -->
     <div class="card top">
       <div class="card-content">
-        <span class="card-title"> <%= params[:team].humanize   %> Template</span>
+        <span class="card-title"> <%= params[:team]   %> Template</span>
         <p>Any task you add here will be copied to each new hire you onboard.</p>
         <% team = @teams.find_by_name(params[:team]) %>
         <%= link_to "Documents", documents_path(:team_id => team.id ) %>
@@ -43,7 +46,7 @@
 
     <div class="collection">
       <% @categories.each do |category| %>
-        <%= link_to category.name.humanize , params.merge(:category => category.name), class: "collection-item"%>
+        <%= link_to category.name , params.merge(:category => category.name), class: "collection-item"%>
       <% end %>
       <%= link_to '+ <strong>Add Category</strong>'.html_safe, new_category_path(:team => params[:team]), class: "collection-item"%>
     </div>

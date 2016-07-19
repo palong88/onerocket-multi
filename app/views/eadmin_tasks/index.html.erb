@@ -1,4 +1,11 @@
 <!-- Wrapper for sidebar and layout -->
+<ul class="pagination">
+  <% team = @teams.find_by_name(params[:team]) %>
+  <li class="waves-effect active"> <a>Task</a>
+  </li>
+  <li class="waves-effect"><%= link_to 'Documents', documents_path(:category => params[:category],:team => params[:team], :team_id => team.id) %>
+
+</ul>
 
 <div class="row">
   <!-- Sidebar -->
@@ -35,12 +42,7 @@
 
     </div>
 
-    <div class="row">
-      <ul class="tabs">
-        <li class="tab"><a class="active" href="#test1">Tasks</a></li>
-        <li class="tab"><a href="#test2">Helpful Documents</a></li>
-      </ul>
-    </div>
+
 
     <% if @eadmin_tasks.empty? %>
     <div class="row centered">
