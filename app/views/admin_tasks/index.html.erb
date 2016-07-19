@@ -17,12 +17,18 @@
   </ul> -->
 </div>
 <!-- End admin tools -->
+<div class="row">
+  <ul class="tabs">
+    <li class="tab"><a class="active" href="#test1">Tasks</a></li>
+    <li class="tab"><a href="/documents">Helpful Documents</a></li>
+  </ul>
+</div>
 
 <!-- Wrapper for sidebar and layout -->
 
 <div class="row">
   <!-- Sidebar -->
-  <div class="col s12 m4 l3">
+  <div class="col s12 m4 l4">
     <!-- Profile card -->
     <div class="card top">
       <div class="card-content">
@@ -46,7 +52,7 @@
   <!-- End Sidebar -->
 
   <!-- Content -->
-  <div class="col s12 m7 l8">
+  <div class="col s12 m8 l8">
     <div class="row top">
       <% if params[:team] %>
         <h4 style="display: inline"><%=params[:category]%> Tasks</h4>
@@ -59,12 +65,6 @@
       <% else %>
         <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_admin_task_path(:category => "Paperwork"), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right" %>
       <% end %>
-    </div>
-    <div class="row">
-      <ul class="tabs">
-        <li class="tab"><a class="active" href="#test1">Tasks</a></li>
-        <li class="tab"><a href="#test2">Helpful Documents</a></li>
-      </ul>
     </div>
     <% if @admin_tasks.empty? %>
     <div class="row centered">

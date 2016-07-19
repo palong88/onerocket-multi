@@ -23,6 +23,24 @@
 @import "materialize";
 @import "materialize/extras/nouislider";
 
+main, footer {
+  padding-left: 240px;
+  background: #fcfbf8;
+}
+
+
+
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+    background: #fcfbf8;
+  }
+}
+.tabs .tab {
+  background: #fcfbf8;
+
+}
 
  body {
     display: flex;
