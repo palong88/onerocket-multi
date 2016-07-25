@@ -167,7 +167,7 @@ class User < ActiveRecord::Base
         when_due: task.when,
         category: task.category,
         document: task.document,
-        team: team,
+        team: self.user_info,
         user_id: id,
         completed: 0)
       end

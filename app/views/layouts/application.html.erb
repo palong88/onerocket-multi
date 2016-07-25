@@ -33,6 +33,17 @@
       margin-left: auto;
       margin-right: auto;
     }
+
+
+    .side-nav a {
+      color: white;
+      display: block;
+      font-size: 1rem;
+      height: 34px;
+      line-height: 34px;
+      padding: 0 30px;
+
+  }
   </style>
 
   <%= csrf_meta_tags %>
@@ -64,13 +75,13 @@
   </main>
 
 <!-- Modal -->
-<footer class="page-footer">
+<!-- <footer class="page-footer">
   <div class="footer-copyright">
     <div class="container">
       © 2016 One Rocket
     </div>
   </div>
-</footer>
+</footer> -->
 
 <!-- All the javascripts -->
 <script type="text/javascript">
@@ -80,15 +91,12 @@
     $('.collapsible').collapsible();
     $('select').material_select();
     $('ul.tabs').tabs();
-    // $(".tabs li a").click(function() {
-    //   var new_path = <%=  documents_path(:team_id => @teams.find_by_name(params[:team])) %>;
-    //   document.location.href = new_path;
-    //  });
-    // $(".collapsible-body").click(function() {  //use a class, since your ID gets mangled
-    //  $(this).css('background-color', 'red');     //add the class to the clicked element
-    // });
 
+    if ( $( "#demo" ).hasClass('active')) {
 
+        $( "#head-demo" ).addClass('active')
+
+    }
 
   })
 </script>

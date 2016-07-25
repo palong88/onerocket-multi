@@ -37,20 +37,15 @@
       <div class="card-content">
         <span class="card-title"> <%= params[:team]   %> Template</span>
         <p>Any task you add here will be copied to each new hire you onboard.</p>
-        <!-- <% team = @teams.find_by_name(params[:team]) %>
-        <%= link_to "Documents", documents_path(:team_id => team.id ) %> -->
       </div>
     </div>
-
-
 
     <div class="collection">
       <% @categories.each do |category| %>
         <%= link_to category.name , params.merge(:category => category.name), class: "collection-item"%>
       <% end %>
-      <%= link_to '+ <strong>Add Category</strong>'.html_safe, new_category_path(:team => params[:team]), class: "collection-item"%>
+      <%= link_to '+ <strong>Add Category</strong>'.html_safe, new_category_path(:team => params[:team]), class: "collection-item "%>
     </div>
-
   </div>
   <!-- End Sidebar -->
 
@@ -80,7 +75,6 @@
       </div>
     </div>
     <% end %>
-
 
     <% unless @admin_tasks.where(:when => "Before").empty? %>
       <h5>Before they start...</h5>
@@ -115,9 +109,6 @@
       <%end%>
     <%end%>
 
-
-
-
     <% unless @admin_tasks.where(:when => "After").empty? %>
       <h5>After they start...</h5>
     <% end %>
@@ -150,7 +141,6 @@
         <!-- End card -->
       <%end%>
     <%end%>
-
   </div>
   <!-- End content -->
 </div>

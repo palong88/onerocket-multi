@@ -1,11 +1,11 @@
 module ApplicationHelper
 
-  def controller?(*controller)
-   controller.include?(params[:controller])
- end
+  def active_class(link_path)
+    "active" if request.fullpath == link_path
+  end
 
- def action?(*action)
-   action.include?(params[:action])
- end
+  def active_navigation(item, param)
+  "class='active'" if params[team] == t.name
+end
 
 end
