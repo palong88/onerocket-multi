@@ -42,9 +42,9 @@
       <% end %>
 
       <% if params[:category] %>
-        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_admin_task_path(:category => params[:category], :team => params[:team]), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right"  %>
+        <%= link_to '<i class="material-icons left">add</i>Add a task</a>'.html_safe, new_admin_task_path(:category => params[:category], :team => params[:team]), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right"  %>
       <% else %>
-        <%= link_to '<i class="material-icons left">add</i>Add a new task</a>'.html_safe, new_admin_task_path(:category => "Paperwork"), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right" %>
+        <%= link_to '<i class="material-icons left">add</i>Add a task</a>'.html_safe, new_admin_task_path(:category => "Paperwork"), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right" %>
       <% end %>
     </div>
     <% if @admin_tasks.empty? %>
