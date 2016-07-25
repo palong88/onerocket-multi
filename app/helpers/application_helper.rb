@@ -8,6 +8,10 @@ module ApplicationHelper
   "class='active'" if params[team] == t.name
   end
 
+  def active_class_col(param, params)
+    param == params ? "active collection-item" : "collection-item" 
+  end
+
 
   # def active_class_collection(params)
   # if params[:category] == params
