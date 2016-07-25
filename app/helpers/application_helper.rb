@@ -6,6 +6,15 @@ module ApplicationHelper
 
   def active_navigation(item, param)
   "class='active'" if params[team] == t.name
-end
+  end
+
+
+  # def active_class_collection(params)
+  # if params[:category] == params
+  #   "class='active collection-item'"
+  # else
+  #   "class='collection-item'"
+  # end
+
 
 end

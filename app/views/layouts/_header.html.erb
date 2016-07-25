@@ -10,7 +10,7 @@
 
     <a  href="#" data-activates="slide-out" class="button-collapse show-on-small" ><i class="material-icons">menu</i></a>
       <%# DESKTOP  %>
-      <ul id="slide-out" class="side-nav fixed">
+      <ul id="slide-out" class="side-nav fixed #ffffff white">
         <img  src="/assets/site-logo.png" class="center-align responsive-img" style="padding:6%; margin-top:5%;" alt="logo"></a>
          <li class="no-padding">
 
@@ -20,21 +20,26 @@
                 <a  class="bold collapsible-header active " id="#team"><span style="font-weight:900;">Teams</span></a>
                 <div class="collapsible-body">
                   <ul class="team-d">
-                    <li class=" text-darken-2 <%= 'active' if params[:team] == 'Everyone' %>"  ><%= link_to "For Everyone", admin_path %></li>
+                    <li class=" text-darken-2 <%= 'active' if params[:team] == 'Everyone' %>"  ><%= link_to "Everyone", admin_path %></li>
                     <% @teams.where.not(name: 'Everyone').each do |t| %>
-                      <li  id="demo" class="<%= 'active' if params[:team] == t.name %> "><%= link_to "#{t.name} Team", admin_path(:team => t.name) %></li>
+                      <li  id="demo" class="<%= 'active' if params[:team] == t.name %> "><%= link_to "#{t.name}", admin_path(:team => t.name) %></li>
                     <% end %>
-                    <li class="<%= active_class(teams_path) %>"  ><%= link_to "Manage Teams", teams_path %></li>
+
                   </ul>
                 </div>
               </li>
+              <li style = "height:80px;" class="<%= active_class(teams_path) %>"  ><%= link_to '<span style="font-weight:900; margin-top:10px; ">Manage Teams</span>'.html_safe, teams_path,:style=>'line-height:40px; height:80px;'%></li>
 
             </ul>
            </li>
            <!-- <li class"waves-effect"><a href="#!">Events</a></li> -->
 
           <% else %>
-          <li class=" <%= active_class(eadmin_tasks_path) %>" ><%= link_to "My Onboarding Steps ", eadmin_tasks_path %></li>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li class=" <%= active_class(eadmin_tasks_path) %>" ><%= link_to "My Onboarding Steps ", eadmin_tasks_path %></li>
+              <li class=" "   ><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+            </ul>
+
 
         <% end %>
 

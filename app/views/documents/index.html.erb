@@ -39,24 +39,11 @@
 <!-- Wrapper for sidebar and layout -->
 
 <div class="row">
-  <!-- Sidebar -->
-  <div class="col s12 m4 l3">
-    <!-- Profile card -->
-    <div class="card top">
-      <div class="card-content">
-        <span class="card-title"> Information Centre</span>
-        <p>Any documents you add here will be copied to each new hire you onboard.</p>
-      </div>
-    </div>
-
-
-  </div>
-  <!-- End Sidebar -->
 
   <!-- Content -->
   <div class="col s12 m8 l8">
     <div class="row top">
-      <h4 style="display: inline">Information Centre</h4>
+      <h4 style="display: inline"><%= params[:team]%>'s Documents</h4>
       <% if can? :delete , @post%>
         <%= link_to '<i class="material-icons left">add</i>Add a document</a>'.html_safe, new_document_path( :team_id => params[:team_id]), id: "addBigButton", class: "waves-effect waves-light btn show-on-large", style: "float: right"  %>
       <% end %>
@@ -121,4 +108,19 @@
       <!-- END of collection for displaying documents -->
   </div>
   <!-- End content -->
+
+  <!-- Sidebar -->
+  <div class="col s12 m4 l3">
+    <!-- Profile card -->
+    <div class="card top">
+      <div class="card-content">
+        <span class="card-title"> Information Centre</span>
+        <p>Any documents you add here will be copied to each new hire you onboard.</p>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- End Sidebar -->
+
 </div>
