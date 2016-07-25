@@ -138,7 +138,7 @@
 
     <div class="collection">
       <% @categories.each do |category| %>
-        <%= link_to category.name , params.merge(:category => category.name), class: "collection-item " %>%>
+        <%= link_to category.name , params.merge(:category => category.name), class: "collection-item " %>
       <% end %>
       <%= link_to '+ <strong>Add Category</strong>'.html_safe, new_category_path(:team => params[:team]), class: "collection-item "%>
 
