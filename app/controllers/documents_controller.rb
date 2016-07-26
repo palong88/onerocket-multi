@@ -28,8 +28,9 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     respond_to do |format|
+      ap tame_name = params[:document][:team]
       if @document.save
-        format.html { redirect_to documents_url(:team_id => @document.team_id), notice: 'Document was successfully created.' }
+        format.html { redirect_to documents_url(:team_id => @document.team_id, :team => tame_name), notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { redirect_to new_document_path(:team_id => @document.team_id), notice: 'Document not created.' }
@@ -42,11 +43,12 @@ class DocumentsController < ApplicationController
   # PATCH/PUT /documents/1.json
   def update
     respond_to do |format|
+      ap tame_name = params[:document][:team]
       if @document.update(document_params)
-        format.html { redirect_to documents_url(:team_id => @document.team_id), notice: 'Document was successfully updated.' }
+        format.html { redirect_to documents_url(:team_id => @document.team_id, :team =>  tame_name ), notice: 'Document was successfully updated.' }
         format.json { render :show, status: :ok, location: @document }
       else
-        format.html { redirect_to edit_document_path(:team_id => @document.team_id), notice: 'Document was not updated.'  }
+        format.html { redirect_to edit_document_path(:team_id => @document.team_id, :team => params[:team]), notice: 'Document was not updated.'  }
         format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
@@ -59,7 +61,7 @@ class DocumentsController < ApplicationController
     @document.save
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to documents_url(:team_id => @document.team_id), notice: 'Document was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Document was successfully deleted.' }
       format.json { head :no_content }
     end
   end
