@@ -41,8 +41,22 @@ class TeamsController < ApplicationController
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
   def update
+
     respond_to do |format|
+      ap @team.name
+      ap @categorys = Category.where(:team => @team.name)
+      ap @admin_tasks = AdminTask.where(:team => @team.name)
+      ap @eadmin_tasks = EadminTask.where(:team => @team.name)
+      ap @users = User.where(:user_info => @team.name)
+
       if @team.update(team_params)
+        ap @team.name
+        @admin_tasks.update_all(:team => @team.name )
+        @eadmin_tasks.update_all(:team => @team.name )
+        @categorys.update_all(:team => @team.name )
+        @users.update_all(:user_info => @team.name )
+
+
         format.html { redirect_to team_path, notice: 'Team was successfully updated.' }
         format.json { render :show, status: :ok, location: @team }
       else

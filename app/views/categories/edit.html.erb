@@ -29,11 +29,6 @@
       <%= f.text_field :name %>
     </div>
 
-    <div class="field">
-      <%= f.label :team, "For which team?"%>
-      <%= f.collection_select :team, Team.order(:name),:name,:name, { include_blank: "Select a Team", disabled: 'false'}, { required: true}%>
-      <p style="font-size: 0.8rem;"> <%= link_to 'OR create a new team', new_team_path %></p> <br>
-    </div>
       <!-- buttons to save -->
     <div class="row">
       <div class="actions col s12 centered">

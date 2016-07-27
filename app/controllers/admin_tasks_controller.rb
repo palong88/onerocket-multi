@@ -63,9 +63,8 @@ class AdminTasksController < ApplicationController
   def update
 
     respond_to do |format|
-
+      # Category.update(:team => @admin_task.name).
       if @admin_task.update(admin_task_params)
-
         format.html { redirect_to admin_tasks_path(:category =>params[:admin_task][:category],:team =>params[:admin_task][:team]), notice: 'Task was successfully updated.' }
         # format.json { render :show, status: :ok, location: @admin_task } SHOW REMOVED
       else

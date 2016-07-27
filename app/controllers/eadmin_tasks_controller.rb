@@ -12,7 +12,7 @@ class EadminTasksController < ApplicationController
 
     if params[:category]
       ap "Option 1"
-      @eadmin_tasks = EadminTask.where( :category => params[:category], :team => params[:team])
+      @eadmin_tasks = current_user.eadmin_tasks.where( :category => params[:category], :team => params[:team])
 
     else
       ap "Option 2"

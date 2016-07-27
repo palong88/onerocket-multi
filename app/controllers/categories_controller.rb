@@ -42,7 +42,11 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1.json
   def update
     respond_to do |format|
+      ap @admin_tasks = AdminTask.where(:category => @category.name)
+      ap @eadmin_tasks = EadminTask.where(:category => @category.name)
       if @category.update(category_params)
+        @admin_tasks.update_all(:category => @category.name )
+        @eadmin_tasks.update_all(:category => @category.name )
         format.html { redirect_to categories_path, notice: 'Category was successfully updated.' }
         format.json { render :show, status: :ok, location: @category }
       else
