@@ -100,15 +100,16 @@ class EadminTasksController < ApplicationController
 
       if @eadmin_task.update(eadmin_task_params)
 
-        format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id],:category =>params[:eadmin_task][:category]), notice: 'Task was successfully updated.' }
+
+          format.html { redirect_to user_eadmin_tasks_path(:id => params[:eadmin_task][:user_id],:category =>params[:eadmin_task][:category], :team =>params[:eadmin_task][:team]), notice: 'Task was successfully updated.'}
         # format.json { render :show, status: :ok, location: @eadmin_task }
       else
+        puts @eadmin_task.errors.full_messages
         format.html { redirect_to edit_eadmin_task_path(@eadmin_task, :id => params[:eadmin_task][:user_id], :category =>params[:eadmin_task][:category] ), notice: 'Task was not created. TEST'}
         # format.json { render json: @eadmin_task.errors, status: :unprocessable_entity }
       end
     end
   end
-
   # DELETE /admin_tasks/1
   # DELETE /admin_tasks/1.json
   def destroy

@@ -22,35 +22,10 @@
 <!-- Wrapper for sidebar and layout -->
 
 <div class="row">
-  <!-- Sidebar -->
-  <div class="col s12 m4 l4">
-    <!-- Profile card -->
-    <div class="card top">
-      <div class="card-content">
-        <span class="card-title"><%= @user.name %></span>
-        <p>Here you can see, add, and delete tasks for <%= @user.name %>. Make their first days with your company unforgettable!</p>
-      </div>
-    </div>
 
-
-    <h5>Tasks for Everyone</h5>
-    <div class="collection">
-      <% @categories_all.each do |category| %>
-          <%= link_to category.name, params.merge(:category => category.name, :team => "Everyone"), class: "collection-item"%>
-      <% end %>
-    </div>
-    <h5>Team Tasks</h5>
-    <div class="collection">
-      <% @categories.each do |category| %>
-          <%= link_to category.name, params.merge(:category => category.name, :team => @user.user_info), class: "collection-item"%>
-      <% end %>
-    </div>
-
-  </div>
-  <!-- End Sidebar -->
 
   <!-- Content -->
-  <div class="col s12 m7 l8">
+  <div class="col s12 m7 l7 offset-l1">
     <div class="row top">
       <% if params[:category] %>
         <h4 style="display: inline"><%=params[:category]%> Tasks</h4>
@@ -84,7 +59,7 @@
       <h5>Before they start...</h5>
     <% end %>
 
-    <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
+    <% @eadmin_tasks.order( 'eadmin_tasks.created_at ASC','eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
       <% if eadmin_task.when_due == "Before" && eadmin_task.completed? == false %>
         <!-- Card -->
         <div class="card hoverable">
@@ -105,6 +80,8 @@
             <% else %>
             <%= link_to 'edit', edit_eadmin_task_path(eadmin_task,:user_id => params[:id],:category => "Paperwork"), class: "blue-text" %>
             <% end %> -->
+            <%= link_to 'edit', edit_eadmin_task_path(eadmin_task, :category => params[:category], :team => params[:team], :user_id => params[:id]), class: "blue-text" %>
+
             <%= link_to 'delete', eadmin_task, method: :delete, class: "blue-text", data: { confirm: 'Are you sure you want to delete this task?' } %>
             <span class="right"><%= eadmin_task.due_date %> <%= eadmin_task.due_date == 1 ? "day" : "days" %> <%= eadmin_task.when_due.downcase %> they start</span>
           </div>
@@ -119,7 +96,7 @@
       <h5>After they start...</h5>
     <% end %>
 
-    <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
+    <% @eadmin_tasks.order( 'eadmin_tasks.created_at ASC', 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
       <% if eadmin_task.when_due == "After" && eadmin_task.completed? == false %>
         <!-- Card -->
         <div class="card hoverable grey lighten-2">
@@ -155,7 +132,7 @@
       <h5>Recently Completed</h5>
     <% end %>
 
-    <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
+    <% @eadmin_tasks.order( 'eadmin_tasks.created_at ASC', 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
       <% if eadmin_task.completed? %>
         <!-- Card -->
         <div class="card hoverable #b2dfdb teal lighten-4">
@@ -186,4 +163,31 @@
 
   </div>
   <!-- End content -->
+
+  <!-- Sidebar -->
+  <div class="col s12 m3 l3 offset-l1">
+    <!-- Profile card -->
+    <div class="card top">
+      <div class="card-content">
+        <span class="card-title"><%= @user.name %></span>
+        <p>Here you can see, add, and delete tasks for <%= @user.name %>. Make their first days with your company unforgettable!</p>
+      </div>
+    </div>
+
+
+    <h5>Tasks for Everyone</h5>
+    <div class="collection">
+      <% @categories_all.each do |category| %>
+          <%= link_to category.name, params.merge(:category => category.name, :team => "Everyone"), class: "collection-item"%>
+      <% end %>
+    </div>
+    <h5>Team Tasks</h5>
+    <div class="collection">
+      <% @categories.each do |category| %>
+          <%= link_to category.name, params.merge(:category => category.name, :team => @user.user_info), class: "collection-item"%>
+      <% end %>
+    </div>
+
+  </div>
+  <!-- End Sidebar -->
 </div>

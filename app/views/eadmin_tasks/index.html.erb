@@ -64,7 +64,7 @@
       <h5>Before you start...</h5>
     <% end %>
 
-    <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
+    <% @eadmin_tasks.order( 'eadmin_tasks.created_at ASC','eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
       <% if eadmin_task.when_due == "Before" && eadmin_task.completed? == false %>
         <!-- Card -->
         <div class="card hoverable">
@@ -105,7 +105,7 @@
       <h5>After you start...</h5>
     <% end %>
 
-    <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
+    <% @eadmin_tasks.order( 'eadmin_tasks.created_at ASC','eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
       <% if eadmin_task.when_due == "After" && eadmin_task.completed? == false %>
         <!-- Card -->
         <div class="card hoverable grey lighten-2">
@@ -145,7 +145,7 @@
       <h5>Recently Completed</h5>
     <% end %>
 
-    <% @eadmin_tasks.order( 'eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
+    <% @eadmin_tasks.order( 'eadmin_tasks.created_at ASC','eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
       <% if eadmin_task.completed? %>
         <!-- Card -->
         <div class="card hoverable #b2dfdb teal lighten-4">

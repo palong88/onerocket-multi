@@ -5,4 +5,114 @@
     <div class="s12 m12 l2">&nbsp;</div>
   </div>
 </div>
-<%= render 'form' %>
+<!--  FORM ELELEMNTS for Creating New Tasks and Updating Existing Tasks -->
+<div class="row">
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+  <!-- form -->
+  <div class="col s12 m12 l8">
+
+    <%= form_for @eadmin_task,  html: { multipart: true, :method => :put } do |f| %>
+    <% if @eadmin_task.errors.any? %>
+    <div id="error_explanation">
+      <h4>Please fill out the following feilds:</h4>
+      <ul>
+        <% @eadmin_task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="form-panel">
+        <%= f.hidden_field :category, value: params[:category]%>
+        <%= f.hidden_field :team, value: params[:team]%>
+
+
+      <!-- name -->
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_field :title, required: true %>
+          <%= f.label :title, "What needs to be done?" %>
+        </div>
+      </div>
+
+
+      <!-- things to help with task -->
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_area :description, class: "materialize-textarea" %>
+          <%= f.label :description, "What other information can help them accomplish this task?" %>
+        </div>
+      </div>
+
+
+      <!-- files -->
+      <div class="row">
+        <div class="input-field col s12">
+          <p class="grey-text">Do they need any documents?</p>
+          <input class="file-path" type="file" name="eadmin_task[document]" id="eadmin_task_document" /><br />
+          <!-- <label for="admin_task_document">Document</label> -->
+        </div>
+      </div>
+
+
+      <!-- when -->
+      <div class="row">
+        <div class="input-field col s12 m6 l6">
+          <select name="eadmin_task[due_date]" id="eadmin_task_due_date" >
+            <option value="" disabled selected>Choose amount of time</option>
+            <optgroup label="Days">
+              <option value="1">1 day</option>
+              <option value="2">2 days</option>
+              <option value="3">3 days</option>
+              <option value="4">4 days</option>
+              <option value="5">5 days</option>
+              <option value="6">6 days</option>
+            </optgroup>
+            <optgroup label="Weeks">
+              <option value="7">1 week</option>
+              <option value="14">2 weeks</option>
+              <option value="21">3 weeks</option>
+            </optgroup>
+            <optgroup label="Months">
+              <option value="30">1 month</option>
+              <option value="60">2 months</option>
+              <option value="90">3 months</option>
+              <option value="120">4 months</option>
+              <option value="150">5 months</option>
+              <option value="180">6 months</option>
+              <option value="270">9 months</option>
+              <option value="360">12 months</option>
+            </optgroup>
+          </select>
+          <label>How long from the start date?</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <select name="eadmin_task[when_due]" id="eadmin_task_when_due">
+            <option value="" disabled selected>Choose before or after</option>
+            <option value="Before">Before the start date</option>
+            <option value="After">After the start date</option>
+          </select>
+          <label>Before or After?</label>
+        </div>
+      </div>
+
+      <%= f.hidden_field :user_id, value: params[:user_id]%>
+
+      <!-- buttons to save -->
+      <div class="row">
+        <div class="actions col s12 centered">
+          <%= link_to 'Cancel', :back, class: "btn btn-large" %>
+          <!-- <%= link_to 'Cancel', eadmin_tasks_path, class: "btn btn-large" %> -->
+          <input type="submit" value="Submit!" class="btn btn-large" >
+        </div>
+      </div>
+
+
+    </div>
+    <% end %>
+  </div>
+  <!-- spaceholder -->
+  <div class="col s12 m12 l2">&nbsp;</div>
+</div>

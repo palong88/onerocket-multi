@@ -8,11 +8,13 @@ Rails.application.routes.draw do
   get 'team/scaffold'
 
   resources :stakeholders
+
   resources :eadmin_tasks do
 		  member do
 		    patch :complete
 		    patch :not_complete
 		    patch :create
+        patch :edit
 		  end
 		end
 

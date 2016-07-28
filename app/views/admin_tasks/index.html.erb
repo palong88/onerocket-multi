@@ -63,7 +63,7 @@
       <h5>Before they start...</h5>
     <% end %>
 
-    <% @admin_tasks.order( 'admin_tasks.due_date DESC' ).each do |admin_task| %>
+    <% @admin_tasks.order( 'admin_tasks.created_at ASC','admin_tasks.due_date DESC' ).each do |admin_task| %>
       <% if admin_task.when == "Before" %>
         <!-- Card -->
         <div class="card hoverable">
@@ -96,7 +96,7 @@
       <h5>After they start...</h5>
     <% end %>
 
-    <% @admin_tasks.order( 'admin_tasks.due_date DESC' ).each do |admin_task| %>
+    <% @admin_tasks.order( 'admin_tasks.created_at ASC','admin_tasks.due_date DESC' ).each do |admin_task| %>
       <% if admin_task.when == "After" %>
         <!-- Card -->
         <div class="card hoverable grey lighten-2">
