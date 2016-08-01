@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   rolify
   has_many :admin_tasks
   has_many :eadmin_tasks
+  has_many :attendances, dependent: :destroy
+  has_many :events, through: :attendances
 
   belongs_to :team
   # belongs_to :categories
@@ -26,6 +28,10 @@ class User < ActiveRecord::Base
 
   def confirmation_required?
     false
+  end
+
+  def name_plus_start
+    "#{self.name} (#{self.start_date.to_formatted_s(:short)})"
   end
 
   #used for tasks... will eventually send out an email to the user.

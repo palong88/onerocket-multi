@@ -8,8 +8,15 @@ class EadminTasksController < ApplicationController
   # GET /eadmin_tasks.json
   def index
     @categories = Category.where(:team => current_user.user_info)
+<<<<<<< HEAD
     @categories_all = Category.where(:team => "Everyone")
 
+=======
+    @categories_all = Category.where(:team => "All")
+
+    @events = Event.includes(:users).where(users: {id: current_user.id})
+    
+>>>>>>> events-feature
     if params[:category]
       ap "Option 1"
       @eadmin_tasks = current_user.eadmin_tasks.where( :category => params[:category], :team => params[:team])

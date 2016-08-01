@@ -2,10 +2,40 @@
   <div  class="nav-wrapper" style=" ">
   <% if can? :delete, @post %>
     <%# Side nav for Admin %>
+<<<<<<< HEAD
     <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li class=" <%= active_class(users_path) %>"><%= link_to "Our People", users_path %></li>
           <li class=" <%= active_class(edit_user_registration_path) %>"  ><%= link_to "Account Settings", edit_user_registration_path %></li>
           <li class=" "   ><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+=======
+    <% if can? :delete, @post %>
+      <%# DESKTOP and MOBILE %>
+      <ul id="slide-out" class="side-nav">
+        <img  src="/assets/site-logo.png" class="center-align responsive-img" style="margin-top:3%" alt="logo"></a>
+        <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header">Teams &amp; Tasks</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li class="<%= 'active' if current_page?(teams_path) %>"  ><%= link_to "Teams", teams_path %></li>
+                  <li class="<%= 'active' if current_page?(admin_path) %>"  ><%= link_to "Tasks for Everybody", admin_path %></li>
+                  <% @teams.each do |t| %>
+                  <li><%= link_to "#{t.name} Tasks", admin_path(:team => t.name) %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="<%= 'active' if current_page?(events_path) %>"><%= link_to "Events", events_path %></li>
+        <%# MOBILE ONLY %>
+        <div class="hide-on-large-only">
+          <li class="<%= 'active' if current_page?(users_path) %>"  ><%= link_to "Our People", users_path %></li>
+          <li class="<%= 'active' if current_page?(edit_user_registration_path) %>"  ><%= link_to "Account Settings", edit_user_registration_path %></li>
+          <li class="<%= 'active' if current_page?(destroy_user_session_path) %>"   ><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+        </div>
+>>>>>>> events-feature
       </ul>
 
     <a  href="#" data-activates="slide-out" class="button-collapse show-on-small" ><i class="material-icons">menu</i></a>

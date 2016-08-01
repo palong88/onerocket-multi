@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery-ui
 //= require jquery_ujs
+//= require autocomplete-rails
 //= require turbolinks
 //= require materialize-sprockets
 //= require materialize/extras/nouislider

@@ -30,6 +30,16 @@
       <% end %>
     </div>
 
+    <% unless @events.empty? %>
+    <ul class="collection">
+      <% @events.each do |e| %>
+      <% attendance = Attendance.where(event_id: e.id).where(user_id: current_user.id).first %>
+      <%# attendance = @events.includes(:attendances).where(attendances: {event_id: e.id}).first %>
+        <li class="collection-item"><div><%= e.name %><%= link_to '<i class="material-icons">send</i>'.html_safe, edit_attendance_path(:id => attendance.id), class: "secondary-content" %></div></li>
+      <% end %>
+    </ul>
+    <% end %>
+
   </div>
   <!-- End Sidebar -->
 
@@ -42,7 +52,16 @@
 
     </div>
 
+<<<<<<< HEAD
 
+=======
+    <div class="row">
+      <ul class="tabs">
+        <li class="tab"><a class="active" href="#test1">Tasks</a></li>
+        <li class="tab"><a href="#test2">Helpful Documents</a></li>
+      </ul>
+    </div>
+>>>>>>> events-feature
 
     <% if @eadmin_tasks.empty? %>
     <div class="row centered">
@@ -61,7 +80,7 @@
 
 
     <% unless @eadmin_tasks.where(:when_due => "Before").where(:completed => 0).empty? %>
-      <h5>Before you start...</h5>
+      <h5 class="top">Before you start...</h5>
     <% end %>
 
     <% @eadmin_tasks.order( 'eadmin_tasks.created_at ASC','eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
@@ -102,7 +121,7 @@
 
 
     <% unless @eadmin_tasks.where(:when_due => "After").where(:completed => 0).empty? %>
-      <h5>After you start...</h5>
+      <h5 class="top">After you start...</h5>
     <% end %>
 
     <% @eadmin_tasks.order( 'eadmin_tasks.created_at ASC','eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
@@ -142,7 +161,7 @@
 
 
     <% unless @eadmin_tasks.where(:completed => 1).empty? %>
-      <h5>Recently Completed</h5>
+      <h5 class="top">Recently Completed</h5>
     <% end %>
 
     <% @eadmin_tasks.order( 'eadmin_tasks.created_at ASC','eadmin_tasks.due_date DESC' ).each do |eadmin_task| %>
